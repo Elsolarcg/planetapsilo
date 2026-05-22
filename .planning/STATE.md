@@ -118,6 +118,15 @@ None yet.
   - Approach v1: content collection Astro (`src/content/obras/`) + grid `/obras` + detail `/obras/[slug]` + botón "Me interesa" que abre WhatsApp con mensaje pre-cargado
   - Migración futura: cuando Sofía active checkout real (Bold/Wompi), solo cambia el botón — la estructura de catálogo no se toca
 
+- Phase 1 mini-patch (2026-05-22): `/obras` STUB VISUAL agregado al MVP por solicitud del cliente
+  - Live: https://elsolarcg.github.io/planetapsilo/obras/ — HTTP 200, deploy successful (workflow run 26266508231)
+  - Cambios: `src/pages/obras.astro` + 6 SVG placeholders en `public/obras/obra-01..06.svg` + "Obras" agregado a `src/data/nav.ts` (entre Retiros y Contacto)
+  - Datos PLACEHOLDER (títulos inventados, precios sugeridos, SVGs cósmicos generados — NO son fotos reales de cuadros)
+  - Aviso de maqueta visible en la página: "Maqueta: imágenes y datos son provisionales"
+  - Phase 02.1 sigue PENDIENTE: reemplazar SVG placeholders con fotos reales de Sofía + título + técnica + dimensiones + precio + descripción reales, idealmente migrando a content collection `src/content/obras/`
+  - Lo que falta pedirle a Sofía para Phase 02.1: 5-10 fotos cuadradas (o cuadrables) de sus obras + por cada una: título, precio COP, dimensiones, técnica, año, descripción 2-3 líneas
+  - Commit: `db1afc8` — feat(maqueta): add /obras stub section with 6 SVG placeholders + WhatsApp consultar
+
 ## Deferred Items
 
 Items reconocidos y arrastrados desde milestones anteriores:
@@ -128,6 +137,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T01:59:08.520Z
-Stopped at: Plan 01-04 complete; BaseLayout + chrome + 4 pages + 404 + data + assets; build green; noindex enforced (FOUND-03, 05, 06, 07, 08, 09 done)
+Last session: 2026-05-22T02:15:49.059Z
+Stopped at: Phase 1 cerrada + /obras stub live (db1afc8). Session resumed 2026-05-22 — proceeding to /gsd-discuss-phase 2 (MVP Content + Three-Channel Contact)
 Resume file: None
