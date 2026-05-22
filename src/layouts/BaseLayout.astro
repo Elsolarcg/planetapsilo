@@ -1,0 +1,77 @@
+---
+// src/layouts/BaseLayout.astro
+// HTML shell consumed by every page (FOUND-03).
+// - Imports global.css (which imports tokens.css + Tailwind + Google Fonts) — Plan 02
+// - Renders Nav (sticky, blur-on-scroll), Footer, WhatsAppFloat (sticky CTA)
+// - Emits noindex meta + OG defaults from src/data/site.ts (FOUND-08, T-01-16)
+// - Composes the page via <slot />
+//
+// Phase 1: site.indexable === false → meta robots noindex,nofollow.
+// Phase 3 (LEGAL-12): flip site.indexable to true; this layout will then omit the meta tag.
+
+import '../styles/global.css';
+import { site } from '../data/site';
+import Nav from '../components/layout/Nav.astro';
+import Footer from '../components/layout/Footer.astro';
+import WhatsAppFloat from '../components/layout/WhatsAppFloat.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const { title, description, ogImage } = Astro.props as Props;
+const pageTitle = title ? `${title} — ${site.name}` : site.name;
+const pageDescription = description ?? site.ogDefault.description;
+
+// import.meta.env.BASE_URL resolves to "/planetapsilo/" at build (astro.config.mjs base).
+// Pitfall #13: every internal link/asset MUST go through BASE_URL.
+const baseUrl = import.meta.env.BASE_URL;
+const ogImgRel = (ogImage ?? site.ogDefault.image).replace(/^\//, '');
+const ogImgAbsolute = `${site.baseUrl}/${ogImgRel}`;
+
+// Canonical URL is the full public URL (site.baseUrl + path under base).
+const pathname = Astro.url.pathname;
+const baseTrimmed = baseUrl.replace(/\/$/, '');
+const pathWithoutBase = pathname.startsWith(baseTrimmed)
+  ? pathname.slice(baseTrimmed.length)
+  : pathname;
+const canonical = `${site.baseUrl}${pathWithoutBase}`;
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+
+    {/* Phase 1 indexation gate (T-01-16). While site.indexable === false, no crawler indexing. */}
+    {!site.indexable && <meta name="robots" content="noindex,nofollow" />}
+    {!site.indexable && <meta name="googlebot" content="noindex,nofollow" />}
+
+    <link rel="icon" href={`${baseUrl}favicon.svg`} type="image/svg+xml" />
+    <link rel="canonical" href={canonical} />
+
+    {/* OG defaults — Phase 2 may override per page */}
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:image" content={ogImgAbsolute} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:url" content={canonical} />
+
+    {/* preconnect to Google Fonts CDN (font load is in global.css) */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <Nav />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+    <WhatsAppFloat />
+  </body>
+</html>

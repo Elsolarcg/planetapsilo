@@ -1,0 +1,56 @@
+---
+// src/components/layout/Footer.astro
+// Phase 1 minimal footer. Phase 2 (CONT-10, CONT-11) wires social links + privacy link + disclaimer.
+// Reads `site.indexable` so the "noindex" status line appears only while Phase 1 gate is active.
+
+import { site } from '../../data/site';
+---
+<footer class="site-footer">
+  <div class="container footer-row">
+    <p class="brand-line">
+      <span class="wordmark">{site.name}</span>
+      <span class="separator">·</span>
+      <span class="muted">{site.year}</span>
+      {!site.indexable && (
+        <>
+          <span class="separator">·</span>
+          <span class="status muted">Sitio en construcción — sigue noindex</span>
+        </>
+      )}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: var(--space-section);
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-chrome-border);
+  }
+  .footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .brand-line {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    color: var(--color-text-primary);
+  }
+  .muted { color: var(--color-text-muted); }
+  .separator { opacity: 0.5; }
+</style>

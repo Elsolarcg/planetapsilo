@@ -1,0 +1,141 @@
+---
+// src/components/layout/Nav.astro
+// Sticky transparent header → backdrop-filter: blur(12px) when window.scrollY > 50 (D-09).
+// Wordmark "planetapsilo" lowercase Fraunces 300 tracking-wide 0.08em (D-06, D-07).
+// Mobile (< 768px): wordmark + hamburger; nav collapses to fullscreen drawer (D-09).
+// Pitfall #13: every internal link goes through `internal()` which prefixes BASE_URL.
+
+import { nav } from '../../data/nav';
+
+const baseUrl = import.meta.env.BASE_URL; // "/planetapsilo/"
+const internal = (p: string) => `${baseUrl}${p.replace(/^\//, '')}`;
+---
+<header id="site-header" class="site-header">
+  <div class="container nav-row">
+    <a href={internal('/')} class="wordmark" aria-label="planetapsilo — inicio">planetapsilo</a>
+
+    <button
+      id="nav-toggle"
+      class="nav-toggle"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </button>
+
+    <nav id="primary-nav" class="primary-nav" aria-label="Navegación principal">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={internal(item.href)}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: transparent;
+    transition: background-color 200ms ease, backdrop-filter 200ms ease, border-color 200ms ease;
+    border-bottom: 1px solid transparent;
+  }
+  .site-header.scrolled {
+    background-color: rgba(5, 10, 26, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--color-chrome-border);
+  }
+  .nav-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1rem;
+  }
+  .wordmark {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.08em;
+    text-transform: lowercase;
+    color: var(--color-text-primary);
+  }
+  .primary-nav ul {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .primary-nav a {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--color-text-primary);
+  }
+  .primary-nav a:hover,
+  .primary-nav a:focus-visible {
+    color: var(--color-orange-mystic);
+  }
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary);
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+
+  @media (max-width: 767px) {
+    .nav-toggle { display: flex; }
+    .primary-nav {
+      position: fixed;
+      inset: 0;
+      background: var(--color-bg-base);
+      display: none;
+      padding: 6rem 2rem 2rem;
+    }
+    .primary-nav.open { display: block; }
+    .primary-nav ul {
+      flex-direction: column;
+      gap: 1.5rem;
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+<script>
+  // D-09: blur-on-scroll. Vanilla JS so we ship 0 KB of framework runtime.
+  const header = document.getElementById('site-header');
+  const toggle = document.getElementById('nav-toggle');
+  const navEl = document.getElementById('primary-nav');
+
+  const onScroll = () => {
+    if (!header) return;
+    if (window.scrollY > 50) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (toggle && navEl) {
+    toggle.addEventListener('click', () => {
+      const isOpen = navEl.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(isOpen));
+      toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
+    });
+  }
+</script>
