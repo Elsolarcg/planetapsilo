@@ -1,0 +1,3 @@
+# planetapsilo — Phase 1: site exists but is not indexable until Phase 3 legal pass (LEGAL-12).
+User-agent: *
+Disallow: /

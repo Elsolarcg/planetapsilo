@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <linearGradient id="og" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5b2a86"/>
+      <stop offset="55%" stop-color="#ff7a3d"/>
+      <stop offset="100%" stop-color="#0b1d4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050a1a"/>
+  <rect width="1200" height="630" fill="url(#og)" opacity="0.7"/>
+  <text x="600" y="340" text-anchor="middle" font-family="serif" font-size="84" font-weight="300" fill="#f4ede3" letter-spacing="8">planetapsilo</text>
+</svg>
