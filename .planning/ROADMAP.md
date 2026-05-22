@@ -39,7 +39,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **External blockers**: ninguno
 **Plans**: 5 plans
   - [x] 01-01-PLAN.md — Astro 6 scaffold + Node 22 pin + base path config + .gitignore (FOUND-01, FOUND-02, FOUND-14)
-  - [ ] 01-02-PLAN.md — Tailwind v4 wiring + locked palette tokens + Fraunces/Inter fonts + animated cosmic gradient primitives (FOUND-04)
+  - [x] 01-02-PLAN.md — Tailwind v4 wiring + locked palette tokens + Fraunces/Inter fonts + animated cosmic gradient primitives (FOUND-04)
   - [x] 01-03-PLAN.md — backup-v1 branch push + SIPI trademark check + copy glossary docs (FOUND-11, FOUND-13, FOUND-15)
   - [ ] 01-04-PLAN.md — BaseLayout + Nav/Footer/WhatsAppFloat + 4 page stubs + 404 + favicon + noindex + robots.txt (FOUND-03, FOUND-05, FOUND-06, FOUND-07, FOUND-08, FOUND-09)
   - [ ] 01-05-PLAN.md — GitHub Actions deploy workflow + force-push + Pages activation + live URL verification (FOUND-10, FOUND-12)
@@ -132,7 +132,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 (con sub-phases 5.1, 
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation + Deployable Skeleton | 2/5 | In Progress|  |
+| 1. Foundation + Deployable Skeleton | 3/5 | In Progress|  |
 | 2. MVP Content + Three-Channel Contact | 0/TBD | Not started | - |
 | 3. Legal Pass + Trust Signals + Indexación | 0/TBD | Not started | - |
 | 4. Validación + Newsletter + Operative Polish | 0/TBD | Not started | - |

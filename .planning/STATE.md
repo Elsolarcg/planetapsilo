@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Plan 01-03 complete; backup-v1 pushed + SIPI documented + copy glossary committed
-last_updated: "2026-05-22T01:31:00.000Z"
+stopped_at: Plan 01-02 complete; Tailwind v4 wired + tokens.css + global.css committed (FOUND-04)
+last_updated: "2026-05-22T01:37:23.000Z"
 last_activity: 2026-05-22
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 2
-  percent: 40
+  completed_plans: 3
+  percent: 60
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 1 (Foundation + Deployable Skeleton) — EXECUTING
-Plan: 2 of 5 (01-01 + 01-03 complete; 01-02 / 01-04 / 01-05 pending)
+Plan: 3 of 5 (01-01 + 01-02 + 01-03 complete; 01-04 / 01-05 pending)
 Status: Ready to execute next plan
 Last activity: 2026-05-22
 
-Progress: [████░░░░░░] 40%
+Progress: [██████░░░░] 60%
 
 ## Performance Metrics
 
@@ -58,6 +58,7 @@ Progress: [████░░░░░░] 40%
 *Updated after each plan completion*
 | Phase 01-foundation-deployable-skeleton P01 | 5min | 3 tasks | 8 files |
 | Phase 01-foundation-deployable-skeleton P03 | 4min | 3 tasks | 3 files |
+| Phase 01-foundation-deployable-skeleton P02 | 3min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,10 @@ Recent decisions affecting current work:
 - [Phase 1]: Phase 01 Plan 03: SIPI trademark check marked PENDING MANUAL CONFIRMATION (portal is JS-SPA, not scriptable); user follow-up tracked in `.planning/intel/trademark.md`
 - [Phase 1]: Phase 01 Plan 03: copy glossary established as Phase 2 linter source-of-truth — 11 PERMITIDO + 15 PROHIBIDO + 8 reglas
 - [Phase 1]: Phase 01 Plan 03: two-account gh CLI pattern (`gh auth switch -u Elsolarcg`) established for pushes to Elsolarcg-owned repo from juanmplazasg-lgtm primary
+- [Phase 1]: Phase 01 Plan 02: Tailwind v4.3.0 + @tailwindcss/vite@4.3.0 wired via `npx astro add tailwind --yes` — Plan 01 invariants (site/base/output/build.assets) preserved
+- [Phase 1]: Phase 01 Plan 02: locked psychedelic palette (#ff7a3d / #5b2a86 / #0b1d4f / #050a1a / #f4ede3) declared in Tailwind v4 @theme block at src/styles/tokens.css — D-02 satisfied
+- [Phase 1]: Phase 01 Plan 02: @property --cosmic-angle + conic-gradient + cosmic-rotate 32s linear infinite animation primitives ready for Plan 04 Hero; reduced-motion bloqueante present in BOTH tokens.css AND global.css (Pitfall #8 defense in depth)
+- [Phase 1]: Phase 01 Plan 02: Google Fonts CSS2 (Fraunces 300/500 + Inter 400/500, display=swap) loaded via @import url(...) in global.css — semantic token naming (--color-text-primary, --color-bg-base) chosen over numeric scale
 
 ### Pending Todos
 
@@ -107,6 +112,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T01:31:00.000Z
-Stopped at: Plan 01-03 complete; backup-v1 pushed + SIPI documented + copy glossary committed
-Resume file: .planning/phases/01-foundation-deployable-skeleton/01-02-PLAN.md (or 01-04 — both unblocked)
+Last session: 2026-05-22T01:37:23.000Z
+Stopped at: Plan 01-02 complete; Tailwind v4 wired + tokens.css + global.css committed (FOUND-04 done)
+Resume file: .planning/phases/01-foundation-deployable-skeleton/01-04-PLAN.md (next unblocked plan)

@@ -14,7 +14,7 @@ Establece el esqueleto técnico, identidad visual base y el pipeline de deploy.
 - [ ] **FOUND-01**: Repo local en `/home/plazasia/workspace/07_DIGITAL_GROWTH/clientes/planetapsilo/` con scaffold Astro 6.3.x + Tailwind v4 + Node 22 (.nvmrc)
 - [x] **FOUND-02**: `astro.config.mjs` con `site: 'https://elsolarcg.github.io'` + `base: '/planetapsilo'` configurados desde commit 1
 - [ ] **FOUND-03**: `BaseLayout.astro` con meta tags, OG por defecto, fuentes (Cormorant/Fraunces + Inter/DM Sans), nav, footer, slot
-- [ ] **FOUND-04**: `src/styles/tokens.css` con paleta psicodélica (naranjas / violetas / azules profundos), tipografía, spacing
+- [x] **FOUND-04**: `src/styles/tokens.css` con paleta psicodélica (naranjas / violetas / azules profundos), tipografía, spacing
 - [ ] **FOUND-05**: 4 page stubs creados — `src/pages/index.astro`, `acompanamiento.astro`, `retiros.astro`, `contacto.astro` (con placeholders mínimos)
 - [ ] **FOUND-06**: Componentes esqueleto — `Nav.astro`, `Footer.astro`, `WhatsAppFloat.astro` montados en BaseLayout
 - [ ] **FOUND-07**: `src/data/{site,nav,services,contact}.ts` placeholder con tipado básico
@@ -155,7 +155,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | FOUND-01 | Phase 1 | Pending |
 | FOUND-02 | Phase 1 | Complete |
 | FOUND-03 | Phase 1 | Pending |
-| FOUND-04 | Phase 1 | Pending |
+| FOUND-04 | Phase 1 | Complete |
 | FOUND-05 | Phase 1 | Pending |
 | FOUND-06 | Phase 1 | Pending |
 | FOUND-07 | Phase 1 | Pending |
