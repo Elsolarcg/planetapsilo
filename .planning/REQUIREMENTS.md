@@ -20,9 +20,9 @@ Establece el esqueleto técnico, identidad visual base y el pipeline de deploy.
 - [x] **FOUND-07**: `src/data/{site,nav,services,contact}.ts` placeholder con tipado básico
 - [x] **FOUND-08**: `<meta name="robots" content="noindex">` global + `public/robots.txt` con `Disallow: /`
 - [x] **FOUND-09**: Custom `404.astro` consistente con la marca
-- [ ] **FOUND-10**: GitHub Actions workflow `.github/workflows/deploy.yml` con `withastro/action@v3` + `actions/deploy-pages@v4`
+- [x] **FOUND-10**: GitHub Actions workflow `.github/workflows/deploy.yml` con `withastro/action@v3` + `actions/deploy-pages@v4`
 - [x] **FOUND-11**: Branch `backup-v1` creada del repo `Elsolarcg/planetapsilo` antes de force-push
-- [ ] **FOUND-12**: Primer deploy a `https://elsolarcg.github.io/planetapsilo/` exitoso (200 en las 4 rutas, assets desde `/planetapsilo/_astro/*`, DevTools Network limpio)
+- [x] **FOUND-12**: Primer deploy a `https://elsolarcg.github.io/planetapsilo/` exitoso (200 en las 4 rutas, assets desde `/planetapsilo/_astro/*`, DevTools Network limpio)
 - [x] **FOUND-13**: SIPI trademark check de "planetapsilo" (clases 35, 41, 44) documentado en `.planning/intel/trademark.md`
 - [x] **FOUND-14**: `.gitignore` apropiado (node_modules, dist, .DS_Store) desde commit 1
 - [x] **FOUND-15**: `docs/copy-glossary.md` con palabras PERMITIDAS y PROHIBIDAS — sirve de copy linter de referencia
@@ -161,9 +161,9 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | FOUND-07 | Phase 1 | Complete |
 | FOUND-08 | Phase 1 | Complete |
 | FOUND-09 | Phase 1 | Complete |
-| FOUND-10 | Phase 1 | Pending |
+| FOUND-10 | Phase 1 | Complete |
 | FOUND-11 | Phase 1 | Complete |
-| FOUND-12 | Phase 1 | Pending |
+| FOUND-12 | Phase 1 | Complete |
 | FOUND-13 | Phase 1 | Complete |
 | FOUND-14 | Phase 1 | Complete |
 | FOUND-15 | Phase 1 | Complete |

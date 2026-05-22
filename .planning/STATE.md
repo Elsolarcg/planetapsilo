@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
+status: verifying
 stopped_at: Plan 01-04 complete; BaseLayout + chrome + 4 pages + 404 + data + assets; build green; noindex enforced (FOUND-03, 05, 06, 07, 08, 09 done)
-last_updated: "2026-05-22T01:50:04.255Z"
+last_updated: "2026-05-22T01:59:18.287Z"
 last_activity: 2026-05-22
 progress:
   total_phases: 5
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 5
-  completed_plans: 4
-  percent: 80
+  completed_plans: 5
+  percent: 100
 ---
 
 # Project State
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 
 Phase: 1 (Foundation + Deployable Skeleton) — EXECUTING
 Plan: 5 of 5 (01-01..01-04 complete; 01-05 pending — deploy workflow + force-push)
-Status: Ready to execute next plan
+Status: Phase complete — ready for verification
 Last activity: 2026-05-22
 
 Progress: [████████░░] 80%
@@ -60,6 +60,7 @@ Progress: [████████░░] 80%
 | Phase 01-foundation-deployable-skeleton P03 | 4min | 3 tasks | 3 files |
 | Phase 01-foundation-deployable-skeleton P02 | 3min | 3 tasks | 5 files |
 | Phase 01-foundation-deployable-skeleton P04 | 5min | 3 tasks | 17 files |
+| Phase 01-foundation-deployable-skeleton P05 | 4m 31s | 4 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -90,6 +91,8 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 01 Plan 04: Google Fonts @import moved to TOP of global.css — Lightning CSS (Tailwind v4 minifier) silently drops out-of-order @imports per spec; Fraunces wordmark D-06/D-07 would have failed otherwise
 - [Phase ?]: Phase 01 Plan 04: 404 home-link uses 'Vuelve' (Colombia tú-form) not 'Volvé' (rioplatense vos-form) — ICP is Colombian C-Level
 - [Phase ?]: Phase 01 Plan 04: Footer noindex status string conditional on site.indexable — auto-disappears in Phase 3 after LEGAL-12 flips the flag
+- [Phase ?]: Node 22 explicitly pinned in withastro/action@v3
+- [Phase ?]: GH Pages source flipped legacy→workflow via gh api
 
 ### Pending Todos
 
@@ -117,6 +120,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T01:50:04.255Z
+Last session: 2026-05-22T01:59:08.520Z
 Stopped at: Plan 01-04 complete; BaseLayout + chrome + 4 pages + 404 + data + assets; build green; noindex enforced (FOUND-03, 05, 06, 07, 08, 09 done)
-Resume file: .planning/phases/01-foundation-deployable-skeleton/01-05-PLAN.md (next unblocked plan)
+Resume file: None
