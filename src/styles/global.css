@@ -1,0 +1,70 @@
+/* src/styles/global.css
+ * Single global stylesheet imported by BaseLayout. Order matters:
+ *   1. Tailwind base/components/utilities (provides reset + @theme registration)
+ *   2. Tokens (declares @theme — must be available before utilities resolve)
+ *   3. Google Fonts (display=swap to avoid CLS — PITFALLS#8)
+ *   4. Base body styles (dark only — D-01)
+ */
+
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* D-03: Fraunces (display) + Inter (body), pesos mínimos para presupuesto perf */
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500&display=swap");
+
+/* Dark-only baseline (D-01) */
+html {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.6;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 300;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover, a:focus-visible {
+  color: var(--color-orange-mystic);
+  transition: color 200ms ease;
+}
+
+/* Honor users with prefers-reduced-motion: reduce — disable smooth scroll + transitions on chrome */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* Container helper — Plan 04 sections will use this */
+.container {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
