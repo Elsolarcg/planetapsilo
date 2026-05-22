@@ -12,7 +12,7 @@ Requirements for initial release (MVP visible + deployable). Cubren el sitio des
 Establece el esqueleto técnico, identidad visual base y el pipeline de deploy.
 
 - [ ] **FOUND-01**: Repo local en `/home/plazasia/workspace/07_DIGITAL_GROWTH/clientes/planetapsilo/` con scaffold Astro 6.3.x + Tailwind v4 + Node 22 (.nvmrc)
-- [ ] **FOUND-02**: `astro.config.mjs` con `site: 'https://elsolarcg.github.io'` + `base: '/planetapsilo'` configurados desde commit 1
+- [x] **FOUND-02**: `astro.config.mjs` con `site: 'https://elsolarcg.github.io'` + `base: '/planetapsilo'` configurados desde commit 1
 - [ ] **FOUND-03**: `BaseLayout.astro` con meta tags, OG por defecto, fuentes (Cormorant/Fraunces + Inter/DM Sans), nav, footer, slot
 - [ ] **FOUND-04**: `src/styles/tokens.css` con paleta psicodélica (naranjas / violetas / azules profundos), tipografía, spacing
 - [ ] **FOUND-05**: 4 page stubs creados — `src/pages/index.astro`, `acompanamiento.astro`, `retiros.astro`, `contacto.astro` (con placeholders mínimos)
@@ -24,7 +24,7 @@ Establece el esqueleto técnico, identidad visual base y el pipeline de deploy.
 - [ ] **FOUND-11**: Branch `backup-v1` creada del repo `Elsolarcg/planetapsilo` antes de force-push
 - [ ] **FOUND-12**: Primer deploy a `https://elsolarcg.github.io/planetapsilo/` exitoso (200 en las 4 rutas, assets desde `/planetapsilo/_astro/*`, DevTools Network limpio)
 - [ ] **FOUND-13**: SIPI trademark check de "planetapsilo" (clases 35, 41, 44) documentado en `.planning/intel/trademark.md`
-- [ ] **FOUND-14**: `.gitignore` apropiado (node_modules, dist, .DS_Store) desde commit 1
+- [x] **FOUND-14**: `.gitignore` apropiado (node_modules, dist, .DS_Store) desde commit 1
 - [ ] **FOUND-15**: `docs/copy-glossary.md` con palabras PERMITIDAS y PROHIBIDAS — sirve de copy linter de referencia
 
 ### Content & Contact (CONT) — Phase 2
@@ -153,7 +153,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | Requirement | Phase | Status |
 |-------------|-------|--------|
 | FOUND-01 | Phase 1 | Pending |
-| FOUND-02 | Phase 1 | Pending |
+| FOUND-02 | Phase 1 | Complete |
 | FOUND-03 | Phase 1 | Pending |
 | FOUND-04 | Phase 1 | Pending |
 | FOUND-05 | Phase 1 | Pending |
@@ -165,7 +165,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | FOUND-11 | Phase 1 | Pending |
 | FOUND-12 | Phase 1 | Pending |
 | FOUND-13 | Phase 1 | Pending |
-| FOUND-14 | Phase 1 | Pending |
+| FOUND-14 | Phase 1 | Complete |
 | FOUND-15 | Phase 1 | Pending |
 | CONT-01 | Phase 2 | Pending |
 | CONT-02 | Phase 2 | Pending |

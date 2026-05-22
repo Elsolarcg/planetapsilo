@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-05-22T01:16:08.287Z"
-last_activity: 2026-05-22 -- Phase 1 execution started
+stopped_at: Plan 01-01 complete; Astro scaffold + base path + .gitignore landed
+last_updated: "2026-05-22T01:24:26.972Z"
+last_activity: 2026-05-22
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 0
-  percent: 0
+  completed_plans: 1
+  percent: 20
 ---
 
 # Project State
@@ -26,9 +26,9 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 1 (Foundation + Deployable Skeleton) — EXECUTING
-Plan: 1 of 5
-Status: Executing Phase 1
-Last activity: 2026-05-22 -- Phase 1 execution started
+Plan: 2 of 5
+Status: Ready to execute
+Last activity: 2026-05-22
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -56,6 +56,7 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: -
 
 *Updated after each plan completion*
+| Phase 01-foundation-deployable-skeleton P01 | 5min | 3 tasks | 8 files |
 
 ## Accumulated Context
 
@@ -69,6 +70,10 @@ Recent decisions affecting current work:
 - Init: Granularity coarse del roadmap (3-5 fases anchas)
 - Init: Stack Astro 6 + Tailwind v4 + GH Pages crystallized en research/SUMMARY.md
 - Init: noindex + robots Disallow desde commit 1; removal solo en Phase 3 tras abogado
+- [Phase ?]: Phase 01 Plan 01: base path '/planetapsilo' locked in astro.config.mjs from commit 1 (Pitfall #13 mitigation)
+- [Phase ?]: Phase 01 Plan 01: Node 22 pinned via .nvmrc (Astro 6 hard requirement)
+- [Phase ?]: Phase 01 Plan 01: scaffold .git/ accepted as new history baseline after cp -r overwrote original (force-push planned anyway in Plan 03)
+- [Phase ?]: Phase 01 Plan 01: package renamed from CLI flag artifact '--typescript' to 'planetapsilo', private:true added
 
 ### Pending Todos
 
@@ -96,6 +101,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T00:43:48.644Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-foundation-deployable-skeleton/01-CONTEXT.md
+Last session: 2026-05-22T01:24:26.967Z
+Stopped at: Plan 01-01 complete; Astro scaffold + base path + .gitignore landed
+Resume file: .planning/phases/01-foundation-deployable-skeleton/01-02-PLAN.md
