@@ -7,8 +7,14 @@
 
 import { nav } from '../../data/nav';
 
-const baseUrl = import.meta.env.BASE_URL; // "/planetapsilo/"
-const internal = (p: string) => `${baseUrl}${p.replace(/^\//, '')}`;
+// BASE_URL is "/planetapsilo" (no trailing slash) under trailingSlash: 'ignore' in astro.config.mjs.
+// internal() normalizes both sides so concatenation always yields "/planetapsilo/<path>".
+const baseUrl = import.meta.env.BASE_URL;
+const baseTrimmed = baseUrl.replace(/\/$/, '');
+const internal = (p: string) => {
+  const path = p.replace(/^\//, '');
+  return path === '' ? `${baseTrimmed}/` : `${baseTrimmed}/${path}`;
+};
 ---
 <header id="site-header" class="site-header">
   <div class="container nav-row">

@@ -1,16 +1,17 @@
 /* src/styles/global.css
  * Single global stylesheet imported by BaseLayout. Order matters:
- *   1. Tailwind base/components/utilities (provides reset + @theme registration)
- *   2. Tokens (declares @theme — must be available before utilities resolve)
- *   3. Google Fonts (display=swap to avoid CLS — PITFALLS#8)
+ *   1. Google Fonts via @import url(...) — MUST be first; spec says @import precedes all rules.
+ *      Lightning CSS (Tailwind v4 minifier) drops out-of-order @imports silently — locked first
+ *      to neutralize that loss [Plan 04 Rule 1 fix: wordmark Fraunces was failing to load].
+ *   2. Tailwind base/components/utilities (provides reset + @theme registration)
+ *   3. Tokens (declares @theme — must be available before utilities resolve)
  *   4. Base body styles (dark only — D-01)
  */
 
-@import "tailwindcss";
-@import "./tokens.css";
-
 /* D-03: Fraunces (display) + Inter (body), pesos mínimos para presupuesto perf */
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500&family=Inter:wght@400;500&display=swap");
+@import "tailwindcss";
+@import "./tokens.css";
 
 /* Dark-only baseline (D-01) */
 html {
