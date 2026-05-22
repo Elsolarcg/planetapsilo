@@ -1,0 +1,44 @@
+# .github/workflows/deploy.yml
+# planetapsilo Phase 1 CI/CD — FOUND-10
+#
+# Trigger: push to main OR manual dispatch.
+# Build: withastro/action@v3 (reads astro.config.mjs, Node 22 default, base path honored).
+# Deploy: actions/deploy-pages@v4 publishes to the GitHub Pages environment.
+# Permissions: minimum scope — read contents, write Pages, write id-token for OIDC.
+
+name: Deploy Astro site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build with Astro
+        uses: withastro/action@v3
+        # Reads astro.config.mjs (site + base); installs deps; runs astro build; uploads dist/ as Pages artifact.
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
