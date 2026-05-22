@@ -13,13 +13,13 @@ Establece el esqueleto técnico, identidad visual base y el pipeline de deploy.
 
 - [ ] **FOUND-01**: Repo local en `/home/plazasia/workspace/07_DIGITAL_GROWTH/clientes/planetapsilo/` con scaffold Astro 6.3.x + Tailwind v4 + Node 22 (.nvmrc)
 - [x] **FOUND-02**: `astro.config.mjs` con `site: 'https://elsolarcg.github.io'` + `base: '/planetapsilo'` configurados desde commit 1
-- [ ] **FOUND-03**: `BaseLayout.astro` con meta tags, OG por defecto, fuentes (Cormorant/Fraunces + Inter/DM Sans), nav, footer, slot
+- [x] **FOUND-03**: `BaseLayout.astro` con meta tags, OG por defecto, fuentes (Cormorant/Fraunces + Inter/DM Sans), nav, footer, slot
 - [x] **FOUND-04**: `src/styles/tokens.css` con paleta psicodélica (naranjas / violetas / azules profundos), tipografía, spacing
-- [ ] **FOUND-05**: 4 page stubs creados — `src/pages/index.astro`, `acompanamiento.astro`, `retiros.astro`, `contacto.astro` (con placeholders mínimos)
-- [ ] **FOUND-06**: Componentes esqueleto — `Nav.astro`, `Footer.astro`, `WhatsAppFloat.astro` montados en BaseLayout
-- [ ] **FOUND-07**: `src/data/{site,nav,services,contact}.ts` placeholder con tipado básico
-- [ ] **FOUND-08**: `<meta name="robots" content="noindex">` global + `public/robots.txt` con `Disallow: /`
-- [ ] **FOUND-09**: Custom `404.astro` consistente con la marca
+- [x] **FOUND-05**: 4 page stubs creados — `src/pages/index.astro`, `acompanamiento.astro`, `retiros.astro`, `contacto.astro` (con placeholders mínimos)
+- [x] **FOUND-06**: Componentes esqueleto — `Nav.astro`, `Footer.astro`, `WhatsAppFloat.astro` montados en BaseLayout
+- [x] **FOUND-07**: `src/data/{site,nav,services,contact}.ts` placeholder con tipado básico
+- [x] **FOUND-08**: `<meta name="robots" content="noindex">` global + `public/robots.txt` con `Disallow: /`
+- [x] **FOUND-09**: Custom `404.astro` consistente con la marca
 - [ ] **FOUND-10**: GitHub Actions workflow `.github/workflows/deploy.yml` con `withastro/action@v3` + `actions/deploy-pages@v4`
 - [x] **FOUND-11**: Branch `backup-v1` creada del repo `Elsolarcg/planetapsilo` antes de force-push
 - [ ] **FOUND-12**: Primer deploy a `https://elsolarcg.github.io/planetapsilo/` exitoso (200 en las 4 rutas, assets desde `/planetapsilo/_astro/*`, DevTools Network limpio)
@@ -154,13 +154,13 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 |-------------|-------|--------|
 | FOUND-01 | Phase 1 | Pending |
 | FOUND-02 | Phase 1 | Complete |
-| FOUND-03 | Phase 1 | Pending |
+| FOUND-03 | Phase 1 | Complete |
 | FOUND-04 | Phase 1 | Complete |
-| FOUND-05 | Phase 1 | Pending |
-| FOUND-06 | Phase 1 | Pending |
-| FOUND-07 | Phase 1 | Pending |
-| FOUND-08 | Phase 1 | Pending |
-| FOUND-09 | Phase 1 | Pending |
+| FOUND-05 | Phase 1 | Complete |
+| FOUND-06 | Phase 1 | Complete |
+| FOUND-07 | Phase 1 | Complete |
+| FOUND-08 | Phase 1 | Complete |
+| FOUND-09 | Phase 1 | Complete |
 | FOUND-10 | Phase 1 | Pending |
 | FOUND-11 | Phase 1 | Complete |
 | FOUND-12 | Phase 1 | Pending |

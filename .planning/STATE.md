@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Plan 01-02 complete; Tailwind v4 wired + tokens.css + global.css committed (FOUND-04)
-last_updated: "2026-05-22T01:37:23.000Z"
+stopped_at: Plan 01-04 complete; BaseLayout + chrome + 4 pages + 404 + data + assets; build green; noindex enforced (FOUND-03, 05, 06, 07, 08, 09 done)
+last_updated: "2026-05-22T01:50:04.255Z"
 last_activity: 2026-05-22
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 3
-  percent: 60
+  completed_plans: 4
+  percent: 80
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 1 (Foundation + Deployable Skeleton) — EXECUTING
-Plan: 3 of 5 (01-01 + 01-02 + 01-03 complete; 01-04 / 01-05 pending)
+Plan: 5 of 5 (01-01..01-04 complete; 01-05 pending — deploy workflow + force-push)
 Status: Ready to execute next plan
 Last activity: 2026-05-22
 
-Progress: [██████░░░░] 60%
+Progress: [████████░░] 80%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [██████░░░░] 60%
 | Phase 01-foundation-deployable-skeleton P01 | 5min | 3 tasks | 8 files |
 | Phase 01-foundation-deployable-skeleton P03 | 4min | 3 tasks | 3 files |
 | Phase 01-foundation-deployable-skeleton P02 | 3min | 3 tasks | 5 files |
+| Phase 01-foundation-deployable-skeleton P04 | 5min | 3 tasks | 17 files |
 
 ## Accumulated Context
 
@@ -85,6 +86,10 @@ Recent decisions affecting current work:
 - [Phase 1]: Phase 01 Plan 02: locked psychedelic palette (#ff7a3d / #5b2a86 / #0b1d4f / #050a1a / #f4ede3) declared in Tailwind v4 @theme block at src/styles/tokens.css — D-02 satisfied
 - [Phase 1]: Phase 01 Plan 02: @property --cosmic-angle + conic-gradient + cosmic-rotate 32s linear infinite animation primitives ready for Plan 04 Hero; reduced-motion bloqueante present in BOTH tokens.css AND global.css (Pitfall #8 defense in depth)
 - [Phase 1]: Phase 01 Plan 02: Google Fonts CSS2 (Fraunces 300/500 + Inter 400/500, display=swap) loaded via @import url(...) in global.css — semantic token naming (--color-text-primary, --color-bg-base) chosen over numeric scale
+- [Phase ?]: Phase 01 Plan 04: BASE_URL helper pattern locked — trim trailing slash then concat (BASE_URL='/planetapsilo' without slash under trailingSlash: 'ignore'); documented in Nav.astro internal() and BaseLayout asset()
+- [Phase ?]: Phase 01 Plan 04: Google Fonts @import moved to TOP of global.css — Lightning CSS (Tailwind v4 minifier) silently drops out-of-order @imports per spec; Fraunces wordmark D-06/D-07 would have failed otherwise
+- [Phase ?]: Phase 01 Plan 04: 404 home-link uses 'Vuelve' (Colombia tú-form) not 'Volvé' (rioplatense vos-form) — ICP is Colombian C-Level
+- [Phase ?]: Phase 01 Plan 04: Footer noindex status string conditional on site.indexable — auto-disappears in Phase 3 after LEGAL-12 flips the flag
 
 ### Pending Todos
 
@@ -112,6 +117,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T01:37:23.000Z
-Stopped at: Plan 01-02 complete; Tailwind v4 wired + tokens.css + global.css committed (FOUND-04 done)
-Resume file: .planning/phases/01-foundation-deployable-skeleton/01-04-PLAN.md (next unblocked plan)
+Last session: 2026-05-22T01:50:04.255Z
+Stopped at: Plan 01-04 complete; BaseLayout + chrome + 4 pages + 404 + data + assets; build green; noindex enforced (FOUND-03, 05, 06, 07, 08, 09 done)
+Resume file: .planning/phases/01-foundation-deployable-skeleton/01-05-PLAN.md (next unblocked plan)
