@@ -5,6 +5,7 @@ status: draft
 shadcn_initialized: false
 preset: none
 created: 2026-05-22
+revised: 2026-05-22
 ---
 
 # Phase 2 — UI Design Contract
@@ -56,34 +57,34 @@ Implementation: Tailwind v4 default breakpoints + scoped media queries in compon
 ### Per-page section composition (LOCKED)
 
 #### `/` (home) — 6 sections
-1. **Hero** — `.hero-bg` opacity `0.85` + `.noise-overlay` opacity `0.08` · kicker "planetapsilo" Fraunces 300 letter-spacing 0.16em · H1 value-prop Fraunces 300 clamp(2.5rem, 6vw, 4.5rem) · máxima Fraunces 300 italic clamp(1.25rem, 3vw, 1.875rem) · dual CTA row (Calendly primario + "Explora los retiros" secundario → `/retiros`).
-2. **BrandBio "Sobre planetapsilo"** — 2–3 párrafos · centered max-width 42rem · body Inter 400 17px line-height 1.7 · no images. Slot for Sofía's optional 3rd párrafo (D-14).
-3. **Services split** — 2 cards lado a lado (tablet+) / stacked (mobile). Each card: title (Fraunces 500 28px) + 1-line teaser + CTA "Conocer más" → respective page. No images.
-4. **Testimonial contextual home** — 1 card centered max-width 36rem. Quote Fraunces 300 italic 22px (`"`+`"` typographic quotes) + atribución Inter 500 14px ("M., founder fintech, 41 — Bogotá") + disclaimer Inter 400 13px muted ("Testimonio ilustrativo de Phase 2 — voces reales consentidas en próxima versión. La experiencia individual no garantiza resultados.").
-5. **FAQ accordion** — `<details><summary>` nativo (D-13). 6 items, default closed. Summary Inter 500 18px; body Inter 400 16px line-height 1.6.
+1. **Hero** — `.hero-bg` opacity `0.85` + `.noise-overlay` opacity `0.08` · kicker "planetapsilo" Fraunces 300 letter-spacing 0.16em at `--font-display-sm` (18px) · H1 value-prop Fraunces 300 at `--font-display-xl` · máxima Fraunces 300 italic at `--font-display-md` · dual CTA row (Calendly primario + "Explora los retiros" secundario → `/retiros`).
+2. **BrandBio "Sobre planetapsilo"** — 2–3 párrafos · centered max-width 42rem · body Inter 400 at `--font-body-md` (17px) line-height 1.7 · no images. Slot for Sofía's optional 3rd párrafo (D-14).
+3. **Services split** — 2 cards lado a lado (tablet+) / stacked (mobile). Each card: title (Fraunces 500 at `--font-display-lg`) + 1-line teaser + per-card CTA noun → respective page. No images.
+4. **Testimonial contextual home** — 1 card centered max-width 36rem. Quote Fraunces 300 italic at `--font-display-md` (`"`+`"` typographic quotes) + atribución Inter 500 at `--font-body-sm` (14px, "M., founder fintech, 41 — Bogotá") + disclaimer Inter 400 at `--font-body-xs` (13px, muted, "Testimonio ilustrativo de Phase 2 — voces reales consentidas en próxima versión. La experiencia individual no garantiza resultados.").
+5. **FAQ accordion** — `<details><summary>` nativo (D-13). 6 items, default closed. Summary Fraunces 500 at `--font-display-lg` (lower-end via clamp ≈ 26px); body Inter 400 at `--font-body-md` (17px) line-height 1.6.
 6. **Final CTABlock** — Calendly primario + WhatsApp secundario + "Prefiero escribir un formulario" terciario (link → `/contacto#form`). Centered.
 
 #### `/acompanamiento` — 7 sections
-1. **Hero short** — `.hero-bg` opacity `0.5` + noise 0.06 · H1 "Acompañamiento" Fraunces 300 clamp(2rem, 5vw, 3.5rem) · teaser 1-line Inter 400 19px muted.
-2. **"Para quién"** — heading H2 Fraunces 300 32px + 1-3 párrafos Inter 400 17px. Defines ICP (C-Level / founder / nómada digital).
-3. **"Qué pasa en un encuentro"** — heading H2 + 3-4 bullets (unordered list, Inter 400 17px, marker color `--color-orange-mystic`).
-4. **"Cómo funciona el proceso"** — heading H2 + 3-step list (numbered, each with subhead Fraunces 500 22px + 1-2 lines body).
+1. **Hero short** — `.hero-bg` opacity `0.5` + noise 0.06 · H1 "Acompañamiento" Fraunces 300 at `--font-display-xl` (renders at lower end of clamp on interior heroes — the page sets the hero min-height to 60vh which contains the scaling; NO separate size token) · teaser 1-line Inter 400 at `--font-body-lg` (19px) muted.
+2. **"Para quién"** — heading H2 Fraunces 300 at `--font-display-lg` + 1-3 párrafos Inter 400 at `--font-body-md` (17px). Defines ICP (C-Level / founder / nómada digital).
+3. **"Qué pasa en un encuentro"** — heading H2 Fraunces 300 at `--font-display-lg` + 3-4 bullets (unordered list, Inter 400 at `--font-body-md`, marker color `--color-orange-mystic`).
+4. **"Cómo funciona el proceso"** — heading H2 Fraunces 300 at `--font-display-lg` + 3-step list (numbered, each with subhead Fraunces 500 at `--font-display-md` + 1-2 lines body at `--font-body-md`).
 5. **Testimonial contextual** — same Testimonial component, different quote (D-12: C-Level ongoing).
-6. **Confidentiality one-liner** — single sentence Fraunces 300 italic 20px centered, muted color, separated by `--space-section` (D-09 / D-27).
+6. **Confidentiality one-liner** — single sentence Fraunces 300 italic at `--font-display-md` centered, muted color, separated by `--space-section` (D-09 / D-27).
 7. **CTABlock** — Calendly primario + WhatsApp secundario (prefill "Hola planetapsilo, me interesa explorar el acompañamiento") + form-link terciario.
 
 #### `/retiros` — 6 sections
 1. **Hero short** — same treatment as `/acompanamiento`. H1 "Retiros" + máxima específica de retiro (Sofía redacta wording dentro del glosario).
-2. **"Las tres fases"** — heading H2 + 3 cards (stacked mobile / row tablet+). Each card: phase name Fraunces 500 26px ("Preparación" / "Inmersión" / "Integración") + body Inter 400 16px. **PROHIBIDO** nombrar sustancia (regla glossary #3).
-3. **"Para quién es y para quién no"** — suitability paragraph H2 + 2 columns mobile-stack (Inter 400 17px). No clinical language (no diagnóstico, no condición tratada).
+2. **"Las tres fases"** — heading H2 Fraunces 300 at `--font-display-lg` + 3 cards (stacked mobile / row tablet+). Each card: phase name Fraunces 500 at `--font-display-lg` ("Preparación" / "Inmersión" / "Integración") + body Inter 400 at `--font-body-md` (17px). **PROHIBIDO** nombrar sustancia (regla glossary #3).
+3. **"Para quién es y para quién no"** — suitability paragraph H2 + 2 columns mobile-stack (Inter 400 at `--font-body-md`). No clinical language (no diagnóstico, no condición tratada).
 4. **Testimonial contextual** — Testimonial component, quote D-12 retiros version (completó las tres fases).
 5. **Confidentiality one-liner** — same as `/acompanamiento`.
-6. **RetreatApplicationForm inline (D-07)** — Anchor `#aplicacion`. Heading H2 "Aplica para un próximo retiro" Fraunces 300 32px + 1-line lead Inter 400 17px muted + 5-field form (D-08) + Habeas Data checkbox + honeypot + submit. Post-submit inline success state (D-09) replaces form node in-place (no redirect). **No Calendly button on this page** (D-07 / glossary regla #7).
+6. **RetreatApplicationForm inline (D-07)** — Anchor `#aplicacion`. Heading H2 "Aplica para un próximo retiro" Fraunces 300 at `--font-display-lg` + 1-line lead Inter 400 at `--font-body-md` muted + 5-field form (D-08) + Habeas Data checkbox + honeypot + submit. Post-submit inline success state (D-09) replaces form node in-place (no redirect). **No Calendly button on this page** (D-07 / glossary regla #7).
 
 #### `/contacto` — 4 sections
-1. **Hero short** — same hero treatment. H1 "Contacto" + 1-line lead Inter 400 19px muted ("Tres formas de empezar. Elige la que te calce.").
+1. **Hero short** — same hero treatment. H1 "Contacto" + 1-line lead Inter 400 at `--font-body-lg` (19px) muted ("Tres formas de empezar. Elige la que te calce.").
 2. **Channel duo (D-15)** — 2 big buttons side-by-side (tablet+) / stacked (mobile). Calendly **primario** (cta-primary) + WhatsApp **secundario** (cta-secondary). Each button takes ~50% width, min-height 80px, ample padding. SLA microcopy beneath each (D-18).
-3. **"Si prefieres escribir" + ContactForm general (D-16)** — Anchor `#form`. Heading H2 + 5-field form + Habeas Data checkbox + honeypot + submit. SLA microcopy beneath: "Respondemos antes de 24h, normalmente el mismo día."
+3. **"Si prefieres escribir" + ContactForm general (D-16)** — Anchor `#form`. Heading H2 Fraunces 300 at `--font-display-lg` + 5-field form + Habeas Data checkbox + honeypot + submit. SLA microcopy beneath: "Respondemos antes de 24h, normalmente el mismo día."
 4. **Inline success state** — same pattern as RetreatApplicationForm (D-09 variant for general form, "Mensaje recibido…" copy).
 
 #### `/obras` — out of scope this phase
@@ -104,51 +105,59 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 
 ## Spacing Scale
 
-8-point scale enforced. All component padding/gap/margin **must** snap to these tokens (or `clamp()` between two of them).
+8-point scale enforced. All component padding/gap/margin **must** snap to these tokens (or `clamp()` between two of them). **Every spacing value in component contracts is a multiple of 4 — no exceptions, no -1px optical tricks.**
 
 | Token | Value | Usage |
 |-------|-------|-------|
 | xs | 4px | Icon-to-label gap, inline tag padding |
 | sm | 8px | Compact element spacing, form-field internal padding-y |
-| md | 16px | Default gap between sibling text blocks, button padding-x |
+| md | 16px | Default gap between sibling text blocks, button padding-x, form-field internal padding-x |
 | lg | 24px | Card internal padding, gap between form fields |
-| xl | 32px | Gap between sub-sections inside a section, CTA row gap |
+| xl | 32px | Gap between sub-sections inside a section, CTA row gap, button padding-x (CTAs) |
 | 2xl | 48px | Section heading → body gap |
 | 3xl | 64px | Floor for inter-section spacing on mobile (token capped at `--space-section`) |
 
-**Exceptions:**
+**Sanctioned non-snap values:**
 - **`--space-section: clamp(4rem, 10vw, 8rem)`** (fluid between 64px and 128px) is the **only** sanctioned non-snap value. Already declared in `tokens.css`. Used between every top-level section.
-- **Touch targets:** all CTAs / form submit / WhatsAppFloat / nav-toggle button respect **min 44×44px** (WCAG 2.5.5). WhatsAppFloat already at 56×56 — compliant.
+- **`12px` (sm+xs)** is allowed as a touch-target-preserving Y-padding on buttons and form fields because it is a multiple of 4 (12 = 4 × 3). It is NOT a new token — it composes `sm (8) + xs (4)`.
+
+**Touch targets:** all CTAs / form submit / WhatsAppFloat / nav-toggle button respect **min 44×44px** (WCAG 2.5.5). WhatsAppFloat already at 56×56 — compliant. Button `padding: 12px 28px` + Inter 500 17px line-height ~24px yields ~48px total height — compliant. Form field `padding: 12px 16px` + 17px input line-height ~24px yields ~48px total height — compliant.
 
 ---
 
 ## Typography
 
-**Stack confirmed locked from Phase 1 (`tokens.css` lines 32-33).**
+**Stack confirmed locked from Phase 1 (`tokens.css` lines 32-33). Phase 2 reduces type-role inventory to 4 Fraunces sizes + 4 Inter sizes (hard cap).**
 
-| Role | Font | Size | Weight | Line height | Letter spacing | Usage |
-|------|------|------|--------|-------------|----------------|-------|
-| Display H1 (home hero) | Fraunces | `clamp(2.5rem, 6vw, 4.5rem)` (40-72px) | 300 | 1.1 | -0.01em | Home value-prop one-liner only |
-| Display H1 (interior heroes) | Fraunces | `clamp(2rem, 5vw, 3.5rem)` (32-56px) | 300 | 1.1 | -0.01em | `/acompanamiento`, `/retiros`, `/contacto` H1 |
-| Máxima (hero filosófica) | Fraunces italic | `clamp(1.25rem, 3vw, 1.875rem)` (20-30px) | 300 | 1.3 | -0.005em | Home hero only (D-04) |
-| H2 (section heading) | Fraunces | `clamp(1.75rem, 4vw, 2rem)` (28-32px) | 300 | 1.2 | -0.01em | Every section heading |
-| H3 (card / sub-block title) | Fraunces | `1.625rem` (26px) | 500 | 1.25 | -0.005em | Service card title, phase card title (Preparación/Inmersión/Integración), accordion summary |
-| Kicker / wordmark | Fraunces | `1.125rem` (18px) / `1.5rem` (24px in Nav) | 300 | 1 | `0.08em` (Nav) / `0.16em` (hero kicker) | Wordmark Nav, kicker above H1 |
-| Lead | Inter | `1.1875rem` (19px) | 400 | 1.5 | normal | 1-line teaser under interior hero H1 |
-| Body | Inter | `1.0625rem` (17px) | 400 | 1.65 | normal | Default paragraph in BrandBio, services, suitability |
-| Body small | Inter | `1rem` (16px) | 400 | 1.6 | normal | Accordion body, FAQ answers, form labels |
-| Label / atribución | Inter | `0.875rem` (14px) | 500 | 1.5 | normal | Form labels, testimonial atribución, SLA microcopy |
-| Microcopy / disclaimer | Inter | `0.8125rem` (13px) | 400 | 1.5 | normal | Footer disclaimer, testimonial disclaimer, Habeas Data checkbox text |
+### Fraunces (display) — 4 sizes
 
-**Counts (within budget):** 5 display roles (Fraunces) + 5 body roles (Inter) — within the 4-size guideline per family for marketing/editorial.
+| Token | Value | Weight rule | Usage |
+|-------|-------|-------------|-------|
+| `--font-display-xl` | `clamp(2rem, 5.5vw, 4.5rem)` (32–72px) | 300 | **All H1s.** Home hero renders at the upper end of the clamp (hero min-height 100vh allows it); interior heroes render at the lower end (hero min-height 60vh contains the scale). Letter-spacing -0.01em, line-height 1.1. |
+| `--font-display-lg` | `clamp(1.625rem, 4vw, 2rem)` (26–32px) | **300 for H2, 500 for H3** | **Unified section heading.** H2 (section heading on all pages, FAQ-section heading) uses weight 300. H3 (service-card title, phase-card name, FAQ accordion summary, sub-block titles) uses weight 500. Hierarchy is carried by weight, NOT by a separate size. Letter-spacing -0.005em, line-height 1.2 for H2, 1.25 for H3. |
+| `--font-display-md` | `clamp(1.25rem, 3vw, 1.875rem)` (20–30px) | 300, italic | **Máxima + testimonial quote + confidentiality one-liner + numbered-step subhead.** Italic reserved to this role only (D-04 / D-11 / D-27). Letter-spacing -0.005em, line-height 1.3. |
+| `--font-display-sm` | `1.125rem` (18px) | **300 for hero kicker, 500 for Nav wordmark** | Hero kicker (above H1) uses weight 300 with letter-spacing `0.16em`. Nav wordmark uses **same 18px** at weight 500 with letter-spacing `0.08em` — the weight + tracking differentiation gives the wordmark its identity without a new size. (Phase 1 wordmark was 24px; this revision drops it to 18px to keep the cap at 4 sizes.) Line-height 1. |
+
+### Inter (body) — 4 sizes
+
+| Token | Value | Weight | Line height | Usage |
+|-------|-------|--------|-------------|-------|
+| `--font-body-lg` | `1.1875rem` (19px) | 400 | 1.5 | **Lead — limit to one usage per page (hero lede only).** Used on interior hero teasers + `/contacto` hero lead. |
+| `--font-body-md` | `1.0625rem` (17px) | 400 | 1.65 (long-form) / 1.6 (compact) | **Default paragraph.** BrandBio, services teaser, suitability, accordion body, FAQ answers, form labels (where 14px label is too tight, fall back to 17px), prose blocks. |
+| `--font-body-sm` | `0.875rem` (14px) | 500 | 1.5 | **Labels + attribution.** Form labels, testimonial attribution, SLA microcopy, helper-text on form fields. |
+| `--font-body-xs` | `0.8125rem` (13px) | 400 | 1.5 | **Microcopy / disclaimer.** Footer disclaimer, testimonial disclaimer, Habeas Data checkbox text, form error states. |
+
+**Counts (within cap):** exactly 4 display sizes (Fraunces) + 4 body sizes (Inter) — at the hard cap of 4 per family.
 
 **Weights (locked at 2 per family):** Fraunces 300 + 500. Inter 400 + 500. Already loaded by `global.css` line 12 — no new font requests.
 
+**Hierarchy rule (CRITICAL):** Because H2 and H3 share `--font-display-lg`, the weight difference (300 vs 500) is the only signal. Authors and the executor must NEVER apply weight 500 to an H2 or weight 300 to an H3 — doing so collapses hierarchy. The component contract enforces this at the component boundary (`Section.astro` heading + `ServiceTeaser`/`RetreatPhases`/`FAQ summary` title slots).
+
+**Italic usage:** Reserved for `--font-display-md` (máxima D-04, testimonial quote D-11, confidentiality one-liner D-27, numbered-step subhead). No other italic in the system.
+
 **Line-height defaults:**
 - Body: 1.6 default, 1.65 on long-form paragraphs in `/acompanamiento` / `/retiros`. Set on `body` already (`global.css` line 28).
-- Headings: 1.2 default (already set on h1-h6 in `global.css` line 38), tightening to 1.1 on hero H1.
-
-**Italic usage:** Reserved for the **máxima** in hero (D-04) and the testimonial **quote** (D-11). No other italic in the system.
+- Headings: 1.2 default (already set on h1-h6 in `global.css` line 38), tightening to 1.1 on H1 (`--font-display-xl`).
 
 ---
 
@@ -210,7 +219,7 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 | `Hero` | `src/components/sections/Hero.astro` | Hero of any page. Renders `.hero-bg` + `.noise-overlay` + slot. | `variant: 'home' \| 'interior'`, `kicker?: string`, `title: string`, `maxim?: string`, `lead?: string` | Variant controls min-height + opacity + whether máxima slot renders |
 | `Maxim` | inline in `Hero` | Hero filosófica máxima | (via Hero prop) | Home only — never on interior pages |
 | `BrandBio` | `src/components/sections/BrandBio.astro` | "Sobre planetapsilo" — 2-3 paragraph centered block | `paragraphs: string[]` | Static; no interaction |
-| `ServiceTeaser` | `src/components/sections/ServiceTeaser.astro` | One service card (Acompañamiento / Retiros) | `title`, `teaser`, `ctaLabel`, `ctaHref` | Used in home services split |
+| `ServiceTeaser` | `src/components/sections/ServiceTeaser.astro` | One service card (Acompañamiento / Retiros) | `title`, `teaser`, `ctaLabel`, `ctaHref` | Used in home services split. **`ctaLabel` is per-card — see locked copy table below** (Acompañamiento → `Conocer el acompañamiento`; Retiros → `Conocer los retiros`). No generic "Conocer más". |
 | `ServicesSplit` | `src/components/sections/ServicesSplit.astro` | Composes 2 ServiceTeaser cards | `services: ServiceTeaser[]` | Stacked mobile / row tablet+ |
 | `Testimonial` | `src/components/sections/Testimonial.astro` | Quote + atribución + disclaimer card | `quote`, `attribution`, `disclaimer?` | Single card variant; disclaimer optional but present in Phase 2 (placeholder gate D-11) |
 | `FAQ` | `src/components/sections/FAQ.astro` | `<details>` accordion list | `items: { question, answer }[]` | Default closed; native HTML — no JS |
@@ -229,7 +238,7 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 | Component | File | Phase 2 changes |
 |-----------|------|------------------|
 | `BaseLayout` | `src/layouts/BaseLayout.astro` | None — Phase 2 only passes new `title`/`description`/`ogImage` props (CONT-12) |
-| `Nav` | `src/components/layout/Nav.astro` | None — uses existing `nav` array (already includes Obras) |
+| `Nav` | `src/components/layout/Nav.astro` | Wordmark size drops from 24px (Phase 1) to **18px (`--font-display-sm`) at weight 500 with letter-spacing 0.08em** — to keep Fraunces inventory at 4 sizes. Visual identity preserved through weight + tracking. |
 | `Footer` | `src/components/layout/Footer.astro` | **Expands**: add IG link + TikTok link + global disclaimer (1-2 lines) + `/privacidad — próximamente` link (D-26 / CONT-10 / CONT-11) |
 | `WhatsAppFloat` | `src/components/layout/WhatsAppFloat.astro` | **Wires real values**: real number into `contact.whatsappNumber`, real prefill into `contact.whatsappPrefill`. No structural change. |
 
@@ -238,20 +247,20 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 | File | Phase 2 changes |
 |------|------------------|
 | `contact.ts` | Replace stubs: real `whatsappNumber` (pending Sofía), real `calendlyUrl` placeholder `https://calendly.com/planetapsilo/conversacion-inicial`, add `web3formsKeyContacto: string`, `web3formsKeyRetiros: string`, add `waLink(prefill: string)` helper (D-19) |
-| `services.ts` | Expand each service: `description`, `audience`, `outcomes[]`, `confidentialityLine` (D-09 / D-27 source) |
+| `services.ts` | Expand each service: `description`, `audience`, `outcomes[]`, `confidentialityLine`, `ctaLabel` (per-card noun — see locked copy table) (D-09 / D-27 source) |
 | `testimonials.ts` | **NEW** — `testimonials: { context: 'home'\|'acompanamiento'\|'retiros', quote, attribution, disclaimer }[]` (D-12) |
 | `faqs.ts` | **NEW** — `faqs: { question, answer }[]` × 6 items (D-13) |
 | `site.ts` | No structural change. `indexable` stays `false`. |
 
 ---
 
-### Button variants (LOCKED)
+### Button variants (LOCKED — all paddings on multiples of 4)
 
 #### Primary CTA — `cta-primary`
 - **Background:** `--color-orange-mystic` (#ff7a3d)
 - **Text color:** `--color-bg-base` (#050a1a) — contrast 6.1:1 ✓
-- **Font:** Inter 500, 17px, letter-spacing 0.02em
-- **Padding:** `14px 28px` (snaps to spacing tokens: ~12+sm on Y, lg+xs on X). Min-height 48px.
+- **Font:** Inter 500, 17px (`--font-body-md`), letter-spacing 0.02em
+- **Padding:** `12px 28px` (Y = sm + xs = 12px; X = xl − xs = 28px, multiple of 4). Min-height computed: 12 + 12 + ~24 (line-height) = **~48px**, exceeds WCAG 2.5.5 (44×44) ✓.
 - **Border-radius:** 999px (full pill — matches WhatsAppFloat treatment)
 - **Hover:** `transform: scale(1.02)`; `box-shadow: 0 8px 24px rgba(255, 122, 61, 0.35)` (matches WhatsAppFloat shadow signature)
 - **Focus-visible:** `outline: 2px solid var(--color-orange-mystic); outline-offset: 2px`
@@ -264,8 +273,8 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 - **Background:** transparent
 - **Border:** `1px solid var(--color-text-primary)` (cream hairline at full opacity for legibility)
 - **Text color:** `--color-text-primary` (cream)
-- **Font:** Inter 500, 17px, letter-spacing 0.02em
-- **Padding:** `13px 27px` (same visual size as primary minus 1px for border)
+- **Font:** Inter 500, 17px (`--font-body-md`), letter-spacing 0.02em
+- **Padding:** `12px 28px` (**identical to primary** — the visual border + cream text carry the variant differentiation. No -1px optical trick; the 1px border is drawn inside the box via `box-sizing: border-box` so the outer dimensions match the primary exactly.)
 - **Border-radius:** 999px
 - **Hover:** background `rgba(244, 237, 227, 0.08)`; border color stays
 - **Focus-visible:** same `outline: 2px solid var(--color-orange-mystic); outline-offset: 2px`
@@ -274,7 +283,7 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 
 #### Tertiary — `cta-tertiary`
 - **Style:** inline text link, no padding chrome
-- **Font:** Inter 500, 16px, underline on default (`text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px`)
+- **Font:** Inter 500, 14px (`--font-body-sm`) on dense contexts / 17px (`--font-body-md`) inline-with-prose; underline on default (`text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px`)
 - **Color idle:** `--color-text-muted`
 - **Color hover/focus:** `--color-orange-mystic` (existing `global.css` rule extends to this)
 - **Usage:** "Prefiero escribir un formulario" → `/contacto#form` from home, `#aplicacion` anchor links, FormSuccess "WhatsApp" fallback link
@@ -289,11 +298,11 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 | Error | `1px solid var(--color-orange-mystic)`; inline error message below in 13px muted-orange `rgba(255, 122, 61, 0.85)` | unchanged | Warm-recoverable, not red panic (no destructive color exists) |
 | Disabled (in-flight) | `1px solid var(--color-chrome-border)` | `var(--color-bg-elevated)` at 0.6 opacity | Form-wide |
 
-**Field internal padding:** `12px 14px` (snaps to ~sm+xs / md). Min height 44px (touch). Border-radius `6px` (subtle — not pill, because text inputs at pill would feel toy).
+**Field internal padding:** `12px 16px` (Y = sm + xs = 12px; X = md = 16px — both clean multiples of 4 and map directly to spacing tokens). Min-height computed: 12 + 12 + ~24 (line-height of 17px input) = **~48px**, exceeds WCAG 2.5.5 (44×44) ✓. Border-radius `8px` (subtle — multiple of 4, not pill, because text inputs at pill would feel toy).
 
-**Label position:** above field, 8px gap. Required marker: asterisk `*` in `--color-orange-mystic` after label text.
+**Label position:** above field, 8px (`sm`) gap. Required marker: asterisk `*` in `--color-orange-mystic` after label text.
 
-**Habeas Data checkbox:** custom 20×20 box, `1px solid var(--color-chrome-border-strong)` idle, filled `--color-orange-mystic` checked, checkmark drawn as inline SVG in `--color-bg-base`. Label sits right of checkbox, 13px microcopy line-height 1.5, max-width 36rem.
+**Habeas Data checkbox:** custom 20×20 box, `1px solid var(--color-chrome-border-strong)` idle, filled `--color-orange-mystic` checked, checkmark drawn as inline SVG in `--color-bg-base`. Label sits right of checkbox, 13px (`--font-body-xs`) microcopy line-height 1.5, max-width 36rem.
 
 **Honeypot:** hidden field `input[name="botcheck"]` with `style="display:none"`, no label, no tab-index. Standard Web3Forms pattern.
 
@@ -313,7 +322,7 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 | `retiros` | "Recibimos tu aplicación." | "Te respondemos en menos de 24h. Si prefieres conversar antes →" | WhatsApp link (tertiary style), prefill `Hola planetapsilo, apliqué a un retiro y prefiero conversar antes` |
 | `contacto` | "Mensaje recibido." | "Te respondemos antes de 24h, normalmente el mismo día. Si querés agendar directo →" | Calendly link (tertiary style), label "Agenda una conversación" |
 
-Both render with same visual treatment as a regular section card: padding `lg`, border-radius `12px`, background `--color-bg-elevated`, max-width 36rem centered, heading Fraunces 300 28px, body Inter 400 17px line-height 1.65.
+Both render with same visual treatment as a regular section card: padding `lg` (24px), border-radius `12px`, background `--color-bg-elevated`, max-width 36rem centered, heading Fraunces 300 at `--font-display-lg` (renders ≈28px via clamp), body Inter 400 at `--font-body-md` (17px) line-height 1.65.
 
 ### Accordion (FAQ) interaction
 
@@ -321,7 +330,7 @@ Both render with same visual treatment as a regular section card: padding `lg`, 
 - Summary cursor: `pointer`
 - Summary chevron: inline SVG 16×16 right-aligned, rotates 90° via CSS `[open] summary svg { transform: rotate(90deg) }` with `transition: transform 200ms ease` (respects `prefers-reduced-motion` via global override at `global.css:60`)
 - Open animation: relies on browser native — no JS height animation (avoids reduced-motion conflict, avoids layout-thrash)
-- Per-item: padding `lg` on summary, `0 lg lg lg` on body. Bottom border `1px solid var(--color-chrome-border)` between items.
+- Per-item: padding `lg` (24px) on summary, `0 lg lg lg` on body. Bottom border `1px solid var(--color-chrome-border)` between items.
 
 ---
 
@@ -335,7 +344,7 @@ Both render with same visual treatment as a regular section card: padding `lg`, 
 |---------|------|
 | Home H1 value-prop (D-03 — LOCKED) | `Acompañamiento y retiros para liderazgos que están reordenando.` |
 | Home máxima (D-04 — direction locked, wording open) | Anchor: `La claridad no se conquista. Se recuerda.` Sofía proposes final wording within glossary PERMITIDO; Juan accepts before commit. |
-| Wordmark (Nav + Footer) | `planetapsilo` (lowercase, Fraunces 300 letter-spacing 0.08em — LOCKED Phase 1 D-06) |
+| Wordmark (Nav + Footer) | `planetapsilo` (lowercase, Fraunces 500 at `--font-display-sm` 18px, letter-spacing 0.08em — REVISED from Phase 1 D-06 which was 24px; weight bumped 300→500 to preserve wordmark identity at the smaller size) |
 | Brand bio paragraph 1 (D-14) | `planetapsilo es un espacio de exploración personal para liderazgos que están reordenando. No es terapia ni servicio de salud — es acompañamiento y retiros pensados para mentes que ya construyeron mucho y ahora quieren ver desde otra altura.` |
 | Brand bio paragraph 2 (D-14) | `Cada propuesta recibe a pocas personas. Hay una conversación antes — para saber si lo que pides y lo que ofrecemos calzan. La pausa real no se improvisa.` |
 | Brand bio paragraph 3 (optional, Sofía) | (Sofía proposes line-puente al manifiesto, dentro del glosario) |
@@ -344,6 +353,8 @@ Both render with same visual treatment as a regular section card: padding `lg`, 
 | Testimonial disclaimer (D-11 — appended to each Testimonial card) | `Testimonio ilustrativo de Phase 2 — voces reales consentidas en próxima versión. La experiencia individual no garantiza resultados.` |
 | Footer noindex status (Phase 1 carry — LOCKED) | `Sitio en construcción — sigue noindex` (renders only while `site.indexable === false`) |
 | Privacidad link (footer) | Label `Privacidad — próximamente` → stub page `/privacidad` (returns minimal "próximamente" page; Phase 3 fills with Habeas Data) |
+| ServiceTeaser CTA — Acompañamiento card (NEW) | `Conocer el acompañamiento` → `/acompanamiento`. Vetted: zero PROHIBIDO matches in `docs/copy-glossary.md`. |
+| ServiceTeaser CTA — Retiros card (NEW) | `Conocer los retiros` → `/retiros`. Vetted: zero PROHIBIDO matches in `docs/copy-glossary.md`. |
 
 ### Primary CTA (LOCKED — D-05)
 
@@ -428,6 +439,34 @@ This phase has **no list views, no dashboards, no infinite scroll** — therefor
 
 → **Destructive confirmation row in template:** marked `not applicable — phase has zero destructive actions`.
 
+### Copy linter — known false-positives to handle (non-blocking flag for planner)
+
+The CI copy-lint gate (D-25) runs `grep -rEi "<PROHIBIDO_WORD>"` over all locked copy. Several mandatory legal disclaimers contain PROHIBIDO lexemes **inside denial clauses** (e.g., "No constituye terapia", "No es terapia ni servicio de salud", "sin tratamiento"). These are not violations — they are the legally-required denials — but a naive grep will match them and block deploy. This is a real risk for Phase 2 CI.
+
+**LOCKED disclaimer strings that legitimately contain PROHIBIDO words (denial clauses):**
+
+| String location | Disclaimer | PROHIBIDO word(s) inside denial clause |
+|-----------------|-----------|----------------------------------------|
+| Footer global disclaimer (D-26) | `…No constituye terapia ni servicio de salud. Para necesidades de salud mental, consulta a un profesional habilitado.` | `terapia` |
+| Brand bio paragraph 1 (D-14) | `…No es terapia ni servicio de salud — es acompañamiento y retiros…` | `terapia` |
+| `/acompanamiento` hero teaser (Sofía-authored within glossary) | likely contains `no es terapia` phrasing | `terapia` |
+| `/privacidad` body | does NOT contain PROHIBIDO words today, but if Phase 3 redaction adds Habeas Data lawful basis it may reference `tratamiento de datos personales` — `tratamiento` is PROHIBIDO when it means clinical treatment but PERMITIDO when it means "tratamiento de datos" | `tratamiento` (data-context, not clinical) |
+
+**Prescribed lint adjustment (planner task — NON-BLOCKING for this UI-SPEC):**
+
+The planner should add a task in `02-PLAN.md` to update `docs/copy-glossary.md` (and the CI grep step) so that the linter exempts PROHIBIDO words when they appear in a denial or data-context clause. Suggested approach:
+
+- **Regex preference (PCRE-capable shells):** lookbehind negative-assertion to skip denial prefixes — e.g., `(?<!\bno\s)(?<!\bNo\s)(?<!\bNo constituye\s)(?<!\bNo es\s)(?<!\bsin\s)(?<!\btratamiento de datos\s)terapia` — but bash `grep -E` does **NOT** support lookbehind. Options for the planner:
+  1. Use `grep -P` (GNU `grep` PCRE flag — verify available on the GitHub Actions Ubuntu runner; widely supported).
+  2. Use `ripgrep` (`rg -P`) which supports PCRE2 natively and is faster.
+  3. Switch to a tiny Node script (`scripts/copy-lint.mjs`) that does the regex match — most portable, gives the team a single place to evolve the rules.
+
+- **Rule format in `docs/copy-glossary.md`:** add a `## Exemptions (false-positive denial clauses)` section listing each pattern (e.g., `^No constituye terapia`, `^No es terapia`, `^sin terapia`, `tratamiento de datos personales`) so the linter and human review share one rulebook.
+
+- **Validation step:** after rule update, the planner must run the new lint script against the 24+ LOCKED strings in this UI-SPEC and confirm zero false positives AND zero false negatives (i.e., a string like "ofrecemos terapia" still trips the gate).
+
+This subsection is a flag for the planner — it does NOT block UI-SPEC approval.
+
 ### Per-page meta (CONT-12)
 
 | Page | `<title>` | `<meta description>` |
@@ -509,9 +548,23 @@ If Phase 4 polish (GSAP / Plausible / Phosphor) introduces dependencies, they wi
 | CONT-11 (Footer disclaimer + `/privacidad` link) | Footer disclaimer LOCKED copy; `/privacidad` stub copy contract |
 | CONT-12 (Per-page OG/title/description) | Per-page meta table |
 | CONT-13 (`prefers-reduced-motion`) | Motion section + verifier checks |
-| CONT-14 (Copy linter pass — zero PROHIBIDO) | All locked copy was authored against glossary; CI gate D-25 in deploy workflow |
+| CONT-14 (Copy linter pass — zero PROHIBIDO) | All locked copy was authored against glossary; CI gate D-25 in deploy workflow; **false-positive denial-clause exemption documented as planner task in Copy linter sub-section above** |
 | CONT-15 (Lighthouse ≥80 perf / ≥95 a11y / ≥90 SEO mobile) | Contrast table proves a11y ratios; motion budget kept; zero new fonts; zero JS framework; inline SVG over icon-font CDN |
 | CONT-16 (CTAs tested on real iPhone + Android) | Verified via WhatsApp `target="_blank"` + Calendly direct link + form `<form action>` POST — all native browser primitives, no shim |
+
+---
+
+## Decisions used (pre-population sources)
+
+| Source | Decisions consumed |
+|--------|--------------------|
+| `02-CONTEXT.md` | D-01 … D-27 (27 locked decisions: dark-only, palette, fonts, máxima, dual CTA, copy ownership, application gate, form fields, success states, confidentiality, testimonials, FAQ, brand bio, channel duo, contact form, WhatsApp prefill, footer expansion, copy-linter CI gate, per-page meta, reduced-motion gate) |
+| `docs/copy-glossary.md` | PROHIBIDO/PERMITIDO lexicon for all 24 locked strings + 2 new ServiceTeaser CTA labels |
+| `src/styles/tokens.css` (Phase 1) | Palette tokens, font stacks, `--space-section`, `@property --cosmic-angle`, `cosmic-rotate` keyframe, reduced-motion override |
+| `src/styles/global.css` (Phase 1) | Heading reset, link color rule, scoped reduced-motion overrides |
+| `src/layouts/BaseLayout.astro` (Phase 1) | `<title>` / `<meta description>` / OG prop shape (CONT-12 consumer) |
+| `src/components/layout/{Nav,Footer,WhatsAppFloat}.astro` (Phase 1) | Reused chrome; Footer slated for D-26 expansion; Nav wordmark revised to 18px/500 for typography cap |
+| `./CLAUDE.md` | Stack constraints (Astro 6 + Tailwind v4, no React island in MVP, no Phosphor in MVP, no Three.js in MVP, GitHub Pages base path) |
 
 ---
 
