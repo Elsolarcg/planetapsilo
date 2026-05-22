@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Plan 01-01 complete; Astro scaffold + base path + .gitignore landed
-last_updated: "2026-05-22T01:24:26.972Z"
+stopped_at: Plan 01-03 complete; backup-v1 pushed + SIPI documented + copy glossary committed
+last_updated: "2026-05-22T01:31:00.000Z"
 last_activity: 2026-05-22
 progress:
   total_phases: 5
   completed_phases: 0
   total_plans: 5
-  completed_plans: 1
-  percent: 20
+  completed_plans: 2
+  percent: 40
 ---
 
 # Project State
@@ -26,11 +26,11 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 1 (Foundation + Deployable Skeleton) — EXECUTING
-Plan: 2 of 5
-Status: Ready to execute
+Plan: 2 of 5 (01-01 + 01-03 complete; 01-02 / 01-04 / 01-05 pending)
+Status: Ready to execute next plan
 Last activity: 2026-05-22
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [████░░░░░░] 40%
 
 ## Performance Metrics
 
@@ -57,6 +57,7 @@ Progress: [░░░░░░░░░░] 0%
 
 *Updated after each plan completion*
 | Phase 01-foundation-deployable-skeleton P01 | 5min | 3 tasks | 8 files |
+| Phase 01-foundation-deployable-skeleton P03 | 4min | 3 tasks | 3 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,11 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 01 Plan 01: Node 22 pinned via .nvmrc (Astro 6 hard requirement)
 - [Phase ?]: Phase 01 Plan 01: scaffold .git/ accepted as new history baseline after cp -r overwrote original (force-push planned anyway in Plan 03)
 - [Phase ?]: Phase 01 Plan 01: package renamed from CLI flag artifact '--typescript' to 'planetapsilo', private:true added
+- [Phase 1]: Phase 01 Plan 03: backup-v1 branch pushed to Elsolarcg/planetapsilo at commit 918be1d — rollback safety net for Plan 05 force-push
+- [Phase 1]: Phase 01 Plan 03: GH Pages currently `build_type: legacy` on main/; Plan 05 must switch to `workflow` before Astro deploy works
+- [Phase 1]: Phase 01 Plan 03: SIPI trademark check marked PENDING MANUAL CONFIRMATION (portal is JS-SPA, not scriptable); user follow-up tracked in `.planning/intel/trademark.md`
+- [Phase 1]: Phase 01 Plan 03: copy glossary established as Phase 2 linter source-of-truth — 11 PERMITIDO + 15 PROHIBIDO + 8 reglas
+- [Phase 1]: Phase 01 Plan 03: two-account gh CLI pattern (`gh auth switch -u Elsolarcg`) established for pushes to Elsolarcg-owned repo from juanmplazasg-lgtm primary
 
 ### Pending Todos
 
@@ -88,7 +94,7 @@ None yet.
 - **Phase 3 gate (CRITICAL):** disponibilidad abogado colombiano (Ley 1090 + 1581 + 1453) — 7 ítems `[REVIEW: ABOGADO]`; sin abogado no se remueve noindex
 - **Phase 3 dependency (HIGH):** photo session de cuadros propios de Sofía — necesario para LEGAL-08
 - **Phase 3 dependency (HIGH):** 3 testimonios reales con consentimiento escrito — sustituyen placeholders Phase 2
-- **Phase 1 unknown (MEDIUM):** SIPI trademark check de "planetapsilo" — si colide, re-branding antes de Phase 3
+- **Phase 1 unknown (MEDIUM):** SIPI trademark check de "planetapsilo" — DOCUMENTADO como PENDING en `.planning/intel/trademark.md`; usuario debe ejecutar búsqueda manual SIPI/VUE en clases 35/41/44 antes de Phase 3 indexación
 - **Phase 4 gate:** decisión Sofía sobre número WhatsApp Business dedicado vs personal
 
 ## Deferred Items
@@ -101,6 +107,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T01:24:26.967Z
-Stopped at: Plan 01-01 complete; Astro scaffold + base path + .gitignore landed
-Resume file: .planning/phases/01-foundation-deployable-skeleton/01-02-PLAN.md
+Last session: 2026-05-22T01:31:00.000Z
+Stopped at: Plan 01-03 complete; backup-v1 pushed + SIPI documented + copy glossary committed
+Resume file: .planning/phases/01-foundation-deployable-skeleton/01-02-PLAN.md (or 01-04 — both unblocked)
