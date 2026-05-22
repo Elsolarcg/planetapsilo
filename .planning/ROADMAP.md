@@ -61,6 +61,16 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Time estimate (informational)**: ~45-90 min ejecución directa
 **External blockers**: ninguno (formulario apunta a Web3Forms con disclaimer temporal + `/privacidad próximamente`; abogado no bloquea este phase, solo Phase 3)
 
+### Phase 02.1: Tienda Minima - Catalogo obras con consulta WhatsApp (INSERTED)
+
+**Goal:** [Urgent work - to be planned]
+**Requirements**: TBD
+**Depends on:** Phase 2
+**Plans:** 0 plans
+
+Plans:
+- [ ] TBD (run /gsd-plan-phase 02.1 to break down)
+
 ### Phase 3: Legal Pass + Trust Signals + Indexación
 **Goal**: El sitio pasa de "MVP interno detrás de noindex" a "público indexable" mediante revisión legal del abogado colombiano + sustitutos de trust (bio narrativa de "la guía", testimonios reales consentidos, manifiesto, photos de cuadros de Sofía) + remoción del meta robots
 **Depends on**: Phase 2 copy estable + disponibilidad del abogado colombiano (Ley 1090 + Ley 1581 + Ley 1453) + photo session de cuadros + 3 testimonios consentidos por escrito

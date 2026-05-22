@@ -111,6 +111,13 @@ None yet.
 - **Phase 1 unknown (MEDIUM):** SIPI trademark check de "planetapsilo" — DOCUMENTADO como PENDING en `.planning/intel/trademark.md`; usuario debe ejecutar búsqueda manual SIPI/VUE en clases 35/41/44 antes de Phase 3 indexación
 - **Phase 4 gate:** decisión Sofía sobre número WhatsApp Business dedicado vs personal
 
+### Roadmap Evolution
+
+- Phase 02.1 inserted after Phase 2: Tienda Mínima — Catálogo /obras con consulta WhatsApp (URGENT)
+  - Trigger: usuario pidió adelantar la tienda de arte desde Phase 5a a un slot decimal post-Phase 2 para validar demanda desde el día 1
+  - Approach v1: content collection Astro (`src/content/obras/`) + grid `/obras` + detail `/obras/[slug]` + botón "Me interesa" que abre WhatsApp con mensaje pre-cargado
+  - Migración futura: cuando Sofía active checkout real (Bold/Wompi), solo cambia el botón — la estructura de catálogo no se toca
+
 ## Deferred Items
 
 Items reconocidos y arrastrados desde milestones anteriores:
