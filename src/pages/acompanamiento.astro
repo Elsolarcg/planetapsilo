@@ -1,0 +1,41 @@
+---
+// src/pages/acompanamiento.astro — Acompañamiento stub (Phase 2 CONT-02 fills with real copy).
+// Copy real respeta registro híbrido business + filosófico, sin lenguaje clínico ni atribución de terapia.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Acompañamiento" description="Espacio de acompañamiento — Phase 1 stub.">
+  <section class="page-section">
+    <div class="container">
+      <p class="kicker">planetapsilo</p>
+      <h1>Acompañamiento</h1>
+      <p class="lede">
+        Para C-Level, founders y nómadas digitales que están reordenando.
+        Copy real con registro híbrido (business + filosófico) llega en Phase 2 — sin lenguaje clínico, sin atribución de terapia.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-section { padding-block: var(--space-section); }
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0.16em;
+    text-transform: lowercase;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+  .lede {
+    font-family: var(--font-body);
+    max-width: 42rem;
+    color: var(--color-text-muted);
+  }
+</style>

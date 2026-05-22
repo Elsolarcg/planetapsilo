@@ -1,0 +1,41 @@
+---
+// src/pages/retiros.astro — Retiros stub (Phase 2 CONT-03 fills three-fase structure + application gate).
+// Phase 2 describirá formato (días, ubicación, comidas, círculos de palabra, naturaleza, meditación)
+// SIN nombrar sustancia, SIN precio, con aplicación obligatoria.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Retiros" description="Retiros — Phase 1 stub. Aplicación obligatoria; sin sustancia, sin precio.">
+  <section class="page-section">
+    <div class="container">
+      <p class="kicker">planetapsilo</p>
+      <h1>Retiros</h1>
+      <p class="lede">
+        Tres fases: <em>Preparación · Inmersión · Integración</em>.
+        Phase 2 describe el formato (días, ubicación, comidas, círculos de palabra, naturaleza, meditación) — sin nombrar sustancia, sin precio, con aplicación obligatoria.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-section { padding-block: var(--space-section); }
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: lowercase;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+  .lede {
+    max-width: 42rem;
+    color: var(--color-text-muted);
+  }
+  em { color: var(--color-orange-mystic); font-style: normal; }
+</style>

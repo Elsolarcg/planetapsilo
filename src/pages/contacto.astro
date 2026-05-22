@@ -1,0 +1,63 @@
+---
+// src/pages/contacto.astro — Contacto stub (Phase 2 CONT-04 wires real 3-channel CTAs).
+// Tres canales abiertos: Calendly, WhatsApp, formulario Web3Forms. Phase 1 muestra stubs.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { contact } from '../data/contact';
+
+const waHref = `https://wa.me/${contact.whatsappNumber}?text=${contact.whatsappPrefill}`;
+---
+<BaseLayout title="Contacto" description="Tres canales — Calendly, WhatsApp, formulario. Phase 1 muestra stubs.">
+  <section class="page-section">
+    <div class="container">
+      <p class="kicker">planetapsilo</p>
+      <h1>Contacto</h1>
+      <p class="lede">
+        Tres canales abiertos. Phase 2 cablea cada uno con datos reales y un formulario Web3Forms con checkbox de autorización Habeas Data.
+      </p>
+      <div class="cta-row">
+        <a class="cta cta-primary" href={contact.calendlyUrl}>Agenda (stub)</a>
+        <a class="cta cta-secondary" href={waHref} target="_blank" rel="noopener noreferrer">WhatsApp (stub)</a>
+        <a class="cta cta-tertiary" href="#form">Formulario (Phase 2)</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-section { padding-block: var(--space-section); }
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: lowercase;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+  .lede { max-width: 42rem; color: var(--color-text-muted); margin-bottom: 2rem; }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .cta {
+    display: inline-block;
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.5rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
+  .cta-primary { background: var(--color-orange-mystic); color: var(--color-bg-base); }
+  .cta-secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-chrome-border-strong);
+  }
+  .cta-tertiary {
+    background: transparent;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-chrome-border);
+  }
+</style>
