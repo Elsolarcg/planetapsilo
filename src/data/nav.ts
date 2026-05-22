@@ -12,5 +12,6 @@ export const nav: NavItem[] = [
   { label: 'Inicio',         href: '/' },
   { label: 'Acompañamiento', href: '/acompanamiento' },
   { label: 'Retiros',        href: '/retiros' },
+  { label: 'Obras',          href: '/obras' },
   { label: 'Contacto',       href: '/contacto' },
 ];

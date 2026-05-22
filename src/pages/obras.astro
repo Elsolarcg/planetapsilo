@@ -1,0 +1,283 @@
+---
+// src/pages/obras.astro — Stub visual de Phase 1.
+// Catálogo de obras con datos PLACEHOLDER (títulos inventados, precios sugeridos, SVGs cósmicos
+// generados — NO son fotos reales). Phase 02.1 reemplazará esto con content collection real
+// (src/content/obras/*.mdx) cuando Sofía aporte fotografías, títulos, técnicas, dimensiones y precios.
+//
+// Sigue noindex global vía site.indexable=false → BaseLayout inyecta <meta robots="noindex,nofollow">.
+// Botón "Me interesa" → WhatsApp con número stub (mismo que el resto del sitio).
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, '');
+const img = (file: string) => `${baseUrl}/obras/${file}`;
+
+// Phone stub — coincide con src/data/contact.ts. Phase 02.1 swappea por el real de Sofía.
+const waNumber = '0000000000';
+const waLink = (titulo: string) =>
+  `https://wa.me/${waNumber}?text=${encodeURIComponent(`Hola planetapsilo, me interesa la obra "${titulo}".`)}`;
+
+interface Obra {
+  slug: string;
+  titulo: string;
+  imagen: string;
+  tecnica: string;
+  dimensiones: string;
+  ano: string;
+  precio: string;
+  descripcion: string;
+}
+
+const obras: Obra[] = [
+  {
+    slug: 'mycelium-i',
+    titulo: 'Mycelium I',
+    imagen: 'obra-01.svg',
+    tecnica: 'Acrílico sobre lienzo',
+    dimensiones: '60 × 80 cm',
+    ano: '2025',
+    precio: '$1.200.000 COP',
+    descripcion: 'Tejido subterráneo de conexiones — imagen placeholder, obra y descripción reales pendientes.',
+  },
+  {
+    slug: 'umbral',
+    titulo: 'Umbral',
+    imagen: 'obra-02.svg',
+    tecnica: 'Técnica mixta sobre lienzo',
+    dimensiones: '50 × 70 cm',
+    ano: '2025',
+    precio: '$950.000 COP',
+    descripcion: 'Frontera entre lo conocido y lo que se intuye — placeholder visual.',
+  },
+  {
+    slug: 'reconexion',
+    titulo: 'Reconexión',
+    imagen: 'obra-03.svg',
+    tecnica: 'Acrílico sobre lienzo',
+    dimensiones: '40 × 40 cm',
+    ano: '2024',
+    precio: '$680.000 COP',
+    descripcion: 'Memoria celular — placeholder visual.',
+  },
+  {
+    slug: 'luz-interior',
+    titulo: 'Luz interior',
+    imagen: 'obra-04.svg',
+    tecnica: 'Tinta y acrílico',
+    dimensiones: '30 × 40 cm',
+    ano: '2025',
+    precio: '$520.000 COP',
+    descripcion: 'Resplandor desde adentro — placeholder visual.',
+  },
+  {
+    slug: 'constelaciones',
+    titulo: 'Constelaciones',
+    imagen: 'obra-05.svg',
+    tecnica: 'Acrílico sobre lienzo',
+    dimensiones: '80 × 100 cm',
+    ano: '2024',
+    precio: '$1.800.000 COP',
+    descripcion: 'Mapa de afectos y memoria — placeholder visual.',
+  },
+  {
+    slug: 'raiz-cosmica',
+    titulo: 'Raíz cósmica',
+    imagen: 'obra-06.svg',
+    tecnica: 'Técnica mixta',
+    dimensiones: '50 × 50 cm',
+    ano: '2025',
+    precio: '$780.000 COP',
+    descripcion: 'Origen y expansión — placeholder visual.',
+  },
+];
+---
+<BaseLayout
+  title="Obras"
+  description="Catálogo de obras — pinturas y piezas únicas de Sofía. Cada pieza es una conversación: consúltala por WhatsApp."
+>
+  <section class="page-section">
+    <div class="container">
+      <p class="kicker">planetapsilo</p>
+      <h1>Obras</h1>
+      <p class="lede">
+        Piezas únicas pintadas a mano. Cada obra es una conversación —
+        si alguna te resuena, escríbele a Sofía directo por WhatsApp.
+      </p>
+      <p class="stub-note" aria-label="Aviso de maqueta">
+        <em>Maqueta:</em> imágenes y datos son provisionales. Las obras reales se publicarán próximamente.
+      </p>
+
+      <ul class="obras-grid" role="list">
+        {obras.map((o) => (
+          <li class="obra-card">
+            <div class="obra-media">
+              <img src={img(o.imagen)} alt={`${o.titulo} — imagen provisional`} loading="lazy" width="800" height="800" />
+            </div>
+            <div class="obra-body">
+              <h2 class="obra-title">{o.titulo}</h2>
+              <p class="obra-meta">
+                {o.tecnica} · {o.dimensiones} · {o.ano}
+              </p>
+              <p class="obra-price">{o.precio}</p>
+              <a
+                class="obra-cta"
+                href={waLink(o.titulo)}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Consultar por WhatsApp sobre la obra ${o.titulo}`}
+              >
+                Me interesa
+              </a>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div class="closing">
+        <p>
+          ¿Te gustaría ver otras piezas o encargar algo a la medida?
+        </p>
+        <a
+          class="obra-cta closing-cta"
+          href={`https://wa.me/${waNumber}?text=${encodeURIComponent('Hola planetapsilo, me interesa conocer más obras o encargar una pieza.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Conversar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-section { padding-block: var(--space-section, 4rem); }
+  .kicker {
+    font-family: var(--font-display);
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: lowercase;
+    opacity: 0.75;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 1.5rem;
+  }
+  .lede {
+    max-width: 42rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.75rem;
+  }
+  .stub-note {
+    max-width: 42rem;
+    margin-bottom: 3rem;
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+  }
+  .stub-note em {
+    color: var(--color-orange-mystic);
+    font-style: normal;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.75rem;
+  }
+
+  .obras-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 600px) {
+    .obras-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 960px) {
+    .obras-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .obra-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .obra-media {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 4px;
+    background: var(--color-bg-base);
+    border: 1px solid var(--color-chrome-border);
+    transition: transform 250ms ease, border-color 250ms ease;
+  }
+  .obra-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .obra-card:hover .obra-media {
+    transform: translateY(-2px);
+    border-color: rgba(244, 237, 227, 0.18);
+  }
+  .obra-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .obra-title {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--color-text-primary);
+  }
+  .obra-meta {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+  .obra-price {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    margin: 0.25rem 0 0.75rem;
+  }
+  .obra-cta {
+    align-self: flex-start;
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    border: 1px solid var(--color-orange-mystic);
+    border-radius: 999px;
+    color: var(--color-orange-mystic);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: background-color 180ms ease, color 180ms ease;
+  }
+  .obra-cta:hover,
+  .obra-cta:focus-visible {
+    background-color: var(--color-orange-mystic);
+    color: var(--color-bg-base);
+  }
+
+  .closing {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--color-chrome-border);
+    text-align: center;
+  }
+  .closing p {
+    color: var(--color-text-muted);
+    margin-bottom: 1.25rem;
+  }
+  .closing-cta {
+    align-self: center;
+  }
+</style>
