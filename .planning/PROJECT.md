@@ -14,21 +14,29 @@ Un visitante del ICP (C-Level digital, nómada digital, founder/startup) puede e
 
 <!-- Shipped and confirmed valuable. -->
 
-(None yet — ship to validate)
+**Phase 1 (2026-05-22) — Foundation + Deployable Skeleton:**
+- ✓ Esqueleto Astro 6 + Tailwind v4 deployable a GitHub Pages — site live en https://elsolarcg.github.io/planetapsilo/
+- ✓ Identidad visual psicodélica base cargada (paleta saturada dark-only: orange-mystic #ff7a3d / violet-deep #5b2a86 / blue-cosmic #0b1d4f, Fraunces + Inter, gradiente cósmico CSS animado)
+- ✓ 4 page stubs deployables (`/`, `/acompanamiento`, `/retiros`, `/contacto`) + 404 custom + favicon SVG cosmic
+- ✓ Wordmark "planetapsilo" lowercase + header transparente con blur-on-scroll + WhatsAppFloat sticky
+- ✓ `<meta name="robots" content="noindex,nofollow">` global + `robots.txt Disallow: /` activos (sigue noindex hasta Phase 3)
+- ✓ `base: '/planetapsilo'` verificado en producción (bug #1 de GH Pages evitado)
+- ✓ Backup branch `backup-v1` empujado al remoto antes del force-push (commit 918be1d preservado)
+- ✓ Copy glossary PERMITIDO/PROHIBIDO documentado como linter de referencia
+- ✓ SIPI trademark check documentado (decisión PENDING — manual search antes de Phase 3)
 
 ### Active
 
 <!-- Current scope. Building toward these. -->
 
-**MVP de hoy (multi-página ligero):**
-- [ ] Home con hero psicodélico ("de otro mundo") y propuesta de valor
+**MVP Content + Three-Channel Contact (Phase 2, próximo):**
+- [ ] Home con hero psicodélico + copy real (máxima filosófica + dual CTA "Agenda una conversación" / "Explora los retiros")
 - [ ] Página /acompanamiento — servicio para C-Level / nómadas digitales (lenguaje neutral, sin atribuir terapia psicodélica directa)
-- [ ] Página /retiros — retiros guiados para CEOs / nómadas digitales
-- [ ] Página /contacto — Calendly embed/link + botón WhatsApp + formulario respaldo
-- [ ] Identidad visual psicodélica/cósmica derivada del referente (paleta naranjas/violetas/azules profundos, degradados místicos, tipografía sans-serif moderna)
-- [ ] Deploy a GitHub Pages bajo el repo Elsolarcg/planetapsilo (force-push limpio sobre la v1)
-- [ ] Copy en español Colombia, tono íntimo/empoderado tipo máximas (referente)
-- [ ] Sin atribución directa de Sofía como prestadora de terapia psicodélica — proteger tarjeta profesional
+- [ ] Página /retiros — three-phase frame (Preparación / Inmersión / Integración), sin nombrar sustancia, application gate (NO Calendly directo)
+- [ ] Página /contacto — Calendly LINK + WhatsApp wa.me real + formulario Web3Forms con honeypot + checkbox Habeas Data + disclaimer temporal
+- [ ] 3 testimonios anonimizados con disclaimer + bloque FAQ de 6 preguntas + one-liner confidencialidad
+- [ ] Copy verificado contra `docs/copy-glossary.md` (cero palabras prohibidas)
+- [ ] Lighthouse Mobile ≥ 80 perf, ≥ 95 a11y, ≥ 90 SEO en las 4 páginas
 
 **Fases siguientes (post-MVP):**
 - [ ] Sección "Sobre la guía" con bio cuidada de Sofía (credencial Andes + camino experiencial, sin titularse en psicodelia)
@@ -125,4 +133,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-05-21 after initialization*
+*Last updated: 2026-05-22 after Phase 1 completion (Foundation + Deployable Skeleton)*
