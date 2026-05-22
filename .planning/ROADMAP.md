@@ -14,7 +14,7 @@ Coarse granularity deliberada: el proyecto está explorando y validando, mejor a
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation + Deployable Skeleton** - Astro 6 + Tailwind v4 + GitHub Pages live con base path verificado, noindex, 4 page stubs y CI/CD funcionando
+- [x] **Phase 1: Foundation + Deployable Skeleton** - Astro 6 + Tailwind v4 + GitHub Pages live con base path verificado, noindex, 4 page stubs y CI/CD funcionando (completed 2026-05-22)
 - [ ] **Phase 2: MVP Content + Three-Channel Contact** - Copy legal-safe en 4 páginas, Calendly LINK + WhatsApp + Web3Forms wired, Lighthouse ≥80 mobile, sigue noindex
 - [ ] **Phase 3: Legal Pass + Trust Signals + Indexación** - Abogado firma copy + Habeas Data + bio narrativa + testimonios reales + remoción de noindex + Search Console
 - [ ] **Phase 4: Validación + Newsletter + Operative Polish** - Newsletter, pricing decision, GSAP polish, analytics cookieless, iteración basada en leads reales
@@ -132,7 +132,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 (con sub-phases 5.1, 
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation + Deployable Skeleton | 3/5 | In Progress|  |
+| 1. Foundation + Deployable Skeleton | 5/5 | Complete    | 2026-05-22 |
 | 2. MVP Content + Three-Channel Contact | 0/TBD | Not started | - |
 | 3. Legal Pass + Trust Signals + Indexación | 0/TBD | Not started | - |
 | 4. Validación + Newsletter + Operative Polish | 0/TBD | Not started | - |
