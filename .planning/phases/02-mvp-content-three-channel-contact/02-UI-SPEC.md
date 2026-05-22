@@ -153,7 +153,7 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 
 **Hierarchy rule (CRITICAL):** Because H2 and H3 share `--font-display-lg`, the weight difference (300 vs 500) is the only signal. Authors and the executor must NEVER apply weight 500 to an H2 or weight 300 to an H3 — doing so collapses hierarchy. The component contract enforces this at the component boundary (`Section.astro` heading + `ServiceTeaser`/`RetreatPhases`/`FAQ summary` title slots).
 
-**Italic usage:** Reserved for `--font-display-md` (máxima D-04, testimonial quote D-11, confidentiality one-liner D-27, numbered-step subhead). No other italic in the system.
+**Italic usage (CRITICAL — disambiguates display-md from display-lg clamp overlap):** `--font-display-md` is **always italic, no exceptions**. Reserved for: máxima D-04, testimonial quote D-11, confidentiality one-liner D-27, numbered-step subhead. The clamp ranges for `--font-display-md` (20–30px) and `--font-display-lg` (26–32px) overlap at 26–30px — at mid-viewport widths an H2 (display-lg roman 300) and a máxima (display-md italic 300) could render at identical pixel sizes. The italic-only rule is the visual disambiguator. Never apply `--font-display-md` to roman text. No other italic in the system.
 
 **Line-height defaults:**
 - Body: 1.6 default, 1.65 on long-form paragraphs in `/acompanamiento` / `/retiros`. Set on `body` already (`global.css` line 28).
@@ -313,14 +313,14 @@ Phase 02.1 owns this page; Phase 2 does not modify `/obras`. Nav order stays Ini
 | Idle | Form rendered, submit enabled |
 | Submitting | Submit button shows inline SVG spinner (24×24, rotating, respects `prefers-reduced-motion` by becoming static dot) + label changes "Enviando…"; all fields disabled |
 | Success | Form node replaced in-place by `FormSuccess` block (D-09). No redirect, no toast, scroll position preserved. |
-| Error (4xx/5xx from Web3Forms) | Inline error message above submit: "No pudimos enviar. Intentá de nuevo o [escríbenos por WhatsApp](wa.me-link)." (Colombia tú-form, not vos.) Form stays editable; submit re-enabled. |
+| Error (4xx/5xx from Web3Forms) | Inline error message above submit: "No pudimos enviar. Intenta de nuevo o [escríbenos por WhatsApp](wa.me-link)." (Colombia tú-form, not vos.) Form stays editable; submit re-enabled. |
 
 ### FormSuccess copy (LOCKED — D-09)
 
 | Variant | Heading | Body | Fallback CTA |
 |---------|---------|------|--------------|
 | `retiros` | "Recibimos tu aplicación." | "Te respondemos en menos de 24h. Si prefieres conversar antes →" | WhatsApp link (tertiary style), prefill `Hola planetapsilo, apliqué a un retiro y prefiero conversar antes` |
-| `contacto` | "Mensaje recibido." | "Te respondemos antes de 24h, normalmente el mismo día. Si querés agendar directo →" | Calendly link (tertiary style), label "Agenda una conversación" |
+| `contacto` | "Mensaje recibido." | "Te respondemos antes de 24h, normalmente el mismo día. Si quieres agendar directo →" | Calendly link (tertiary style), label "Agenda una conversación" |
 
 Both render with same visual treatment as a regular section card: padding `lg` (24px), border-radius `12px`, background `--color-bg-elevated`, max-width 36rem centered, heading Fraunces 300 at `--font-display-lg` (renders ≈28px via clamp), body Inter 400 at `--font-body-md` (17px) line-height 1.65.
 
@@ -429,8 +429,8 @@ This phase has **no list views, no dashboards, no infinite scroll** — therefor
 | Form idle (initial render) — SLA microcopy (D-18) | Below WhatsApp button: `Respondemos antes de 24h`. Below Calendly: `Espacios próximos esta semana`. Below ContactForm submit: `Respondemos antes de 24h, normalmente el mismo día`. |
 | Form submitting | Submit button label `Enviando…` + inline spinner |
 | Form success | See `FormSuccess` table above |
-| Form error 4xx/5xx | Inline message above submit: `No pudimos enviar. Intentá de nuevo o escríbenos por WhatsApp.` Fallback link inline, points to `waLink('Hola planetapsilo, intenté el formulario y no funcionó')`. |
-| Privacy stub page `/privacidad` | H1 `Política de privacidad — próximamente.` + 1-paragraph body: `Estamos terminando la redacción de nuestra política de tratamiento de datos personales conforme a la Ley 1581 de 2012. Mientras tanto, los datos que dejes en cualquier formulario sólo se usan para responderte sobre tu consulta. Si querés más detalle ahora →` + tertiary link to WhatsApp. |
+| Form error 4xx/5xx | Inline message above submit: `No pudimos enviar. Intenta de nuevo o escríbenos por WhatsApp.` Fallback link inline, points to `waLink('Hola planetapsilo, intenté el formulario y no funcionó')`. |
+| Privacy stub page `/privacidad` | H1 `Política de privacidad — próximamente.` + 1-paragraph body: `Estamos terminando la redacción de nuestra política de tratamiento de datos personales conforme a la Ley 1581 de 2012. Mientras tanto, los datos que dejes en cualquier formulario sólo se usan para responderte sobre tu consulta. Si quieres más detalle ahora →` + tertiary link to WhatsApp. |
 | 404 (Phase 1 carry, unchanged) | Already locked: H1 + "Vuelve" home link (Colombia tú-form per Phase 1 CONTEXT) |
 
 ### Destructive actions
