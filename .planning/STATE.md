@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Completed 02-04-PLAN.md — form primitives + /retiros application gate
-last_updated: "2026-05-23T01:48:23.356Z"
+last_updated: "2026-05-23T02:02:03.539Z"
 last_activity: 2026-05-23
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 9
-  percent: 75
+  completed_plans: 10
+  percent: 83
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 02 (mvp-content-three-channel-contact) — EXECUTING
-Plan: 5 of 7
+Plan: 6 of 7
 Status: Ready to execute
 Last activity: 2026-05-23
 
@@ -66,6 +66,7 @@ Progress: [██████░░░░] 58%
 | Phase 02-mvp-content-three-channel-contact P02 | 4m 58s | 3 tasks | 12 files |
 | Phase 02-mvp-content-three-channel-contact P03 | 3m 10s | 2 tasks | 2 files |
 | Phase 02-mvp-content-three-channel-contact P04 | 4m 8s | 3 tasks | 6 files |
+| Phase 02-mvp-content-three-channel-contact P05 | 2m 49s | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -117,6 +118,10 @@ Recent decisions affecting current work:
 - [Phase 02]: Phase 02 Plan 04: D-07 application gate enforced en /retiros — 0 matches de 'calendly' en dist/retiros/index.html, application flow exclusivamente vía RetreatApplicationForm con honeypot + Web3Forms POST
 - [Phase 02]: Phase 02 Plan 04: Vanilla JS submit handler pattern locked — preventDefault → disable + spinner → fetch POST FormData → 2xx swap form node with FormSuccess + scrollIntoView; 4xx/5xx restore + WhatsApp fallback link. Plan 05 ContactForm replica con web3formsKeyContacto
 - [Phase 02]: Phase 02 Plan 04: Honeypot-only spam protection (D-17) — Web3Forms native 'botcheck' field display:none + tabindex=-1 + autocomplete=off + aria-hidden, posicionado ANTES de campos visibles. Turnstile/hCaptcha diferido a Phase 4 IF spam materializes post-indexación
+- [Phase ?]: Phase 02 Plan 05: ContactForm es structural sibling de RetreatApplicationForm — sólo difieren en access_key (web3formsKeyContacto), subject ('Consulta general planetapsilo'), from_name, fields shape (5: name/email/whatsapp-optional/topic-select/message), y FormSuccess variant='contacto'. Mismo submit handler vanilla JS exactamente — patrón sibling locked para futuros forms
+- [Phase ?]: Phase 02 Plan 05: /contacto channel duo D-15 — 2 cards side-by-side ≥640px (grid 1fr 1fr), stacked en mobile. NO ship 3 equal CTA cards (Pitfall #9). Calendly primary orange + WhatsApp secondary transparent border. Cada card incluye SLA microcopy ('Espacios próximos esta semana' / 'Respondemos antes de 24h')
+- [Phase ?]: Phase 02 Plan 05: Three-channel contact funnel completo — /contacto es único punto donde los 3 canales (Calendly + WhatsApp + Web3Forms) conviven en una sola pantalla. /retiros mantiene application-gate (0 Calendly), /acompanamiento usa CTABlock 2 canales. Las 4 LOCKED pages content-complete; Plans 06+07 son tooling/verification
+- [Phase ?]: Phase 02 Plan 05: WhatsApp field en ContactForm es OPCIONAL (required={false} + label suffix ' (opcional)') — único campo opcional del form. Diferencia explícita vs RetreatApplicationForm donde WhatsApp es required (D-08 retiros)
 
 ### Pending Todos
 
@@ -160,6 +165,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-23T01:48:11.500Z
+Last session: 2026-05-23T02:01:53.754Z
 Stopped at: Completed 02-04-PLAN.md — form primitives + /retiros application gate
 Resume file: None

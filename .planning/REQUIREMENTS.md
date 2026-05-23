@@ -34,7 +34,7 @@ Llenar el esqueleto con copy legal-safe y wirar los tres canales de contacto (Ca
 - [x] **CONT-01**: Hero en `/` con value-prop de una línea + máxima filosófica + CTA primario "Agenda una conversación" + CTA secundario "Explora los retiros"
 - [x] **CONT-02**: Página `/acompanamiento` con descripción del servicio para C-Level / nómadas digitales en registro híbrido (business + espiritual), sin lenguaje clínico ni atribución de terapia psicodélica
 - [x] **CONT-03**: Página `/retiros` con estructura tres fases (Preparación / Inmersión / Integración), sin nombrar sustancias, sin precio, con application gate (formulario aplicación, no Calendly directo)
-- [ ] **CONT-04**: Página `/contacto` con 3 canales — botón Calendly LINK (placeholder o real), botón WhatsApp con `wa.me/57XXXXXXXXXX?text=...` pre-cargado, formulario Web3Forms con honeypot, checkbox autorización Habeas Data, disclaimer mínimo
+- [x] **CONT-04**: Página `/contacto` con 3 canales — botón Calendly LINK (placeholder o real), botón WhatsApp con `wa.me/57XXXXXXXXXX?text=...` pre-cargado, formulario Web3Forms con honeypot, checkbox autorización Habeas Data, disclaimer mínimo
 - [x] **CONT-05**: Componente `WhatsAppFloat.astro` sticky en mobile/desktop con mensaje pre-cargado, `target="_blank"`, microcopy explicativo
 - [x] **CONT-06**: Componente `CTABlock.astro` reutilizable con jerarquía Primario (Calendly) > Secundario (WhatsApp) > Terciario (Form)
 - [x] **CONT-07**: 3 testimonios anonimizados como placeholder ("Founder, fintech, 41 años" tipo) con disclaimer "experiencia individual no garantiza resultados"
@@ -170,7 +170,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | CONT-01 | Phase 2 | Complete |
 | CONT-02 | Phase 2 | Complete |
 | CONT-03 | Phase 2 | Complete |
-| CONT-04 | Phase 2 | Pending |
+| CONT-04 | Phase 2 | Complete |
 | CONT-05 | Phase 2 | Complete |
 | CONT-06 | Phase 2 | Complete |
 | CONT-07 | Phase 2 | Complete |
