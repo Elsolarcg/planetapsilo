@@ -1,0 +1,34 @@
+---
+// src/components/sections/BrandBio.astro
+// Phase 2 D-14: "Sobre planetapsilo" — bloque centrado 2-3 párrafos (sin imágenes).
+// Copy LOCKED en UI-SPEC §"Locked strings" filas "Brand bio paragraph 1/2/3".
+// Los párrafos 1 y 2 contienen la cláusula-denial "No es terapia" — la exención del linter (Plan 06) la maneja.
+
+interface Props {
+  paragraphs: string[];
+}
+const { paragraphs } = Astro.props as Props;
+---
+<section class="brand-bio">
+  <div class="container bb-content">
+    {paragraphs.map(p => <p>{p}</p>)}
+  </div>
+</section>
+
+<style>
+  .brand-bio { padding-block: var(--space-section); }
+  .bb-content {
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+  }
+  p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.0625rem; /* --font-body-md 17px */
+    line-height: 1.7;
+    color: var(--color-text-primary);
+    margin: 0 0 24px;
+  }
+  p:last-child { margin-bottom: 0; }
+</style>
