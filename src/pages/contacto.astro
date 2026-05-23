@@ -1,63 +1,127 @@
 ---
-// src/pages/contacto.astro — Contacto stub (Phase 2 CONT-04 wires real 3-channel CTAs).
-// Tres canales abiertos: Calendly, WhatsApp, formulario Web3Forms. Phase 1 muestra stubs.
-import BaseLayout from '../layouts/BaseLayout.astro';
-import { contact } from '../data/contact';
+// src/pages/contacto.astro — Phase 2 (CONT-04, CONT-12)
+// 4 sections per UI-SPEC §"/contacto — 4 sections": Hero · Channel duo · ContactForm · (inline success)
+// D-15: 2 big buttons side-by-side (not 3 equal cards — Pitfall #9 mitigation).
+// D-18: SLA microcopy below each CTA.
 
-const waHref = `https://wa.me/${contact.whatsappNumber}?text=${contact.whatsappPrefill}`;
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import ContactForm from '../components/forms/ContactForm.astro';
+import { contact, waLink } from '../data/contact';
+
+const waHref = waLink('Hola planetapsilo, quiero conversar');
 ---
-<BaseLayout title="Contacto" description="Tres canales — Calendly, WhatsApp, formulario. Phase 1 muestra stubs.">
-  <section class="page-section">
-    <div class="container">
-      <p class="kicker">planetapsilo</p>
-      <h1>Contacto</h1>
-      <p class="lede">
-        Tres canales abiertos. Phase 2 cablea cada uno con datos reales y un formulario Web3Forms con checkbox de autorización Habeas Data.
-      </p>
-      <div class="cta-row">
-        <a class="cta cta-primary" href={contact.calendlyUrl}>Agenda (stub)</a>
-        <a class="cta cta-secondary" href={waHref} target="_blank" rel="noopener noreferrer">WhatsApp (stub)</a>
-        <a class="cta cta-tertiary" href="#form">Formulario (Phase 2)</a>
+<BaseLayout
+  title="Contacto"
+  description="Tres formas de empezar una conversación con planetapsilo. Agenda directo, escríbenos por WhatsApp o déjanos un mensaje."
+>
+  <Hero
+    variant="interior"
+    title="Contacto"
+    lead="Tres formas de empezar. Elige la que te calce."
+  />
+
+  <section class="channel-duo">
+    <div class="container narrow">
+      <div class="duo-row">
+        <div class="channel">
+          <a
+            class="cta cta-primary"
+            href={contact.calendlyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Agenda una conversación
+          </a>
+          <p class="sla">Espacios próximos esta semana</p>
+        </div>
+        <div class="channel">
+          <a
+            class="cta cta-secondary"
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Escribir a planetapsilo por WhatsApp"
+          >
+            Escribir por WhatsApp
+          </a>
+          <p class="sla">Respondemos antes de 24h</p>
+        </div>
       </div>
     </div>
   </section>
+
+  <ContactForm />
 </BaseLayout>
 
 <style>
-  .page-section { padding-block: var(--space-section); }
-  .kicker {
-    font-family: var(--font-display);
-    font-weight: 300;
-    letter-spacing: 0.16em;
-    text-transform: lowercase;
-    opacity: 0.75;
-    margin-bottom: 1rem;
+  .channel-duo { padding-block: var(--space-section); }
+  .container.narrow {
+    max-width: 56rem;
+    margin-inline: auto;
   }
-  h1 {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1.5rem;
+  .duo-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
-  .lede { max-width: 42rem; color: var(--color-text-muted); margin-bottom: 2rem; }
-  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; }
+  @media (min-width: 640px) {
+    .duo-row { grid-template-columns: 1fr 1fr; gap: 24px; }
+  }
+  .channel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 24px;
+    background: var(--color-bg-elevated);
+    border-radius: 12px;
+    border: 1px solid var(--color-chrome-border);
+    min-height: 160px;
+    justify-content: center;
+  }
   .cta {
     display: inline-block;
-    padding: 0.875rem 1.5rem;
-    border-radius: 0.5rem;
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 0.95rem;
+    font-size: 1.0625rem;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 999px;
+    box-sizing: border-box;
+    min-width: 12rem;
   }
-  .cta-primary { background: var(--color-orange-mystic); color: var(--color-bg-base); }
+  .cta:focus-visible {
+    outline: 2px solid var(--color-orange-mystic);
+    outline-offset: 2px;
+  }
+  .cta-primary {
+    background: var(--color-orange-mystic);
+    color: var(--color-bg-base);
+    box-shadow: 0 8px 24px rgba(255, 122, 61, 0.35);
+    transition: transform 200ms ease;
+  }
+  .cta-primary:hover { transform: scale(1.02); }
   .cta-secondary {
     background: transparent;
     color: var(--color-text-primary);
-    border: 1px solid var(--color-chrome-border-strong);
+    border: 1px solid var(--color-text-primary);
+    transition: background-color 200ms ease;
   }
-  .cta-tertiary {
-    background: transparent;
+  .cta-secondary:hover { background: rgba(244, 237, 227, 0.08); }
+  .sla {
+    font-family: var(--font-body);
+    font-size: 0.875rem; /* --font-body-sm 14px */
     color: var(--color-text-muted);
-    border: 1px solid var(--color-chrome-border);
+    margin: 0;
+    text-align: center;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-primary, .cta-secondary { transition: none; }
+    .cta-primary:hover { transform: none; }
   }
 </style>
