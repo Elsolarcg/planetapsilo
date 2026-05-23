@@ -57,6 +57,24 @@ This file is the source of truth consumed by:
 7. **Retiros nunca con Calendly directo** — siempre aplicación con screening previo.
 8. **Idioma:** 100% español Colombia en MVP. Bilingüe (Phase 5d) requiere abogado en inglés + GDPR posture.
 
+## Exemptions (false-positive denial clauses)
+
+Several legally-required denial clauses contain PROHIBIDO words because the law REQUIRES them to be explicitly denied. These are not violations — they are the required denials. The copy linter (`scripts/copy-lint.mjs`, Phase 2 CONT-14) skips matches that fall inside one of these patterns.
+
+| Pattern | Allowed because |
+|---------|-----------------|
+| `No constituye terapia ni servicio de salud` | Footer global disclaimer + LEGAL-03 (denial mandatory under Ley 1090) |
+| `No es terapia ni servicio de salud` | BrandBio P1 + services.ts.description (denial mandatory) |
+| `no es terapia` / `No es terapia` (lowercase or capitalized) | General denial-clause carrier |
+| `sin terapia` / `sin tratamiento` / `sin diagnóstico` | Service description denials ("sin diagnóstico, sin etiquetas, sin recetario") |
+| `tratamiento de datos personales` | Habeas Data context (Ley 1581 lexicon — "tratamiento" here means DATA processing, not clinical) |
+| `tratamiento de mis datos personales` | Habeas Data checkbox label variant of the above |
+| `no constituye terapia` | Footer/FAQ alternate phrasing of the global denial |
+
+The linter pattern detection uses a Node script (`scripts/copy-lint.mjs`) with regex that allows these phrases. If a new LOCKED denial clause is added in Phase 3, append it to this table AND update the `EXEMPT_PATTERNS` array in `scripts/copy-lint.mjs`.
+
+Both the human-reviewable table above and the executable `EXEMPT_PATTERNS` array in the lint script MUST stay in sync. The phase close criterion verifies this: every entry in the script's `EXEMPT_PATTERNS` has a matching row in this table.
+
 ## Verification (Phase 2 pre-deploy linter)
 
 Phase 2 ships with a grep-based linter that fails CI if any PROHIBIDO term appears in built HTML. Reference command:
