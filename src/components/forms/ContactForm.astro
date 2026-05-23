@@ -1,0 +1,205 @@
+---
+// src/components/forms/ContactForm.astro
+// Phase 2 (CONT-04, D-15, D-16, D-18): 5-field general contact form for /contacto.
+// Sibling of RetreatApplicationForm (Plan 04) — same Web3Forms POST + inline success pattern.
+// Topic includes 'Obras' even though /obras is Phase 02.1 — visitors of the art catalog may need fallback channel.
+
+import FormField from './FormField.astro';
+import HabeasDataCheckbox from './HabeasDataCheckbox.astro';
+import FormSuccess from './FormSuccess.astro';
+import { contact, waLink } from '../../data/contact';
+
+const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funcionó');
+---
+<section id="form" class="contact-form-section">
+  <div class="container narrow">
+    <h2>Si prefieres escribir</h2>
+    <p class="lead">Cuéntanos en una línea y te respondemos. Funciona como un email — sin presión, sin compromiso.</p>
+
+    <form
+      id="contact-form"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="contact-form"
+    >
+      <input type="hidden" name="access_key" value={contact.web3formsKeyContacto} />
+      <input type="hidden" name="subject" value="Consulta general planetapsilo" />
+      <input type="hidden" name="from_name" value="planetapsilo contact form" />
+      <input
+        type="text"
+        name="botcheck"
+        tabindex="-1"
+        autocomplete="off"
+        style="display:none"
+        aria-hidden="true"
+      />
+
+      <FormField type="text" name="name" label="Nombre" required={true} />
+      <FormField type="email" name="email" label="Email" required={true} />
+      <FormField type="tel" name="whatsapp" label="WhatsApp (opcional)" required={false} />
+      <FormField
+        type="select"
+        name="topic"
+        label="¿Sobre qué quieres conversar?"
+        required={true}
+        options={['Acompañamiento', 'Retiros', 'Obras', 'Otra cosa']}
+      />
+      <FormField type="textarea" name="message" label="Cuéntame en una línea" required={true} rows={2} />
+
+      <HabeasDataCheckbox />
+
+      <div id="contact-error" class="form-error" role="alert" hidden>
+        No pudimos enviar. Intenta de nuevo o
+        <a href={errorWaHref} target="_blank" rel="noopener noreferrer">escríbenos por WhatsApp</a>.
+      </div>
+
+      <button type="submit" class="cta cta-primary" id="contact-submit">
+        <span class="submit-label">Enviar mensaje</span>
+        <svg class="spinner" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" hidden>
+          <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2.5" fill="none" stroke-dasharray="40" stroke-dashoffset="20" />
+        </svg>
+      </button>
+
+      <p class="sla">Respondemos antes de 24h, normalmente el mismo día.</p>
+    </form>
+
+    <div id="contact-success" hidden>
+      <FormSuccess variant="contacto" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-form-section { padding-block: var(--space-section); }
+  .container.narrow {
+    max-width: 36rem;
+    margin-inline: auto;
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.625rem, 4vw, 2rem);
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin: 0 0 16px;
+    text-align: center;
+  }
+  .lead {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0 0 48px;
+    text-align: center;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .form-error {
+    font-family: var(--font-body);
+    font-size: 0.8125rem;
+    line-height: 1.5;
+    color: rgba(255, 122, 61, 0.85);
+    padding: 12px 16px;
+    background: rgba(255, 122, 61, 0.08);
+    border-radius: 8px;
+  }
+  .form-error a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.0625rem;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  .cta:focus-visible {
+    outline: 2px solid var(--color-orange-mystic);
+    outline-offset: 2px;
+  }
+  .cta-primary {
+    background: var(--color-orange-mystic);
+    color: var(--color-bg-base);
+    box-shadow: 0 8px 24px rgba(255, 122, 61, 0.35);
+    transition: transform 200ms ease, opacity 200ms ease;
+  }
+  .cta-primary:hover:not([disabled]) { transform: scale(1.02); }
+  .cta-primary[disabled] { opacity: 0.5; cursor: not-allowed; }
+  .spinner {
+    animation: spin 800ms linear infinite;
+    transform-origin: center;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+  .sla {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+    margin: 0;
+    text-align: center;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cta-primary { transition: none; }
+    .cta-primary:hover { transform: none; }
+    .spinner { animation: none; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const submitBtn = document.getElementById('contact-submit') as HTMLButtonElement | null;
+  const successBlock = document.getElementById('contact-success');
+  const errorBlock = document.getElementById('contact-error');
+
+  if (form && submitBtn && successBlock && errorBlock) {
+    const submitLabel = submitBtn.querySelector('.submit-label') as HTMLElement | null;
+    const spinner = submitBtn.querySelector('.spinner') as HTMLElement | null;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorBlock.hidden = true;
+      submitBtn.disabled = true;
+      if (submitLabel) submitLabel.textContent = 'Enviando…';
+      if (spinner) spinner.hidden = false;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          form.hidden = true;
+          successBlock.hidden = false;
+          successBlock.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        } else {
+          throw new Error(`non-2xx: ${res.status}`);
+        }
+      } catch (err) {
+        errorBlock.hidden = false;
+        submitBtn.disabled = false;
+        if (submitLabel) submitLabel.textContent = 'Enviar mensaje';
+        if (spinner) spinner.hidden = true;
+      }
+    });
+  }
+</script>
