@@ -1,0 +1,78 @@
+---
+// src/components/forms/HabeasDataCheckbox.astro
+// Phase 2 (CONT-04 part — required for both forms): Ley 1581 consent checkbox.
+// Label contains denial-clause-context "tratamiento de datos personales" — exempted by Plan 06 linter.
+// Required attr blocks form submit when unchecked.
+
+const baseUrl = import.meta.env.BASE_URL;
+const baseTrimmed = baseUrl.replace(/\/$/, '');
+const privacidadHref = `${baseTrimmed}/privacidad`;
+---
+<label class="habeas-data">
+  <input type="checkbox" name="habeasData" required />
+  <span class="checkmark" aria-hidden="true">
+    <svg viewBox="0 0 16 16" width="12" height="12" fill="none">
+      <path d="M3 8.5l3 3 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+  </span>
+  <span class="hd-label">
+    Autorizo el tratamiento de mis datos personales conforme a la Ley 1581 de 2012 para que planetapsilo me contacte sobre esta consulta. Más detalle en <a href={privacidadHref}>Privacidad — próximamente</a>.
+  </span>
+</label>
+
+<style>
+  .habeas-data {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 12px;
+    align-items: start;
+    cursor: pointer;
+    max-width: 36rem;
+  }
+  .habeas-data input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    width: 20px;
+    height: 20px;
+  }
+  .checkmark {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--color-chrome-border-strong);
+    background: var(--color-bg-elevated);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: transparent;
+    transition: background-color 200ms ease, border-color 200ms ease, color 200ms ease;
+  }
+  .habeas-data input:checked + .checkmark {
+    background: var(--color-orange-mystic);
+    border-color: var(--color-orange-mystic);
+    color: var(--color-bg-base);
+  }
+  .habeas-data input:focus-visible + .checkmark {
+    outline: 2px solid var(--color-orange-mystic);
+    outline-offset: 2px;
+  }
+  .hd-label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.8125rem; /* --font-body-xs 13px */
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+  .hd-label a {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .hd-label a:hover, .hd-label a:focus-visible {
+    color: var(--color-orange-mystic);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .checkmark { transition: none; }
+  }
+</style>

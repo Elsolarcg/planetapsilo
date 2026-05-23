@@ -1,0 +1,129 @@
+---
+// src/components/forms/FormField.astro
+// Phase 2 form primitive — consumed by RetreatApplicationForm (Plan 04) + ContactForm (Plan 05).
+// Styles per UI-SPEC §"Form field states" — padding 12px 16px, radius 8px, font-size 17px.
+// Touch target ~48px exceeds WCAG 2.5.5 44×44 requirement.
+
+interface Props {
+  type: 'text' | 'email' | 'tel' | 'textarea' | 'select' | 'radio';
+  name: string;
+  label: string;
+  required?: boolean;
+  helpText?: string;
+  rows?: number;
+  options?: string[];
+}
+const { type, name, label, required = false, helpText, rows = 3, options = [] } = Astro.props as Props;
+---
+<div class="form-field">
+  {type === 'radio' ? (
+    <fieldset>
+      <legend>
+        {label}{required && <span class="required" aria-hidden="true"> *</span>}
+      </legend>
+      <div class="radio-group">
+        {options.map((opt, i) => (
+          <label class="radio-option">
+            <input type="radio" name={name} value={opt} required={required && i === 0 ? true : undefined} />
+            <span>{opt}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  ) : (
+    <>
+      <label for={name}>
+        {label}{required && <span class="required" aria-hidden="true"> *</span>}
+      </label>
+      {type === 'textarea' ? (
+        <textarea id={name} name={name} rows={rows} required={required}></textarea>
+      ) : type === 'select' ? (
+        <select id={name} name={name} required={required}>
+          {options.map(opt => <option value={opt}>{opt}</option>)}
+        </select>
+      ) : (
+        <input id={name} name={name} type={type} required={required} autocomplete={type === 'email' ? 'email' : type === 'tel' ? 'tel' : undefined} />
+      )}
+    </>
+  )}
+  {helpText && <p class="help-text">{helpText}</p>}
+</div>
+
+<style>
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  label, legend {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;  /* --font-body-sm 14px */
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--color-text-primary);
+  }
+  .required { color: var(--color-orange-mystic); }
+  input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid var(--color-chrome-border);
+    background: var(--color-bg-elevated);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 1.0625rem; /* 17px */
+    line-height: 1.5;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 200ms ease, outline-color 200ms ease;
+  }
+  input:hover, textarea:hover, select:hover {
+    border-color: var(--color-chrome-border-strong);
+  }
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--color-orange-mystic);
+    outline: 2px solid var(--color-orange-mystic);
+    outline-offset: 0;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: var(--font-body);
+  }
+  fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+  legend { padding: 0 0 8px; }
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .radio-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 400;
+    font-size: 1.0625rem;
+    color: var(--color-text-primary);
+    cursor: pointer;
+  }
+  .radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-orange-mystic);
+    margin: 0;
+  }
+  .help-text {
+    margin: 0;
+    font-family: var(--font-body);
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    input, textarea, select { transition: none; }
+  }
+</style>

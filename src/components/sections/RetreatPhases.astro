@@ -1,0 +1,79 @@
+---
+// src/components/sections/RetreatPhases.astro
+// Phase 2 (CONT-03, D-07): 3-card grid for Preparación / Inmersión / Integración.
+// PROHIBIDO: no substance name in card body. Card name uses Fraunces 500 --font-display-lg.
+// Grid responsive: 1col mobile / 3col tablet+ (matches obras.astro analog at min-width 960px → here 768px).
+
+interface Phase {
+  name: string;
+  body: string;
+}
+interface Props {
+  phases: Phase[];
+}
+const { phases } = Astro.props as Props;
+---
+<section class="retreat-phases">
+  <div class="container">
+    <h2>Las tres fases</h2>
+    <ul class="phases-grid" role="list">
+      {phases.map(p => (
+        <li class="phase-card">
+          <h3>{p.name}</h3>
+          <p>{p.body}</p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .retreat-phases { padding-block: var(--space-section); }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.625rem, 4vw, 2rem); /* --font-display-lg */
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--color-text-primary);
+    margin: 0 0 48px;
+    text-align: center;
+  }
+  .phases-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    .phases-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .phase-card {
+    padding: 32px 24px;
+    background: var(--color-bg-elevated);
+    border-radius: 12px;
+    border: 1px solid var(--color-chrome-border);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .phase-card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.625rem, 4vw, 2rem); /* --font-display-lg */
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+    color: var(--color-text-primary);
+    margin: 0;
+  }
+  .phase-card p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+</style>
