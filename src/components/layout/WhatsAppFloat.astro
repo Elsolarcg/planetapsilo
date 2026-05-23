@@ -1,18 +1,19 @@
 ---
 // src/components/layout/WhatsAppFloat.astro
-// Phase 1: stub button. Phase 2 (CONT-05) wires real number + microcopy.
-// Pitfall #15: target="_blank" + rel="noopener noreferrer" mandatory (T-01-18 tabnabbing mitigation).
+// Phase 2 (CONT-05, D-19): real number + waLink() helper. Global default prefill from D-19.
+// Pitfall #15: target=_blank + rel=noopener noreferrer mandatory (T-01-18 tabnabbing mitigation, carries from Phase 1).
+// Style block unchanged from Phase 1 — bubble color/shadow/size + reduced-motion override locked.
 
-import { contact } from '../../data/contact';
+import { waLink } from '../../data/contact';
 
-const href = `https://wa.me/${contact.whatsappNumber}?text=${contact.whatsappPrefill}`;
+const href = waLink('Hola planetapsilo, me interesa explorar');
 ---
 <a
   class="wa-float"
   href={href}
   target="_blank"
   rel="noopener noreferrer"
-  aria-label="Abrir WhatsApp (stub — Phase 2 conecta número real)"
+  aria-label="Escribir por WhatsApp"
 >
   <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor" aria-hidden="true">
     <path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.14 1.6 5.95L2 22l4.27-1.4a9.92 9.92 0 0 0 5.77 1.83h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02A9.84 9.84 0 0 0 12.04 2zm5.43 14.05c-.23.65-1.34 1.25-1.86 1.31-.5.06-.95.08-1.55-.1-.36-.11-.83-.27-1.43-.53-2.5-1.08-4.14-3.6-4.27-3.77-.12-.16-1.02-1.36-1.02-2.6 0-1.23.65-1.84.88-2.1.23-.25.5-.31.66-.31h.47c.16 0 .37-.06.58.45.21.5.71 1.74.78 1.86.06.13.1.27.02.43-.08.16-.12.25-.24.4-.12.13-.25.31-.36.42-.12.13-.24.27-.1.5.13.25.6 1.01 1.3 1.64.88.79 1.62 1.04 1.86 1.16.23.12.36.1.5-.06.13-.16.58-.68.74-.92.16-.23.31-.2.52-.12.21.08 1.36.64 1.6.76.23.12.39.18.45.27.06.1.06.56-.17 1.21z"/>
