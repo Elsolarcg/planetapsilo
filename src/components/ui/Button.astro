@@ -1,0 +1,98 @@
+---
+// src/components/ui/Button.astro
+// CTA primitive — 3 LOCKED variants per Phase 2 UI-SPEC §"Button variants".
+// Variant differentiation: primary (orange fill) / secondary (cream outline) / tertiary (text link).
+// Padding 12px 28px = sm+xs vertical, xl-xs horizontal — all multiples of 4 per spacing-of-4 rule.
+// Pill radius 999px matches WhatsAppFloat treatment (Phase 1 carry).
+// Pitfall #15: external links MUST set target=_blank + rel=noopener noreferrer.
+
+interface Props {
+  variant: 'primary' | 'secondary' | 'tertiary';
+  href: string;
+  label: string;
+  external?: boolean;
+  ariaLabel?: string;
+}
+
+const { variant, href, label, external = false, ariaLabel } = Astro.props as Props;
+const target = external ? '_blank' : undefined;
+const rel = external ? 'noopener noreferrer' : undefined;
+---
+<a
+  class:list={['cta', `cta-${variant}`]}
+  href={href}
+  target={target}
+  rel={rel}
+  aria-label={ariaLabel}
+>
+  {label}
+</a>
+
+<style>
+  .cta {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.0625rem; /* 17px — --font-body-md */
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  .cta:focus-visible {
+    outline: 2px solid var(--color-orange-mystic);
+    outline-offset: 2px;
+  }
+
+  /* Primary — Calendly button */
+  .cta-primary {
+    background: var(--color-orange-mystic);
+    color: var(--color-bg-base);
+    padding: 12px 28px;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(255, 122, 61, 0.35);
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .cta-primary:hover { transform: scale(1.02); }
+  .cta-primary:active { transform: scale(0.99); }
+
+  /* Secondary — WhatsApp / "Explora los retiros" */
+  .cta-secondary {
+    background: transparent;
+    color: var(--color-text-primary);
+    border: 1px solid var(--color-text-primary);
+    padding: 12px 28px;
+    border-radius: 999px;
+    transition: background-color 200ms ease;
+  }
+  .cta-secondary:hover { background: rgba(244, 237, 227, 0.08); }
+
+  /* Tertiary — inline text link */
+  .cta-tertiary {
+    background: transparent;
+    color: var(--color-text-muted);
+    padding: 0;
+    border-radius: 0;
+    font-size: 1.0625rem; /* 17px default; 14px on dense contexts via parent override */
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: color 200ms ease;
+  }
+  .cta-tertiary:hover, .cta-tertiary:focus-visible {
+    color: var(--color-orange-mystic);
+  }
+
+  /* Reduced-motion override — matches WhatsAppFloat pattern */
+  @media (prefers-reduced-motion: reduce) {
+    .cta-primary, .cta-secondary, .cta-tertiary {
+      transition: none;
+    }
+    .cta-primary:hover,
+    .cta-primary:active {
+      transform: none;
+    }
+  }
+</style>
