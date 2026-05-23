@@ -65,7 +65,7 @@ Plans:
 - [x] 02-01-PLAN.md — Foundation: contact.ts + Button primitive + Footer expansion + WhatsAppFloat rewire + /privacidad stub (CONT-05, CONT-06, CONT-10, CONT-11)
 - [x] 02-02-PLAN.md — Section library + home page composition (CONT-01, CONT-06, CONT-07, CONT-08, CONT-09, CONT-12)
 - [x] 02-03-PLAN.md — /acompanamiento page (CONT-02, CONT-09, CONT-12)
-- [ ] 02-04-PLAN.md — Form primitives + RetreatPhases + RetreatApplicationForm + /retiros page (CONT-03, CONT-09, CONT-12, CONT-13)
+- [x] 02-04-PLAN.md — Form primitives + RetreatPhases + RetreatApplicationForm + /retiros page (CONT-03, CONT-09, CONT-12, CONT-13)
 - [ ] 02-05-PLAN.md — ContactForm + /contacto page composition (CONT-04, CONT-12)
 - [ ] 02-06-PLAN.md — Copy linter script + CI deploy gate + glossary exemptions (CONT-14)
 - [ ] 02-07-PLAN.md — Accessibility + motion + Lighthouse audit + real-device CTA tests + Sofía approval checkpoint (CONT-13, CONT-15, CONT-16)
@@ -75,7 +75,7 @@ Plans:
 **Goal:** [Urgent work - to be planned]
 **Requirements**: TBD
 **Depends on:** Phase 2
-**Plans:** 3/7 plans executed
+**Plans:** 4/7 plans executed
 
 Plans:
 - [ ] TBD (run /gsd-plan-phase 02.1 to break down)

@@ -33,7 +33,7 @@ Llenar el esqueleto con copy legal-safe y wirar los tres canales de contacto (Ca
 
 - [x] **CONT-01**: Hero en `/` con value-prop de una línea + máxima filosófica + CTA primario "Agenda una conversación" + CTA secundario "Explora los retiros"
 - [x] **CONT-02**: Página `/acompanamiento` con descripción del servicio para C-Level / nómadas digitales en registro híbrido (business + espiritual), sin lenguaje clínico ni atribución de terapia psicodélica
-- [ ] **CONT-03**: Página `/retiros` con estructura tres fases (Preparación / Inmersión / Integración), sin nombrar sustancias, sin precio, con application gate (formulario aplicación, no Calendly directo)
+- [x] **CONT-03**: Página `/retiros` con estructura tres fases (Preparación / Inmersión / Integración), sin nombrar sustancias, sin precio, con application gate (formulario aplicación, no Calendly directo)
 - [ ] **CONT-04**: Página `/contacto` con 3 canales — botón Calendly LINK (placeholder o real), botón WhatsApp con `wa.me/57XXXXXXXXXX?text=...` pre-cargado, formulario Web3Forms con honeypot, checkbox autorización Habeas Data, disclaimer mínimo
 - [x] **CONT-05**: Componente `WhatsAppFloat.astro` sticky en mobile/desktop con mensaje pre-cargado, `target="_blank"`, microcopy explicativo
 - [x] **CONT-06**: Componente `CTABlock.astro` reutilizable con jerarquía Primario (Calendly) > Secundario (WhatsApp) > Terciario (Form)
@@ -43,7 +43,7 @@ Llenar el esqueleto con copy legal-safe y wirar los tres canales de contacto (Ca
 - [x] **CONT-10**: Footer con enlaces a Instagram + TikTok + brand line + año + "Sigue noindex" status
 - [x] **CONT-11**: Disclaimer global temporal en footer + página `/privacidad — próximamente` linkeada
 - [x] **CONT-12**: OG meta por página + favicon + title/description únicos
-- [ ] **CONT-13**: `prefers-reduced-motion: reduce` respetado en todas las animaciones de fondo
+- [x] **CONT-13**: `prefers-reduced-motion: reduce` respetado en todas las animaciones de fondo
 - [ ] **CONT-14**: Copy verificado contra `docs/copy-glossary.md` (cero palabras prohibidas)
 - [ ] **CONT-15**: Lighthouse mobile ≥ 80 performance, ≥ 95 accesibilidad, ≥ 90 SEO en las 4 páginas
 - [ ] **CONT-16**: CTAs probados en dispositivos reales (iPhone + Android) — WhatsApp abre app, Calendly abre evento, formulario envía
@@ -169,7 +169,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | FOUND-15 | Phase 1 | Complete |
 | CONT-01 | Phase 2 | Complete |
 | CONT-02 | Phase 2 | Complete |
-| CONT-03 | Phase 2 | Pending |
+| CONT-03 | Phase 2 | Complete |
 | CONT-04 | Phase 2 | Pending |
 | CONT-05 | Phase 2 | Complete |
 | CONT-06 | Phase 2 | Complete |
@@ -179,7 +179,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | CONT-10 | Phase 2 | Complete |
 | CONT-11 | Phase 2 | Complete |
 | CONT-12 | Phase 2 | Complete |
-| CONT-13 | Phase 2 | Pending |
+| CONT-13 | Phase 2 | Complete |
 | CONT-14 | Phase 2 | Pending |
 | CONT-15 | Phase 2 | Pending |
 | CONT-16 | Phase 2 | Pending |

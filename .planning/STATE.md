@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Phase 02 UI-SPEC approved
-last_updated: "2026-05-23T01:38:10.614Z"
+stopped_at: Completed 02-04-PLAN.md — form primitives + /retiros application gate
+last_updated: "2026-05-23T01:48:23.356Z"
 last_activity: 2026-05-23
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 8
-  percent: 67
+  completed_plans: 9
+  percent: 75
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 02 (mvp-content-three-channel-contact) — EXECUTING
-Plan: 4 of 7
+Plan: 5 of 7
 Status: Ready to execute
 Last activity: 2026-05-23
 
@@ -65,6 +65,7 @@ Progress: [██████░░░░] 58%
 | Phase 02-mvp-content-three-channel-contact P01 | 3m 52s | 5 tasks | 5 files |
 | Phase 02-mvp-content-three-channel-contact P02 | 4m 58s | 3 tasks | 12 files |
 | Phase 02-mvp-content-three-channel-contact P03 | 3m 10s | 2 tasks | 2 files |
+| Phase 02-mvp-content-three-channel-contact P04 | 4m 8s | 3 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -112,6 +113,10 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 02 Plan 03: services.ts CONFIDENTIALITY constant compartida entre acompanamiento + retiros — D-27 LOCKED string una sola fuente de verdad
 - [Phase ?]: Phase 02 Plan 03: step subhead expandió el rol display-md italic (4to rol sancionado: máxima/quote/confidentiality/step-subhead) — primer consumer de la 4ta italic role en /acompanamiento
 - [Phase ?]: Phase 02 Plan 03: bullet marker custom '◆' orange-mystic via ::before pseudo-element — alternativa robusta a ::marker (soporte CSS inconsistente para color en algunos browsers)
+- [Phase 02]: Phase 02 Plan 04: Form primitive library establecida en src/components/forms/ (FormField + HabeasDataCheckbox + FormSuccess) — Plan 05 ContactForm reusará directamente
+- [Phase 02]: Phase 02 Plan 04: D-07 application gate enforced en /retiros — 0 matches de 'calendly' en dist/retiros/index.html, application flow exclusivamente vía RetreatApplicationForm con honeypot + Web3Forms POST
+- [Phase 02]: Phase 02 Plan 04: Vanilla JS submit handler pattern locked — preventDefault → disable + spinner → fetch POST FormData → 2xx swap form node with FormSuccess + scrollIntoView; 4xx/5xx restore + WhatsApp fallback link. Plan 05 ContactForm replica con web3formsKeyContacto
+- [Phase 02]: Phase 02 Plan 04: Honeypot-only spam protection (D-17) — Web3Forms native 'botcheck' field display:none + tabindex=-1 + autocomplete=off + aria-hidden, posicionado ANTES de campos visibles. Turnstile/hCaptcha diferido a Phase 4 IF spam materializes post-indexación
 
 ### Pending Todos
 
@@ -155,6 +160,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-23T01:37:56.925Z
-Stopped at: Phase 02 UI-SPEC approved
+Last session: 2026-05-23T01:48:11.500Z
+Stopped at: Completed 02-04-PLAN.md — form primitives + /retiros application gate
 Resume file: None
