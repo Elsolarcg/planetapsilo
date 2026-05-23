@@ -63,7 +63,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 Plans:
 - [x] 02-01-PLAN.md — Foundation: contact.ts + Button primitive + Footer expansion + WhatsAppFloat rewire + /privacidad stub (CONT-05, CONT-06, CONT-10, CONT-11)
-- [ ] 02-02-PLAN.md — Section library + home page composition (CONT-01, CONT-06, CONT-07, CONT-08, CONT-09, CONT-12)
+- [x] 02-02-PLAN.md — Section library + home page composition (CONT-01, CONT-06, CONT-07, CONT-08, CONT-09, CONT-12)
 - [ ] 02-03-PLAN.md — /acompanamiento page (CONT-02, CONT-09, CONT-12)
 - [ ] 02-04-PLAN.md — Form primitives + RetreatPhases + RetreatApplicationForm + /retiros page (CONT-03, CONT-09, CONT-12, CONT-13)
 - [ ] 02-05-PLAN.md — ContactForm + /contacto page composition (CONT-04, CONT-12)
@@ -75,7 +75,7 @@ Plans:
 **Goal:** [Urgent work - to be planned]
 **Requirements**: TBD
 **Depends on:** Phase 2
-**Plans:** 1/7 plans executed
+**Plans:** 2/7 plans executed
 
 Plans:
 - [ ] TBD (run /gsd-plan-phase 02.1 to break down)
@@ -152,7 +152,7 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 (con sub-phases 5.1, 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation + Deployable Skeleton | 5/5 | Complete    | 2026-05-22 |
-| 2. MVP Content + Three-Channel Contact | 0/TBD | Not started | - |
+| 2. MVP Content + Three-Channel Contact | 2/7 | In Progress|  |
 | 3. Legal Pass + Trust Signals + Indexación | 0/TBD | Not started | - |
 | 4. Validación + Newsletter + Operative Polish | 0/TBD | Not started | - |
 | 5. Expansion (sub-phases on-demand) | 0/TBD | Not started | - |
