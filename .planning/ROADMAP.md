@@ -62,7 +62,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 **External blockers**: ninguno (formulario apunta a Web3Forms con disclaimer temporal + `/privacidad próximamente`; abogado no bloquea este phase, solo Phase 3)
 
 Plans:
-- [ ] 02-01-PLAN.md — Foundation: contact.ts + Button primitive + Footer expansion + WhatsAppFloat rewire + /privacidad stub (CONT-05, CONT-06, CONT-10, CONT-11)
+- [x] 02-01-PLAN.md — Foundation: contact.ts + Button primitive + Footer expansion + WhatsAppFloat rewire + /privacidad stub (CONT-05, CONT-06, CONT-10, CONT-11)
 - [ ] 02-02-PLAN.md — Section library + home page composition (CONT-01, CONT-06, CONT-07, CONT-08, CONT-09, CONT-12)
 - [ ] 02-03-PLAN.md — /acompanamiento page (CONT-02, CONT-09, CONT-12)
 - [ ] 02-04-PLAN.md — Form primitives + RetreatPhases + RetreatApplicationForm + /retiros page (CONT-03, CONT-09, CONT-12, CONT-13)
@@ -75,7 +75,7 @@ Plans:
 **Goal:** [Urgent work - to be planned]
 **Requirements**: TBD
 **Depends on:** Phase 2
-**Plans:** 0 plans
+**Plans:** 1/7 plans executed
 
 Plans:
 - [ ] TBD (run /gsd-plan-phase 02.1 to break down)

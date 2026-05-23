@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: verifying
+status: executing
 stopped_at: Phase 02 UI-SPEC approved
-last_updated: "2026-05-22T23:12:03.182Z"
-last_activity: 2026-05-22
+last_updated: "2026-05-23T01:18:21.622Z"
+last_activity: 2026-05-23
 progress:
   total_phases: 6
   completed_phases: 1
-  total_plans: 5
-  completed_plans: 5
-  percent: 100
+  total_plans: 12
+  completed_plans: 6
+  percent: 50
 ---
 
 # Project State
@@ -21,14 +21,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-05-21)
 
 **Core value:** Un visitante del ICP (C-Level digital, nómada digital, founder/startup) puede entender en menos de 30 segundos qué se ofrece, sentir que el sitio es "de otro mundo" estéticamente, y dejar un dato de contacto sin que ninguna línea de copy comprometa la posición profesional de Sofía.
-**Current focus:** Phase 1 — Foundation + Deployable Skeleton
+**Current focus:** Phase 02 — mvp-content-three-channel-contact
 
 ## Current Position
 
-Phase: 2
-Plan: Not started
-Status: Phase complete — ready for verification
-Last activity: 2026-05-22
+Phase: 02 (mvp-content-three-channel-contact) — EXECUTING
+Plan: 2 of 7
+Status: Ready to execute
+Last activity: 2026-05-23
 
 Progress: [████████░░] 80%
 
@@ -62,6 +62,7 @@ Progress: [████████░░] 80%
 | Phase 01-foundation-deployable-skeleton P02 | 3min | 3 tasks | 5 files |
 | Phase 01-foundation-deployable-skeleton P04 | 5min | 3 tasks | 17 files |
 | Phase 01-foundation-deployable-skeleton P05 | 4m 31s | 4 tasks | 2 files |
+| Phase 02-mvp-content-three-channel-contact P01 | 3m 52s | 5 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -94,6 +95,12 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 01 Plan 04: Footer noindex status string conditional on site.indexable — auto-disappears in Phase 3 after LEGAL-12 flips the flag
 - [Phase ?]: Node 22 explicitly pinned in withastro/action@v3
 - [Phase ?]: GH Pages source flipped legacy→workflow via gh api
+- [Phase ?]: Phase 02 Plan 01: waLink(prefill) helper centralizes encodeURIComponent for all WhatsApp deeplinks — T-02-01 mitigation pattern locked
+- [Phase ?]: Phase 02 Plan 01: Button.astro primitive 3 LOCKED variants — pill 999px + 12px 28px padding + box-sizing border-box for identical primary/secondary outer dims
+- [Phase ?]: Phase 02 Plan 01: Phase 2 introduces zero new design tokens — all 5 files consume Phase 1 tokens.css palette + font stack as-is per UI-SPEC
+- [Phase ?]: Phase 02 Plan 01: Web3Forms access keys accepted as PUBLIC in client HTML (T-02-02) — intended endpoint pattern, rate-limited server-side
+- [Phase ?]: Phase 02 Plan 01: 4 TODO placeholders flagged in contact.ts for Sofía/Juan — whatsappNumber + calendlyUrl + 2x web3formsKey + IG/TikTok handles
+- [Phase ?]: Phase 02 Plan 01: WhatsAppFloat aria-label finalized 'Escribir por WhatsApp' (Phase 1 stub removed); style block byte-identical to Phase 1 — bubble + reduced-motion lock preserved
 
 ### Pending Todos
 
@@ -137,6 +144,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-22T23:12:03.156Z
+Last session: 2026-05-23T01:17:29.871Z
 Stopped at: Phase 02 UI-SPEC approved
-Resume file: .planning/phases/02-mvp-content-three-channel-contact/02-UI-SPEC.md
+Resume file: None
