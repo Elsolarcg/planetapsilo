@@ -4,14 +4,14 @@ milestone: v1.0
 milestone_name: milestone
 status: executing
 stopped_at: Phase 02 UI-SPEC approved
-last_updated: "2026-05-23T01:29:41.489Z"
+last_updated: "2026-05-23T01:38:10.614Z"
 last_activity: 2026-05-23
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 7
-  percent: 58
+  completed_plans: 8
+  percent: 67
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 02 (mvp-content-three-channel-contact) — EXECUTING
-Plan: 3 of 7
+Plan: 4 of 7
 Status: Ready to execute
 Last activity: 2026-05-23
 
@@ -64,6 +64,7 @@ Progress: [██████░░░░] 58%
 | Phase 01-foundation-deployable-skeleton P05 | 4m 31s | 4 tasks | 2 files |
 | Phase 02-mvp-content-three-channel-contact P01 | 3m 52s | 5 tasks | 5 files |
 | Phase 02-mvp-content-three-channel-contact P02 | 4m 58s | 3 tasks | 12 files |
+| Phase 02-mvp-content-three-channel-contact P03 | 3m 10s | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -107,6 +108,10 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 02 Plan 02: ServicesSplit grid 1fr → repeat(2, 1fr) en min-width 640px — derivado de obras.astro (3col) capeado a 2col
 - [Phase ?]: Phase 02 Plan 02: Inline hero CTA en index.astro replica visualmente Button.primary/secondary sin importarlo — Plan 07 audit verificará paridad
 - [Phase ?]: Phase 02 Plan 02: Title del home omitido → BaseLayout cae a site.name → <title>planetapsilo</title> sin sufijo (CONT-12 home row)
+- [Phase ?]: Phase 02 Plan 03: ProcesoSteps defined locally en acompanamiento.astro (no en services.ts) — specific to /acompanamiento flow, /retiros tiene su propio 3-fases
+- [Phase ?]: Phase 02 Plan 03: services.ts CONFIDENTIALITY constant compartida entre acompanamiento + retiros — D-27 LOCKED string una sola fuente de verdad
+- [Phase ?]: Phase 02 Plan 03: step subhead expandió el rol display-md italic (4to rol sancionado: máxima/quote/confidentiality/step-subhead) — primer consumer de la 4ta italic role en /acompanamiento
+- [Phase ?]: Phase 02 Plan 03: bullet marker custom '◆' orange-mystic via ::before pseudo-element — alternativa robusta a ::marker (soporte CSS inconsistente para color en algunos browsers)
 
 ### Pending Todos
 
@@ -150,6 +155,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-23T01:29:06.388Z
+Last session: 2026-05-23T01:37:56.925Z
 Stopped at: Phase 02 UI-SPEC approved
 Resume file: None

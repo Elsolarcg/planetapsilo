@@ -32,14 +32,14 @@ Establece el esqueleto técnico, identidad visual base y el pipeline de deploy.
 Llenar el esqueleto con copy legal-safe y wirar los tres canales de contacto (Calendly, WhatsApp, formulario).
 
 - [x] **CONT-01**: Hero en `/` con value-prop de una línea + máxima filosófica + CTA primario "Agenda una conversación" + CTA secundario "Explora los retiros"
-- [ ] **CONT-02**: Página `/acompanamiento` con descripción del servicio para C-Level / nómadas digitales en registro híbrido (business + espiritual), sin lenguaje clínico ni atribución de terapia psicodélica
+- [x] **CONT-02**: Página `/acompanamiento` con descripción del servicio para C-Level / nómadas digitales en registro híbrido (business + espiritual), sin lenguaje clínico ni atribución de terapia psicodélica
 - [ ] **CONT-03**: Página `/retiros` con estructura tres fases (Preparación / Inmersión / Integración), sin nombrar sustancias, sin precio, con application gate (formulario aplicación, no Calendly directo)
 - [ ] **CONT-04**: Página `/contacto` con 3 canales — botón Calendly LINK (placeholder o real), botón WhatsApp con `wa.me/57XXXXXXXXXX?text=...` pre-cargado, formulario Web3Forms con honeypot, checkbox autorización Habeas Data, disclaimer mínimo
 - [x] **CONT-05**: Componente `WhatsAppFloat.astro` sticky en mobile/desktop con mensaje pre-cargado, `target="_blank"`, microcopy explicativo
 - [x] **CONT-06**: Componente `CTABlock.astro` reutilizable con jerarquía Primario (Calendly) > Secundario (WhatsApp) > Terciario (Form)
 - [x] **CONT-07**: 3 testimonios anonimizados como placeholder ("Founder, fintech, 41 años" tipo) con disclaimer "experiencia individual no garantiza resultados"
 - [x] **CONT-08**: Bloque FAQ de 6 preguntas (legalidad/confidencialidad/suitability/qué pasa/tiempo/¿es para mí?)
-- [ ] **CONT-09**: One-liner de confidencialidad visible en `/acompanamiento` y `/retiros`
+- [x] **CONT-09**: One-liner de confidencialidad visible en `/acompanamiento` y `/retiros`
 - [x] **CONT-10**: Footer con enlaces a Instagram + TikTok + brand line + año + "Sigue noindex" status
 - [x] **CONT-11**: Disclaimer global temporal en footer + página `/privacidad — próximamente` linkeada
 - [x] **CONT-12**: OG meta por página + favicon + title/description únicos
@@ -168,14 +168,14 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | FOUND-14 | Phase 1 | Complete |
 | FOUND-15 | Phase 1 | Complete |
 | CONT-01 | Phase 2 | Complete |
-| CONT-02 | Phase 2 | Pending |
+| CONT-02 | Phase 2 | Complete |
 | CONT-03 | Phase 2 | Pending |
 | CONT-04 | Phase 2 | Pending |
 | CONT-05 | Phase 2 | Complete |
 | CONT-06 | Phase 2 | Complete |
 | CONT-07 | Phase 2 | Complete |
 | CONT-08 | Phase 2 | Complete |
-| CONT-09 | Phase 2 | Pending |
+| CONT-09 | Phase 2 | Complete |
 | CONT-10 | Phase 2 | Complete |
 | CONT-11 | Phase 2 | Complete |
 | CONT-12 | Phase 2 | Complete |
