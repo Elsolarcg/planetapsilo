@@ -1,0 +1,68 @@
+---
+// src/components/sections/CTABlock.astro
+// Phase 2 (CONT-06, D-05, D-06): jerarquía de 3 niveles Primary (Calendly) > Secondary (WhatsApp) > Tertiary (form link).
+// Tertiary es OPCIONAL — algunas páginas la omiten (ej. /retiros nunca muestra Calendly + WhatsApp, sólo application form).
+// Extracted from Phase 1 inline pattern in src/pages/contacto.astro líneas 17–21 + 43–62, pero tokens revisados por UI-SPEC Button variants.
+
+import Button from '../ui/Button.astro';
+
+interface CTA {
+  label: string;
+  href: string;
+  external?: boolean;
+  ariaLabel?: string;
+}
+interface Props {
+  primary: CTA;
+  secondary?: CTA;
+  tertiary?: CTA;
+}
+const { primary, secondary, tertiary } = Astro.props as Props;
+---
+<section class="cta-block">
+  <div class="container cta-row">
+    <Button
+      variant="primary"
+      href={primary.href}
+      label={primary.label}
+      external={primary.external}
+      ariaLabel={primary.ariaLabel}
+    />
+    {secondary && (
+      <Button
+        variant="secondary"
+        href={secondary.href}
+        label={secondary.label}
+        external={secondary.external}
+        ariaLabel={secondary.ariaLabel}
+      />
+    )}
+    {tertiary && (
+      <Button
+        variant="tertiary"
+        href={tertiary.href}
+        label={tertiary.label}
+        external={tertiary.external}
+        ariaLabel={tertiary.ariaLabel}
+      />
+    )}
+  </div>
+</section>
+
+<style>
+  .cta-block { padding-block: var(--space-section); }
+  .cta-row {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 639px) {
+    .cta-row {
+      gap: 16px;
+      flex-direction: column;
+    }
+    .cta-row > * { width: 100%; max-width: 20rem; }
+  }
+</style>

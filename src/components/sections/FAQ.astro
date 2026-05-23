@@ -1,0 +1,103 @@
+---
+// src/components/sections/FAQ.astro
+// Phase 2 (CONT-08, D-13): 6 FAQs en <details><summary> nativos. Cero JS. Default closed.
+// Reduced-motion: la transición rotate del chevron está envuelta (el override global en global.css:60 también dispara).
+// Summary a --font-display-lg weight 500 (equivalente a H3 para jerarquía visual).
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+interface Props {
+  items: FAQItem[];
+  heading?: string;
+}
+const { items, heading = 'Preguntas frecuentes' } = Astro.props as Props;
+---
+<section class="faq">
+  <div class="container">
+    <h2>{heading}</h2>
+    <div class="faq-list">
+      {items.map(item => (
+        <details class="faq-item">
+          <summary>
+            <span class="faq-q">{item.question}</span>
+            <svg class="chevron" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true">
+              <path d="M6 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </summary>
+          <div class="faq-answer">
+            <p>{item.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq { padding-block: var(--space-section); }
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(1.625rem, 4vw, 2rem); /* --font-display-lg */
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+    color: var(--color-text-primary);
+    margin: 0 0 48px;
+    text-align: center;
+  }
+  .faq-list {
+    max-width: 42rem;
+    margin-inline: auto;
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--color-chrome-border);
+  }
+  .faq-item summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    padding: 24px 0;
+    cursor: pointer;
+    list-style: none;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-q {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(1.25rem, 3vw, 1.625rem); /* extremo inferior de --font-display-lg */
+    line-height: 1.25;
+    color: var(--color-text-primary);
+  }
+  .chevron {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+    transition: transform 200ms ease, color 200ms ease;
+  }
+  .faq-item[open] .chevron {
+    transform: rotate(90deg);
+    color: var(--color-orange-mystic);
+  }
+  .faq-answer {
+    padding: 0 0 24px;
+  }
+  .faq-answer p {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.0625rem; /* --font-body-md 17px */
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin: 0;
+    max-width: 38rem;
+  }
+  .faq-item summary:focus-visible {
+    outline: 2px solid var(--color-orange-mystic);
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chevron { transition: none; }
+  }
+</style>

@@ -1,25 +1,30 @@
 // src/data/services.ts
-// Phase 1 stubs. Phase 2 (CONT-02, CONT-03) replaces teaser with real legal-safe copy
-// from docs/copy-glossary.md — sin lenguaje clínico, sin atribución de terapia,
-// sin nombrar sustancia, sin precio.
+// Phase 2 (CONT-02, CONT-03, CONT-06): interfaz extendida — agrega ctaLabel por card (LOCKED en UI-SPEC),
+// campos opcionales description/audience/outcomes/confidentialityLine consumidos por Plan 03 (acompañamiento) + Plan 04 (retiros).
+// El home services-split (Plan 02) sólo consume slug + label + teaser + ctaLabel.
 
-export interface ServicePlaceholder {
+export interface Service {
   slug: 'acompanamiento' | 'retiros';
   label: string;
   teaser: string;
+  ctaLabel: string;
+  description?: string;
+  audience?: string;
+  outcomes?: string[];
+  confidentialityLine?: string;
 }
 
-export const services: ServicePlaceholder[] = [
+export const services: Service[] = [
   {
     slug: 'acompanamiento',
     label: 'Acompañamiento',
-    teaser:
-      'Espacio de exploración para C-Level, nómadas digitales y founders. (Copy real en Phase 2.)',
+    teaser: 'Encuentros uno-a-uno para C-Level, founders y nómadas digitales que están reordenando algo importante. Espacio de exploración no clínico.',
+    ctaLabel: 'Conocer el acompañamiento',
   },
   {
     slug: 'retiros',
     label: 'Retiros',
-    teaser:
-      'Tres fases: Preparación, Inmersión, Integración. (Aplicación obligatoria — formato en Phase 2.)',
+    teaser: 'Tres fases — Preparación, Inmersión, Integración — para una pausa profunda. Aplicación previa obligatoria.',
+    ctaLabel: 'Conocer los retiros',
   },
 ];
