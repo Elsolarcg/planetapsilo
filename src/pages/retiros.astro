@@ -1,41 +1,143 @@
 ---
-// src/pages/retiros.astro — Retiros stub (Phase 2 CONT-03 fills three-fase structure + application gate).
-// Phase 2 describirá formato (días, ubicación, comidas, círculos de palabra, naturaleza, meditación)
-// SIN nombrar sustancia, SIN precio, con aplicación obligatoria.
+// src/pages/retiros.astro — Phase 2 (CONT-03, CONT-09, CONT-12, CONT-13)
+// 6 sections per UI-SPEC §"/retiros — 6 sections": Hero · RetreatPhases · Para quién · Testimonial · ConfidentialityLine · RetreatApplicationForm
+// D-07: NO Calendly on this page. Application gate only.
+// glosario regla #3: describir FORMATO (días, naturaleza, círculos, comidas, meditación). NUNCA sustancia.
+
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/sections/Hero.astro';
+import RetreatPhases from '../components/sections/RetreatPhases.astro';
+import Testimonial from '../components/sections/Testimonial.astro';
+import ConfidentialityLine from '../components/sections/ConfidentialityLine.astro';
+import RetreatApplicationForm from '../components/forms/RetreatApplicationForm.astro';
+import { services } from '../data/services';
+import { testimonials } from '../data/testimonials';
+
+const retiros = services.find(s => s.slug === 'retiros')!;
+const testimonial = testimonials.find(t => t.context === 'retiros');
+
+// 3 fases — Claude v1 within glosario PERMITIDO; Sofía refines wording.
+// NUNCA mencionar sustancia. Describir formato.
+const phases = [
+  {
+    name: 'Preparación',
+    body: 'Antes del encuentro físico hay un proceso de aproximación: conversaciones de preparación, ajuste de expectativas, lecturas y prácticas suaves de meditación. Llegar listo es la mitad del trabajo.',
+  },
+  {
+    name: 'Inmersión',
+    body: 'Varios días en naturaleza, en grupo reducido, con círculos de palabra, alimentación consciente, meditación, descanso y espacio sin pantallas. La pausa real no se improvisa — se sostiene.',
+  },
+  {
+    name: 'Integración',
+    body: 'Semanas después del encuentro hay encuentros uno-a-uno para integrar lo vivido a las decisiones cotidianas. Lo que aparece en la pausa pide tiempo para asentarse en la vida normal.',
+  },
+];
 ---
-<BaseLayout title="Retiros" description="Retiros — Phase 1 stub. Aplicación obligatoria; sin sustancia, sin precio.">
-  <section class="page-section">
-    <div class="container">
-      <p class="kicker">planetapsilo</p>
-      <h1>Retiros</h1>
-      <p class="lede">
-        Tres fases: <em>Preparación · Inmersión · Integración</em>.
-        Phase 2 describe el formato (días, ubicación, comidas, círculos de palabra, naturaleza, meditación) — sin nombrar sustancia, sin precio, con aplicación obligatoria.
-      </p>
+<BaseLayout
+  title="Retiros"
+  description="Retiros en tres fases — Preparación, Inmersión, Integración — para liderazgos que necesitan una pausa profunda. Aplicación previa obligatoria."
+>
+  <Hero
+    variant="interior"
+    title="Retiros"
+    maxim="La pausa real no se improvisa."
+    lead="Tres fases. Pocas personas por convocatoria. Aplicación previa obligatoria."
+  />
+
+  <RetreatPhases phases={phases} />
+
+  <section class="suitability">
+    <div class="container narrow">
+      <h2>Para quién es y para quién no</h2>
+      <div class="suitability-grid">
+        <div class="col">
+          <h3 class="col-title col-yes">Es para ti si</h3>
+          <ul role="list">
+            <li>Estás en un momento de inflexión profesional o personal y buscas espacio para ver desde otra altura.</li>
+            <li>Te has movido bien en lo cognitivo y empiezas a necesitar reordenar desde un lugar menos mental.</li>
+            <li>Puedes desconectarte de tu agenda por varios días sin que el mundo se caiga.</li>
+            <li>Llegas con curiosidad y disposición, no con expectativas de resultado.</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h3 class="col-title col-no">No es para ti si</h3>
+          <ul role="list">
+            <li>Buscas un servicio de salud, una intervención clínica o un acompañamiento profesional para una situación médica.</li>
+            <li>Necesitas resolver una crisis aguda — esto requiere otro tipo de espacio y acompañamiento habilitado.</li>
+            <li>Estás bajo medicación que requiere supervisión médica continua sin habernos coordinado antes.</li>
+            <li>Buscas garantías de resultado o un proceso estandarizado con métricas predefinidas.</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
+
+  {testimonial && (
+    <Testimonial
+      quote={testimonial.quote}
+      attribution={testimonial.attribution}
+      disclaimer={testimonial.disclaimer}
+    />
+  )}
+
+  <ConfidentialityLine text={retiros.confidentialityLine!} />
+
+  <RetreatApplicationForm />
 </BaseLayout>
 
 <style>
-  .page-section { padding-block: var(--space-section); }
-  .kicker {
+  .suitability { padding-block: var(--space-section); }
+  .container.narrow {
+    max-width: 56rem;
+    margin-inline: auto;
+  }
+  h2 {
     font-family: var(--font-display);
     font-weight: 300;
-    letter-spacing: 0.16em;
-    text-transform: lowercase;
-    opacity: 0.75;
-    margin-bottom: 1rem;
+    font-size: clamp(1.625rem, 4vw, 2rem); /* --font-display-lg */
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin: 0 0 48px;
+    text-align: center;
   }
-  h1 {
+  .suitability-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  @media (min-width: 768px) {
+    .suitability-grid { grid-template-columns: 1fr 1fr; }
+  }
+  .col-title {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1.5rem;
+    font-weight: 500;
+    font-size: clamp(1.25rem, 3vw, 1.625rem);
+    line-height: 1.25;
+    margin: 0 0 16px;
   }
-  .lede {
-    max-width: 42rem;
+  .col-yes { color: var(--color-orange-mystic); }
+  .col-no  { color: var(--color-text-muted); }
+  .col ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .col li {
+    position: relative;
+    padding-left: 24px;
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+  }
+  .col li::before {
+    content: '·';
+    position: absolute;
+    left: 4px;
+    top: 0;
     color: var(--color-text-muted);
   }
-  em { color: var(--color-orange-mystic); font-style: normal; }
+  .col-yes ~ ul li::before { color: var(--color-orange-mystic); }
 </style>
