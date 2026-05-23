@@ -44,7 +44,7 @@ Llenar el esqueleto con copy legal-safe y wirar los tres canales de contacto (Ca
 - [x] **CONT-11**: Disclaimer global temporal en footer + página `/privacidad — próximamente` linkeada
 - [x] **CONT-12**: OG meta por página + favicon + title/description únicos
 - [x] **CONT-13**: `prefers-reduced-motion: reduce` respetado en todas las animaciones de fondo
-- [ ] **CONT-14**: Copy verificado contra `docs/copy-glossary.md` (cero palabras prohibidas)
+- [x] **CONT-14**: Copy verificado contra `docs/copy-glossary.md` (cero palabras prohibidas)
 - [ ] **CONT-15**: Lighthouse mobile ≥ 80 performance, ≥ 95 accesibilidad, ≥ 90 SEO en las 4 páginas
 - [ ] **CONT-16**: CTAs probados en dispositivos reales (iPhone + Android) — WhatsApp abre app, Calendly abre evento, formulario envía
 
@@ -180,7 +180,7 @@ Mapping completo de cada REQ-ID a su fase. Generado durante creación de ROADMAP
 | CONT-11 | Phase 2 | Complete |
 | CONT-12 | Phase 2 | Complete |
 | CONT-13 | Phase 2 | Complete |
-| CONT-14 | Phase 2 | Pending |
+| CONT-14 | Phase 2 | Complete |
 | CONT-15 | Phase 2 | Pending |
 | CONT-16 | Phase 2 | Pending |
 | LEGAL-01 | Phase 3 | Pending |

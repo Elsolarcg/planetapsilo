@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
-stopped_at: Completed 02-04-PLAN.md — form primitives + /retiros application gate
-last_updated: "2026-05-23T02:02:03.539Z"
+stopped_at: Completed 02-06-PLAN.md — copy linter + CI gate active
+last_updated: "2026-05-23T02:09:31.334Z"
 last_activity: 2026-05-23
 progress:
   total_phases: 6
   completed_phases: 1
   total_plans: 12
-  completed_plans: 10
-  percent: 83
+  completed_plans: 11
+  percent: 92
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-05-21)
 ## Current Position
 
 Phase: 02 (mvp-content-three-channel-contact) — EXECUTING
-Plan: 6 of 7
+Plan: 7 of 7
 Status: Ready to execute
 Last activity: 2026-05-23
 
@@ -67,6 +67,7 @@ Progress: [██████░░░░] 58%
 | Phase 02-mvp-content-three-channel-contact P03 | 3m 10s | 2 tasks | 2 files |
 | Phase 02-mvp-content-three-channel-contact P04 | 4m 8s | 3 tasks | 6 files |
 | Phase 02-mvp-content-three-channel-contact P05 | 2m 49s | 2 tasks | 2 files |
+| Phase 02-mvp-content-three-channel-contact P06 | 3m 2s | 3 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -122,6 +123,10 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase 02 Plan 05: /contacto channel duo D-15 — 2 cards side-by-side ≥640px (grid 1fr 1fr), stacked en mobile. NO ship 3 equal CTA cards (Pitfall #9). Calendly primary orange + WhatsApp secondary transparent border. Cada card incluye SLA microcopy ('Espacios próximos esta semana' / 'Respondemos antes de 24h')
 - [Phase ?]: Phase 02 Plan 05: Three-channel contact funnel completo — /contacto es único punto donde los 3 canales (Calendly + WhatsApp + Web3Forms) conviven en una sola pantalla. /retiros mantiene application-gate (0 Calendly), /acompanamiento usa CTABlock 2 canales. Las 4 LOCKED pages content-complete; Plans 06+07 son tooling/verification
 - [Phase ?]: Phase 02 Plan 05: WhatsApp field en ContactForm es OPCIONAL (required={false} + label suffix ' (opcional)') — único campo opcional del form. Diferencia explícita vs RetreatApplicationForm donde WhatsApp es required (D-08 retiros)
+- [Phase ?]: Phase 02 Plan 06: Migrated deploy.yml from withastro/action@v3 composite to manual chain (checkout → setup-node@v4 → npm ci → build → copy-lint → upload-pages-artifact@v3) — gives sequential guarantee that lint runs BETWEEN build and upload
+- [Phase ?]: Phase 02 Plan 06: Copy linter uses Unicode-aware boundaries (?<![p{L}])WORD(?![p{L}]) with /giu flags — required to correctly match diagnóstico; JS \b is ASCII-only and inconsistent on accented terms
+- [Phase ?]: Phase 02 Plan 06: EXEMPT_PATTERNS sync rule LOCKED — every regex in scripts/copy-lint.mjs must have a matching row in docs/copy-glossary.md ##Exemptions; Plan 07 audit verifies before Phase 2 close
+- [Phase ?]: Phase 02 Plan 06: D-25 CI gate ACTIVE — npm run lint:copy + build:check available; deploy.yml runs lint as blocking step between astro build and upload-pages-artifact@v3 (T-02-20 mitigated by step ordering)
 
 ### Pending Todos
 
@@ -165,6 +170,6 @@ Items reconocidos y arrastrados desde milestones anteriores:
 
 ## Session Continuity
 
-Last session: 2026-05-23T02:01:53.754Z
-Stopped at: Completed 02-04-PLAN.md — form primitives + /retiros application gate
+Last session: 2026-05-23T02:09:31.329Z
+Stopped at: Completed 02-06-PLAN.md — copy linter + CI gate active
 Resume file: None
