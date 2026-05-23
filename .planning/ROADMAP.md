@@ -55,11 +55,20 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. Lighthouse Mobile ≥ 80 performance, ≥ 95 accesibilidad, ≥ 90 SEO en las 4 páginas (Moto G Power 4G profile)
   5. `prefers-reduced-motion: reduce` desactiva animaciones de fondo — verificable en DevTools rendering panel
   6. Sofía aprueba el copy de las 4 páginas y la jerarquía visual antes de marcar la fase como completa (sigue noindex)
-**Plans**: TBD
+**Plans**: 7 plans
 **UI hint**: yes
 **Research hint**: no (research ya cubierto en FEATURES + PITFALLS — premium-ICP playbook + glosario crystallized)
 **Time estimate (informational)**: ~45-90 min ejecución directa
 **External blockers**: ninguno (formulario apunta a Web3Forms con disclaimer temporal + `/privacidad próximamente`; abogado no bloquea este phase, solo Phase 3)
+
+Plans:
+- [ ] 02-01-PLAN.md — Foundation: contact.ts + Button primitive + Footer expansion + WhatsAppFloat rewire + /privacidad stub (CONT-05, CONT-06, CONT-10, CONT-11)
+- [ ] 02-02-PLAN.md — Section library + home page composition (CONT-01, CONT-06, CONT-07, CONT-08, CONT-09, CONT-12)
+- [ ] 02-03-PLAN.md — /acompanamiento page (CONT-02, CONT-09, CONT-12)
+- [ ] 02-04-PLAN.md — Form primitives + RetreatPhases + RetreatApplicationForm + /retiros page (CONT-03, CONT-09, CONT-12, CONT-13)
+- [ ] 02-05-PLAN.md — ContactForm + /contacto page composition (CONT-04, CONT-12)
+- [ ] 02-06-PLAN.md — Copy linter script + CI deploy gate + glossary exemptions (CONT-14)
+- [ ] 02-07-PLAN.md — Accessibility + motion + Lighthouse audit + real-device CTA tests + Sofía approval checkpoint (CONT-13, CONT-15, CONT-16)
 
 ### Phase 02.1: Tienda Minima - Catalogo obras con consulta WhatsApp (INSERTED)
 
