@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "timestamp": "2026-05-23T04:45:07.734Z",
+  "phase": "02",
+  "phase_name": "mvp-content-three-channel-contact",
+  "phase_dir": ".planning/phases/02-mvp-content-three-channel-contact",
+  "plan": 7,
+  "task": 2,
+  "total_tasks": 3,
+  "status": "paused",
+  "completed_tasks": [
+    {"id": "02-01", "name": "Foundation primitives (contact.ts + waLink + Button + Footer + WhatsAppFloat + /privacidad)", "status": "done", "commit": "a20345f"},
+    {"id": "02-02", "name": "Section library (Hero/BrandBio/ServiceTeaser/ServicesSplit/Testimonial/FAQ/ConfidentialityLine/CTABlock) + testimonials/faqs data + index.astro", "status": "done", "commit": "0b23c77"},
+    {"id": "02-03", "name": "/acompanamiento page — 7-section composition + services.ts populated", "status": "done", "commit": "3d106e7"},
+    {"id": "02-04", "name": "Form primitives (FormField/HabeasDataCheckbox/FormSuccess) + RetreatPhases + RetreatApplicationForm + /retiros (D-07 application gate honored)", "status": "done", "commit": "9dc2535"},
+    {"id": "02-05", "name": "ContactForm + /contacto (hero + channel duo + form)", "status": "done", "commit": "610ab95"},
+    {"id": "02-06", "name": "Copy-lint CI gate (scripts/copy-lint.mjs + glossary Exemptions + npm scripts + deploy workflow)", "status": "done", "commit": "6da0bec"},
+    {"id": "02-07-task-1", "name": "Plan 02-07 Task 1 — automated audits + 02-07-AUDIT.md", "status": "done", "commit": "437cb78"}
+  ],
+  "remaining_tasks": [
+    {"id": "02-07-task-2", "name": "Real-device CTA verification on iPhone + Android (visual-only path) + Lighthouse mobile + DevTools reduced-motion emulation", "status": "in_progress", "type": "checkpoint:human-verify", "gate": "blocking"},
+    {"id": "02-07-task-3", "name": "Sofía approves copy + visual hierarchy on all 4 pages", "status": "not_started", "type": "checkpoint:human-verify", "gate": "blocking"},
+    {"id": "02-07-summary", "name": "Write 02-07-SUMMARY.md + commit", "status": "not_started"},
+    {"id": "phase-close", "name": "Phase 2 close: code-review gate → regression gate → phase verifier → ROADMAP/STATE/PROJECT updates", "status": "not_started"}
+  ],
+  "blockers": [
+    {"description": "Three deploy-blocking placeholders in src/data/contact.ts: whatsappNumber='57XXXXXXXXXX', web3formsKeyContacto='YOUR_CONTACTO_ACCESS_KEY', web3formsKeyRetiros='YOUR_RETIROS_ACCESS_KEY'", "type": "human_action", "workaround": "User chose 'visual-only' Task 2 path — form-submit + WhatsApp prefill validation deferred until keys swapped"},
+    {"description": "calendlyUrl is TODO #2 — not strictly blocking for CTA layout test, but blocks actually booking", "type": "human_action", "workaround": "Visual-only test still confirms target=_blank + new-tab open"},
+    {"description": "Lighthouse mobile audit was MANUAL in sandbox (no Chromium) — recorded instructions, not scores", "type": "external", "workaround": "User runs DevTools Lighthouse panel locally on `npm run preview`"}
+  ],
+  "human_actions_pending": [
+    {"action": "Run iPhone + Android visual CTA protocol (8 iPhone steps + 3 Android steps + DevTools reduced-motion emulation + Lighthouse mobile)", "context": "Plan 02-07 Task 2 — visual-only path chosen at checkpoint", "blocking": true},
+    {"action": "Populate the `## Real-device verification (Task 2)` section of 02-07-AUDIT.md with results, then reply 'approved' or describe failures", "context": "Audit file already has placeholder tables ready to fill", "blocking": true},
+    {"action": "Sofía walks through deployed URL or local preview, refines copy if needed, signs off Phase 2", "context": "Plan 02-07 Task 3 — Phase 2 success criterion #6", "blocking": true},
+    {"action": "Pre-deploy: swap real WhatsApp number + 2 Web3Forms keys + Calendly URL into src/data/contact.ts; re-run iPhone form-submit step after swap", "context": "Outside-of-Phase-2-checkpoint gate before live deploy", "blocking": false}
+  ],
+  "decisions": [
+    {"decision": "Visual-only Task 2 path", "rationale": "User chose to defer form-submit + WhatsApp-prefill validation until real values are swapped; visual proof (layout, /retiros NO Calendly, keyboard zoom, reduced-motion) runs against placeholders now", "phase": "02"},
+    {"decision": "Worktrees disabled — sequential execution", "rationale": "workflow.use_worktrees=false in config; all 7 plans ran one at a time on main working tree", "phase": "02"},
+    {"decision": "D-07 application gate honored", "rationale": "Zero 'calendly' matches in dist/retiros/index.html — /retiros offers RetreatApplicationForm as the only path", "phase": "02"},
+    {"decision": "Copy-lint gate wired BEFORE deploy step", "rationale": "T-02-20 mitigation — workflow now blocks deploy if any non-exempt PROHIBIDO term lands in dist/", "phase": "02"},
+    {"decision": "Denial-clause exemption pattern formalized", "rationale": "Linter EXEMPT_PATTERNS + docs/copy-glossary.md §Exemptions share one rulebook; 7 documented exempt patterns including 'No es terapia ni servicio de salud'", "phase": "02"}
+  ],
+  "uncommitted_files": [],
+  "next_action": "Open `https://elsolarcg.github.io/planetapsilo/` on iPhone + Android; run the visual CTA protocol from the chat; record results inline in `.planning/phases/02-mvp-content-three-channel-contact/02-07-AUDIT.md` under `## Real-device verification (Task 2)`; then reply `approved` to resume Plan 02-07.",
+  "context_notes": "Phase 2 is content-and-gate-complete. Plans 01-06 shipped + Plan 07 Task 1 (automated audits) ran clean. The executor paused at Task 2 checkpoint awaiting real-device tests. User chose visual-only path so form/WhatsApp prefill checks are deferred until contact.ts placeholders are swapped (handled outside of Phase 2 close). After Task 2 'approved', Task 3 opens — Sofía's copy walkthrough. Then 02-07-SUMMARY.md, then phase close (code-review → regression → verifier → ROADMAP/STATE/PROJECT updates)."
+}
