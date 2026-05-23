@@ -1,16 +1,59 @@
 ---
 // src/components/layout/Footer.astro
-// Phase 1 minimal footer. Phase 2 (CONT-10, CONT-11) wires social links + privacy link + disclaimer.
-// Reads `site.indexable` so the "noindex" status line appears only while Phase 1 gate is active.
+// Phase 2 expansion (CONT-10, CONT-11, D-26):
+//   - Social row: Instagram + TikTok (external, target=_blank, rel=noopener noreferrer per Pitfall #15)
+//   - Disclaimer paragraph (LOCKED — UI-SPEC §"Locked strings"; contains denial-clause "No constituye terapia"
+//     which the copy linter exempts via docs/copy-glossary.md §Exemptions, added in Plan 06)
+//   - "Privacidad — próximamente" link → /privacidad stub via internal() BASE_URL helper
+//   - Phase 1 noindex conditional preserved (auto-disappears when LEGAL-12 flips site.indexable)
 
 import { site } from '../../data/site';
+import { contact } from '../../data/contact';
+
+// BASE_URL helper — same pattern as Nav.astro / BaseLayout.astro (Pitfall #13).
+const baseUrl = import.meta.env.BASE_URL;
+const baseTrimmed = baseUrl.replace(/\/$/, '');
+const internal = (p: string) => {
+  const path = p.replace(/^\//, '');
+  return path === '' ? `${baseTrimmed}/` : `${baseTrimmed}/${path}`;
+};
 ---
 <footer class="site-footer">
-  <div class="container footer-row">
+  <div class="container footer-inner">
+
+    <ul class="social-row" role="list" aria-label="Redes sociales de planetapsilo">
+      <li>
+        <a
+          href={contact.instagramUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram de planetapsilo"
+        >
+          Instagram
+        </a>
+      </li>
+      <li>
+        <a
+          href={contact.tiktokUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok de planetapsilo"
+        >
+          TikTok
+        </a>
+      </li>
+    </ul>
+
+    <p class="disclaimer">
+      planetapsilo ofrece espacios de exploración personal y acompañamiento no clínico. No constituye terapia ni servicio de salud. Para necesidades de salud mental, consulta a un profesional habilitado.
+    </p>
+
     <p class="brand-line">
       <span class="wordmark">{site.name}</span>
       <span class="separator">·</span>
       <span class="muted">{site.year}</span>
+      <span class="separator">·</span>
+      <a class="privacy-link" href={internal('/privacidad')}>Privacidad — próximamente</a>
       {!site.indexable && (
         <>
           <span class="separator">·</span>
@@ -18,39 +61,90 @@ import { site } from '../../data/site';
         </>
       )}
     </p>
+
   </div>
 </footer>
 
 <style>
   .site-footer {
     margin-top: var(--space-section);
-    padding-block: 2rem;
+    padding-block: 32px;
     border-top: 1px solid var(--color-chrome-border);
   }
-  .footer-row {
+  .footer-inner {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    gap: 24px;
     text-align: center;
+  }
+  .social-row {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .social-row a {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;  /* --font-body-sm 14px */
+    letter-spacing: 0.02em;
+    color: var(--color-text-primary);
+    transition: color 200ms ease;
+  }
+  .social-row a:hover,
+  .social-row a:focus-visible {
+    color: var(--color-orange-mystic);
+  }
+  .disclaimer {
+    margin: 0;
+    max-width: 42rem;
+    font-family: var(--font-body);
+    font-size: 0.8125rem;  /* --font-body-xs 13px */
+    line-height: 1.5;
+    color: var(--color-text-subtle);
   }
   .brand-line {
     margin: 0;
     font-family: var(--font-body);
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
     color: var(--color-text-muted);
     display: flex;
-    gap: 0.5rem;
+    gap: 8px;
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
   }
   .wordmark {
     font-family: var(--font-display);
-    font-weight: 300;
+    font-weight: 500;          /* UI-SPEC: Footer wordmark also 18px/500 to match Nav revision */
+    font-size: 1.125rem;       /* --font-display-sm 18px */
     letter-spacing: 0.08em;
     text-transform: lowercase;
     color: var(--color-text-primary);
   }
   .muted { color: var(--color-text-muted); }
   .separator { opacity: 0.5; }
+  .privacy-link {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: color 200ms ease;
+  }
+  .privacy-link:hover,
+  .privacy-link:focus-visible {
+    color: var(--color-orange-mystic);
+  }
+  .status { /* keeps Phase 1 noindex chip identical */ }
+
+  @media (prefers-reduced-motion: reduce) {
+    .social-row a,
+    .privacy-link {
+      transition: none;
+    }
+  }
 </style>
