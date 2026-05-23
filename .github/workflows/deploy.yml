@@ -1,9 +1,10 @@
 # .github/workflows/deploy.yml
-# planetapsilo Phase 1 CI/CD — FOUND-10
+# planetapsilo Phase 2 CI/CD — Phase 1 FOUND-10 + Phase 2 CONT-14 (D-25).
 #
 # Trigger: push to main OR manual dispatch.
-# Build: withastro/action@v3 (reads astro.config.mjs, Node 22 default, base path honored).
+# Build: manual chain — checkout, setup Node 22, npm ci, astro build, copy-lint, upload Pages artifact.
 # Deploy: actions/deploy-pages@v4 publishes to the GitHub Pages environment.
+# Gate: scripts/copy-lint.mjs runs AFTER build, BEFORE upload — a failing lint blocks deploy.
 # Permissions: minimum scope — read contents, write Pages, write id-token for OIDC.
 
 name: Deploy Astro site to GitHub Pages
@@ -28,13 +29,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Build with Astro
-        uses: withastro/action@v3
+
+      - name: Setup Node 22
+        uses: actions/setup-node@v4
         with:
           node-version: "22"
-        # Reads astro.config.mjs (site + base); installs deps; runs astro build; uploads dist/ as Pages artifact.
-        # node-version pinned to 22 because Astro 6.3.7 requires >=22.12.0 (matches local .nvmrc).
-        # Without this, withastro/action@v3 pinned tag has resolved to a CI runner with Node 20 in practice (Rule 1 deviation, caught in first deploy run).
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with Astro
+        run: npm run build
+
+      - name: Lint copy against docs/copy-glossary.md PROHIBIDO list
+        run: node scripts/copy-lint.mjs
+        # Phase 2 D-25 gate: any non-exempt PROHIBIDO match → exit 1 → deploy job (needs: build) never runs.
+        # Source-of-truth: docs/copy-glossary.md §PROHIBIDO + §Exemptions.
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     needs: build
