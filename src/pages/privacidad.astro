@@ -1,0 +1,102 @@
+---
+// src/pages/privacidad.astro
+// Phase 2 (CONT-11, D-26): "próximamente" stub.
+// Phase 3 (LEGAL-02) replaces this body with the real Habeas Data (Ley 1581) policy reviewed by abogado.
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { waLink } from '../data/contact';
+
+// BASE_URL helper for the "Vuelve al inicio" link (matches 404 pattern).
+const baseUrl = import.meta.env.BASE_URL;
+const homeHref = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
+
+const waHref = waLink('Hola planetapsilo, una consulta sobre privacidad');
+---
+<BaseLayout
+  title="Privacidad"
+  description="Política de privacidad de planetapsilo — en redacción conforme a Ley 1581 de 2012. Phase 3 publica la versión revisada por abogado."
+>
+  <section class="privacy-stub">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <div class="container stub-content">
+      <h1>Política de privacidad — próximamente.</h1>
+      <p>
+        Estamos terminando la redacción de nuestra política de tratamiento de datos personales conforme a la Ley 1581 de 2012. Mientras tanto, los datos que dejes en cualquier formulario sólo se usan para responderte sobre tu consulta. Si quieres más detalle ahora →
+      </p>
+      <p class="links">
+        <a class="cta cta-tertiary" href={waHref} target="_blank" rel="noopener noreferrer">
+          Escríbenos por WhatsApp
+        </a>
+        <span class="sep">·</span>
+        <a class="cta cta-tertiary" href={homeHref}>Vuelve al inicio</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .privacy-stub {
+    position: relative;
+    isolation: isolate;
+    min-height: min(60vh, 520px);
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: -10%;
+    z-index: -2;
+    opacity: 0.5;
+  }
+  .stub-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding-block: var(--space-section);
+    max-width: 42rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2rem, 5.5vw, 4.5rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+  }
+  p {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    max-width: 36rem;
+    margin: 0 auto 16px;
+  }
+  .links {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .cta-tertiary {
+    color: var(--color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    font-size: 1.0625rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    transition: color 200ms ease;
+  }
+  .cta-tertiary:hover, .cta-tertiary:focus-visible {
+    color: var(--color-orange-mystic);
+  }
+  .sep { color: var(--color-text-subtle); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cta-tertiary { transition: none; }
+  }
+</style>
