@@ -2,10 +2,10 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-status: executing
-stopped_at: Completed 02-06-PLAN.md — copy linter + CI gate active
-last_updated: "2026-05-23T02:09:31.334Z"
-last_activity: 2026-05-23
+status: pivoted
+stopped_at: "2026-06-03 PIVOT — replaced psychedelic site with single-page LP for Sofía Castañeda (commit 3544784 on main; old site on branch psychedelic-v1). Built via GSD bypass per user authorization. Phase 2 (psychedelic) work is superseded, preserved on branch."
+last_updated: "2026-06-03"
+last_activity: 2026-06-03
 progress:
   total_phases: 6
   completed_phases: 1
