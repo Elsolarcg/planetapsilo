@@ -12,20 +12,22 @@ interface Props {
   label: string;
   external?: boolean;
   ariaLabel?: string;
+  icon?: string;        // optional raw inline SVG markup rendered before the label
 }
 
-const { variant, href, label, external = false, ariaLabel } = Astro.props as Props;
+const { variant, href, label, external = false, ariaLabel, icon } = Astro.props as Props;
 const target = external ? '_blank' : undefined;
 const rel = external ? 'noopener noreferrer' : undefined;
 ---
 <a
-  class:list={['cta', `cta-${variant}`]}
+  class:list={['cta', `cta-${variant}`, { 'cta-has-icon': !!icon }]}
   href={href}
   target={target}
   rel={rel}
   aria-label={ariaLabel}
 >
-  {label}
+  {icon && <span class="cta-icon" aria-hidden="true" set:html={icon} />}
+  <span>{label}</span>
 </a>
 
 <style>
@@ -44,6 +46,21 @@ const rel = external ? 'noopener noreferrer' : undefined;
   .cta:focus-visible {
     outline: 2px solid var(--color-orange-mystic);
     outline-offset: 2px;
+  }
+  .cta-has-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .cta-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+  .cta-icon :global(svg) {
+    display: block;
+    width: 20px;
+    height: 20px;
   }
 
   /* Primary — Calendly button */

@@ -19,6 +19,9 @@ pnpm-debug.log*
 # macOS
 .DS_Store
 
+# Windows / WSL alternate-data-stream metadata
+*:Zone.Identifier
+
 # astro
 .astro/
 

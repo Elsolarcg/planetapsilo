@@ -35,3 +35,28 @@
   /* === Spacing rhythm === */
   --space-section: clamp(4rem, 10vw, 8rem);
 }
+
+/* === Warm aurora: a slow, subtle animated gradient behind the hero (adapted, muted,
+   from the old cosmic-rotate). Typed custom property so the angle interpolates. === */
+@property --warm-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes warm-rotate {
+  to { --warm-angle: 360deg; }
+}
+.hero-aurora {
+  background: conic-gradient(
+    from var(--warm-angle),
+    rgba(217, 196, 176, 0.55),
+    rgba(191, 106, 78, 0.45),
+    rgba(239, 230, 220, 0.55),
+    rgba(217, 196, 176, 0.55)
+  );
+  filter: blur(90px) saturate(1.05);
+  animation: warm-rotate 48s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-aurora { animation: none; }
+}

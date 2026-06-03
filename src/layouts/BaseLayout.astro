@@ -45,6 +45,7 @@ const canonical = `${site.baseUrl}${pathWithoutBase}`;
 <!doctype html>
 <html lang="es">
   <head>
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
@@ -70,11 +71,34 @@ const canonical = `${site.baseUrl}${pathWithoutBase}`;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
+    <div class="grain" aria-hidden="true"></div>
     <Nav />
     <main>
       <slot />
     </main>
     <Footer />
     <WhatsAppFloat />
+
+    <script>
+      // Scroll-reveal: reveal .reveal elements as they enter the viewport.
+      const els = document.querySelectorAll<HTMLElement>('.reveal');
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('in-view'));
+      } else {
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('in-view');
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+    </script>
   </body>
 </html>

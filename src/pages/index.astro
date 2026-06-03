@@ -15,6 +15,9 @@ const asset = (p: string) => `${baseTrimmed}/${p.replace(/^\//, '')}`;
 
 const waHref = waLink('Hola Sofía, me gustaría agendar una sesión');
 
+// Official WhatsApp glyph (green) for the WhatsApp CTAs.
+const waIcon = '<svg viewBox="0 0 24 24" fill="#25D366" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 2.1.55 4.14 1.6 5.95L2 22l4.27-1.4a9.92 9.92 0 0 0 5.77 1.83h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.02A9.84 9.84 0 0 0 12.04 2zm5.43 14.05c-.23.65-1.34 1.25-1.86 1.31-.5.06-.95.08-1.55-.1-.36-.11-.83-.27-1.43-.53-2.5-1.08-4.14-3.6-4.27-3.77-.12-.16-1.02-1.36-1.02-2.6 0-1.23.65-1.84.88-2.1.23-.25.5-.31.66-.31h.47c.16 0 .37-.06.58.45.21.5.71 1.74.78 1.86.06.13.1.27.02.43-.08.16-.12.25-.24.4-.12.13-.25.31-.36.42-.12.13-.24.27-.1.5.13.25.6 1.01 1.3 1.64.88.79 1.62 1.04 1.86 1.16.23.12.36.1.5-.06.13-.16.58-.68.74-.92.16-.23.31-.2.52-.12.21.08 1.36.64 1.6.76.23.12.39.18.45.27.06.1.06.56-.17 1.21z"/></svg>';
+
 const services = [
   {
     title: 'Ansiedad',
@@ -56,11 +59,11 @@ const services = [
 
   {/* ===================== HERO ===================== */}
   <section class="hero">
-    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-aurora" aria-hidden="true"></div>
     <div class="container hero-grid">
       <div class="hero-copy">
         <p class="kicker">Psicóloga · Acompañamiento virtual</p>
-        <h1>Un espacio seguro para comprenderte, afrontar tus desafíos y construir una vida con mayor bienestar.</h1>
+        <h1>Un espacio seguro para <em>comprenderte</em>, afrontar tus desafíos y construir una vida con mayor bienestar.</h1>
         <p class="subtitle">
           Acompañamiento psicológico en sesiones virtuales, desde donde estés. Un lugar tranquilo para conversar sobre lo que estás viviendo, a tu ritmo.
         </p>
@@ -76,10 +79,11 @@ const services = [
             href={waHref}
             label="Escríbeme por WhatsApp"
             external={true}
+            icon={waIcon}
           />
         </div>
         <p class="credential">
-          <img src={asset('assets/uniandes-logo.png')} alt="Universidad de los Andes" class="andes-logo" width="120" height="57" loading="lazy" />
+          <img src={asset('assets/Universidad-de-los-Andes.png')} alt="Universidad de los Andes" class="andes-logo" width="150" height="58" loading="lazy" />
           <span>Estudiante de último semestre de Psicología, Universidad de los Andes</span>
         </p>
       </div>
@@ -88,7 +92,7 @@ const services = [
         <img
           src={asset('assets/sofia.jpg')}
           alt="Sofía Castañeda, psicóloga"
-          width="640"
+          width="800"
           height="800"
         />
       </div>
@@ -97,7 +101,7 @@ const services = [
 
   {/* ===================== SOBRE MÍ ===================== */}
   <section id="sobre-mi" class="section about">
-    <div class="container narrow center">
+    <div class="container narrow center reveal">
       <h2>Sobre mí</h2>
       <p>
         Soy <strong>Sofía Castañeda</strong>, estudiante de último semestre de Psicología de la Universidad de los Andes. Mi forma de acompañar parte de algo sencillo: cada persona merece un espacio en el que pueda hablar sin sentirse juzgada y mirar lo que le pasa con calma y honestidad.
@@ -110,12 +114,12 @@ const services = [
 
   {/* ===================== SERVICIOS ===================== */}
   <section id="servicios" class="section services">
-    <div class="container">
+    <div class="container reveal">
       <h2 class="center">En qué te puedo acompañar</h2>
       <p class="section-lead center">Algunos de los procesos que trabajamos juntos. Si no ves lo tuyo aquí, escríbeme y conversamos.</p>
       <ul class="services-grid" role="list">
         {services.map((s) => (
-          <li class="service-card">
+          <li class="service-card reveal">
             <span class="service-icon" aria-hidden="true" set:html={s.icon} />
             <h3>{s.title}</h3>
             <p>{s.desc}</p>
@@ -127,7 +131,7 @@ const services = [
 
   {/* ===================== CONSULTA ===================== */}
   <section id="consulta" class="section consulta">
-    <div class="container narrow center">
+    <div class="container narrow center reveal">
       <h2>La consulta</h2>
       <div class="consulta-facts">
         <div class="fact">
@@ -153,6 +157,7 @@ const services = [
           href={waHref}
           label="Escríbeme por WhatsApp"
           external={true}
+          icon={waIcon}
         />
       </div>
     </div>
@@ -163,7 +168,7 @@ const services = [
 
   {/* ===================== CONTACTO / CIERRE ===================== */}
   <section class="section contacto-cierre">
-    <div class="container narrow center">
+    <div class="container narrow center reveal">
       <h2>Dar el primer paso ya es mucho</h2>
       <p>
         Pedir apoyo no es un signo de debilidad, es una forma de cuidarte. Si sientes que es el momento, conversemos —sin presión y a tu ritmo.
@@ -208,15 +213,17 @@ const services = [
     overflow: hidden;
     padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 7vw, 5rem);
   }
-  .hero-glow {
+  /* .hero-aurora background + animation live in tokens.css (global); here we only place it */
+  .hero-aurora {
     position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 60vw;
-    height: 60vw;
-    max-width: 720px;
-    max-height: 720px;
-    background: radial-gradient(circle, rgba(191, 106, 78, 0.22), rgba(191, 106, 78, 0) 70%);
+    top: -28%;
+    right: -16%;
+    width: 72vw;
+    height: 72vw;
+    max-width: 760px;
+    max-height: 760px;
+    border-radius: 50%;
+    opacity: 0.68;
     z-index: -1;
     pointer-events: none;
   }
@@ -245,6 +252,11 @@ const services = [
     margin: 0 0 24px;
     max-width: 18ch;
   }
+  .hero-copy h1 em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--color-terracota);
+  }
   .subtitle {
     font-family: var(--font-body);
     font-size: clamp(1.0625rem, 2vw, 1.1875rem);
@@ -259,6 +271,11 @@ const services = [
     gap: 16px;
   }
   .hero-cta.center { justify-content: center; }
+  /* Mobile: full-width stacked CTAs for comfortable tap targets */
+  @media (max-width: 560px) {
+    .hero-cta { width: 100%; }
+    .hero-cta :global(.cta) { width: 100%; }
+  }
   .credential {
     display: flex;
     align-items: center;
@@ -282,8 +299,8 @@ const services = [
     position: relative;
     border-radius: 16px;
     overflow: hidden;
-    aspect-ratio: 4 / 5;
-    max-width: 460px;
+    aspect-ratio: 1 / 1;            /* la foto es cuadrada (800×800) → se ve completa, sin recorte */
+    max-width: 440px;
     width: 100%;
     justify-self: center;
     box-shadow: 0 24px 60px rgba(58, 50, 46, 0.16);
@@ -292,6 +309,7 @@ const services = [
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center top;
     display: block;
   }
 

@@ -63,9 +63,42 @@ a:hover, a:focus-visible {
   }
 }
 
-/* Container helper — Plan 04 sections will use this */
+/* Container helper */
 .container {
   max-width: 1200px;
   margin-inline: auto;
   padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
+/* === Film grain overlay — fixed, full-viewport, very subtle. Gives an editorial,
+   bespoke texture (ported & re-tuned from the old psychedelic noise-overlay). === */
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+}
+
+/* === Scroll-reveal: elements gently fade + rise into view.
+   Only hidden when JS is present (.js on <html>) so no-JS users still see everything.
+   Disabled entirely under prefers-reduced-motion. === */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+.js .reveal.in-view {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
