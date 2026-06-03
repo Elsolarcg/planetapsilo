@@ -1,7 +1,5 @@
 // src/data/faqs.ts
-// Phase 2 (CONT-08, D-13): 6 FAQs consumidas por FAQ.astro sólo en home.
-// Las respuestas respetan docs/copy-glossary.md lista PROHIBIDO — sin atribución clínica, sin nombres de sustancia.
-// Phase 3 puede refinar via revisión de abogado; para Phase 2 son la v1 escrita dentro del glosario.
+// Sofía Castañeda LP — preguntas frecuentes (consumidas por FAQ.astro).
 
 export interface FAQItem {
   question: string;
@@ -10,27 +8,23 @@ export interface FAQItem {
 
 export const faqs: FAQItem[] = [
   {
-    question: '¿Qué encuadre legal tiene este espacio?',
-    answer: 'planetapsilo ofrece espacios de exploración personal y acompañamiento no clínico. No constituye terapia ni servicio de salud. Para necesidades de salud mental, consulta a un profesional habilitado.',
+    question: '¿Las sesiones son completamente virtuales?',
+    answer: 'Sí. Todas las sesiones se realizan por videollamada, así que puedes conectarte desde donde te sientas cómoda o cómodo, en Colombia o en el exterior. Solo necesitas conexión a internet y un espacio tranquilo.',
   },
   {
-    question: '¿Qué tan confidencial es lo que se conversa aquí?',
-    answer: 'Lo que se conversa aquí no sale de aquí. Trabajamos con discreción profesional y archivamos sólo lo mínimo necesario para responderte y coordinar próximos encuentros.',
+    question: '¿Cómo puedo agendar?',
+    answer: 'Puedes reservar una llamada gratuita de 15 minutos directamente desde el botón principal de la página, o escribirme por WhatsApp y coordinamos un horario. En esa primera llamada resolvemos dudas y, si quieres, agendamos la primera sesión.',
   },
   {
-    question: '¿Cómo sé si esto es para mí?',
-    answer: 'Si estás en un momento de inflexión profesional o personal y buscas un espacio para reordenar desde otra altura, conversemos antes. Hay una conversación previa — para saber si lo que pides y lo que ofrecemos calzan.',
+    question: '¿Qué ocurre en la llamada gratuita de 15 minutos?',
+    answer: 'Es una conversación breve y sin compromiso para conocernos: me cuentas qué te trae, resuelvo tus dudas sobre cómo trabajo y vemos juntos si este acompañamiento es lo que estás buscando. Si sentimos que encaja, coordinamos la primera sesión.',
   },
   {
-    question: '¿Qué pasa en un encuentro de acompañamiento?',
-    answer: 'Una conversación uno-a-uno en un espacio sin interrupciones. Sin protocolo clínico, sin diagnóstico, sin recetario. La forma se ajusta a lo que cada persona necesita en cada momento.',
+    question: '¿Cuánto dura cada sesión y cuál es el valor?',
+    answer: 'Cada sesión dura 50 minutos y tiene un valor de $50.000 COP. La llamada inicial de 15 minutos es gratuita.',
   },
   {
-    question: '¿Cuánto tiempo dura un proceso típico?',
-    answer: 'Depende. Algunas personas vienen por una conversación puntual; otras sostienen encuentros recurrentes durante varios meses. No hay número mínimo ni paquete obligatorio — se construye sobre la marcha.',
-  },
-  {
-    question: '¿Cómo decido entre acompañamiento y un retiro?',
-    answer: 'El acompañamiento es ongoing: encuentros que sostienen un proceso en tu vida cotidiana. El retiro es una pausa profunda concentrada en pocos días, con preparación e integración. Si nunca participaste en un espacio similar, conviene empezar por la conversación.',
+    question: '¿Qué métodos de pago aceptas?',
+    answer: 'Coordinamos el pago por transferencia o los medios digitales más cómodos para ti (por ejemplo Nequi o Bancolombia). Te comparto los detalles al agendar tu primera sesión.',
   },
 ];

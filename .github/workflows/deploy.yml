@@ -42,10 +42,8 @@ jobs:
       - name: Build with Astro
         run: npm run build
 
-      - name: Lint copy against docs/copy-glossary.md PROHIBIDO list
-        run: node scripts/copy-lint.mjs
-        # Phase 2 D-25 gate: any non-exempt PROHIBIDO match → exit 1 → deploy job (needs: build) never runs.
-        # Source-of-truth: docs/copy-glossary.md §PROHIBIDO + §Exemptions.
+      # Copy-lint gate removed 2026-06-03: the anti-psychedelic PROHIBIDO list no longer applies
+      # to the clinical psychology copy on Sofía's LP.
 
       - name: Setup Pages
         uses: actions/configure-pages@v5

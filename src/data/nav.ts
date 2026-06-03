@@ -1,7 +1,5 @@
 // src/data/nav.ts
-// Nav items consumed by Nav.astro. `href` is the route WITHOUT base prefix —
-// Nav.astro's `internal()` helper applies `import.meta.env.BASE_URL` to neutralize
-// Pitfall #13 (GH Pages base-path bug).
+// Single-page LP: nav items are in-page anchors (no base-path prefixing needed for '#' links).
 
 export interface NavItem {
   label: string;
@@ -9,9 +7,8 @@ export interface NavItem {
 }
 
 export const nav: NavItem[] = [
-  { label: 'Inicio',         href: '/' },
-  { label: 'Acompañamiento', href: '/acompanamiento' },
-  { label: 'Retiros',        href: '/retiros' },
-  { label: 'Obras',          href: '/obras' },
-  { label: 'Contacto',       href: '/contacto' },
+  { label: 'Sobre mí',  href: '#sobre-mi' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Consulta',  href: '#consulta' },
+  { label: 'Preguntas', href: '#faq' },
 ];

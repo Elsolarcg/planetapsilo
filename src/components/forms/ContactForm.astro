@@ -1,20 +1,19 @@
 ---
 // src/components/forms/ContactForm.astro
-// Phase 2 (CONT-04, D-15, D-16, D-18): 5-field general contact form for /contacto.
-// Sibling of RetreatApplicationForm (Plan 04) — same Web3Forms POST + inline success pattern.
-// Topic includes 'Obras' even though /obras is Phase 02.1 — visitors of the art catalog may need fallback channel.
+// Sofía Castañeda LP — short contact form (Web3Forms POST + inline success, vanilla JS, no redirect).
+// Fallback channel for visitors who prefer writing over WhatsApp/agendar.
 
 import FormField from './FormField.astro';
 import HabeasDataCheckbox from './HabeasDataCheckbox.astro';
 import FormSuccess from './FormSuccess.astro';
 import { contact, waLink } from '../../data/contact';
 
-const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funcionó');
+const errorWaHref = waLink('Hola Sofía, intenté el formulario y no funcionó');
 ---
 <section id="form" class="contact-form-section">
   <div class="container narrow">
     <h2>Si prefieres escribir</h2>
-    <p class="lead">Cuéntanos en una línea y te respondemos. Funciona como un email — sin presión, sin compromiso.</p>
+    <p class="lead">Cuéntame brevemente qué te trae y te respondo lo antes posible. Sin compromiso.</p>
 
     <form
       id="contact-form"
@@ -22,9 +21,9 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
       method="POST"
       class="contact-form"
     >
-      <input type="hidden" name="access_key" value={contact.web3formsKeyContacto} />
-      <input type="hidden" name="subject" value="Consulta general planetapsilo" />
-      <input type="hidden" name="from_name" value="planetapsilo contact form" />
+      <input type="hidden" name="access_key" value={contact.web3formsKey} />
+      <input type="hidden" name="subject" value="Nueva consulta desde la página de Sofía" />
+      <input type="hidden" name="from_name" value="Página Sofía Castañeda" />
       <input
         type="text"
         name="botcheck"
@@ -40,9 +39,9 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
       <FormField
         type="select"
         name="topic"
-        label="¿Sobre qué quieres conversar?"
+        label="¿Qué te gustaría trabajar?"
         required={true}
-        options={['Acompañamiento', 'Retiros', 'Obras', 'Otra cosa']}
+        options={['Ansiedad', 'Estrés', 'Autoestima', 'Regulación emocional', 'Psicoanálisis', 'Terapia ACT', 'Aún no estoy seguro/a']}
       />
       <FormField type="textarea" name="message" label="Cuéntame en una línea" required={true} rows={2} />
 
@@ -50,7 +49,7 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
 
       <div id="contact-error" class="form-error" role="alert" hidden>
         No pudimos enviar. Intenta de nuevo o
-        <a href={errorWaHref} target="_blank" rel="noopener noreferrer">escríbenos por WhatsApp</a>.
+        <a href={errorWaHref} target="_blank" rel="noopener noreferrer">escríbeme por WhatsApp</a>.
       </div>
 
       <button type="submit" class="cta cta-primary" id="contact-submit">
@@ -60,11 +59,11 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
         </svg>
       </button>
 
-      <p class="sla">Respondemos antes de 24h, normalmente el mismo día.</p>
+      <p class="sla">Te respondo normalmente el mismo día.</p>
     </form>
 
     <div id="contact-success" hidden>
-      <FormSuccess variant="contacto" />
+      <FormSuccess />
     </div>
   </div>
 </section>
@@ -77,8 +76,8 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
   }
   h2 {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-size: clamp(1.625rem, 4vw, 2rem);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
     line-height: 1.2;
     color: var(--color-text-primary);
     margin: 0 0 16px;
@@ -90,7 +89,7 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
     font-size: 1.0625rem;
     line-height: 1.65;
     color: var(--color-text-muted);
-    margin: 0 0 48px;
+    margin: 0 0 40px;
     text-align: center;
   }
   .contact-form {
@@ -102,9 +101,9 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
     font-family: var(--font-body);
     font-size: 0.8125rem;
     line-height: 1.5;
-    color: rgba(255, 122, 61, 0.85);
+    color: var(--color-terracota-deep);
     padding: 12px 16px;
-    background: rgba(255, 122, 61, 0.08);
+    background: rgba(191, 106, 78, 0.1);
     border-radius: 8px;
   }
   .form-error a {
@@ -131,13 +130,13 @@ const errorWaHref = waLink('Hola planetapsilo, intenté el formulario y no funci
     box-sizing: border-box;
   }
   .cta:focus-visible {
-    outline: 2px solid var(--color-orange-mystic);
+    outline: 2px solid var(--color-terracota);
     outline-offset: 2px;
   }
   .cta-primary {
-    background: var(--color-orange-mystic);
-    color: var(--color-bg-base);
-    box-shadow: 0 8px 24px rgba(255, 122, 61, 0.35);
+    background: var(--color-terracota);
+    color: var(--color-cream);
+    box-shadow: 0 8px 24px rgba(191, 106, 78, 0.32);
     transition: transform 200ms ease, opacity 200ms ease;
   }
   .cta-primary:hover:not([disabled]) { transform: scale(1.02); }

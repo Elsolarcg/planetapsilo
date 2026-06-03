@@ -1,51 +1,30 @@
 ---
 // src/components/layout/Footer.astro
-// Phase 2 expansion (CONT-10, CONT-11, D-26):
-//   - Social row: Instagram + TikTok (external, target=_blank, rel=noopener noreferrer per Pitfall #15)
-//   - Disclaimer paragraph (LOCKED — UI-SPEC §"Locked strings"; contains denial-clause "No constituye terapia"
-//     which the copy linter exempts via docs/copy-glossary.md §Exemptions, added in Plan 06)
-//   - "Privacidad — próximamente" link → /privacidad stub via internal() BASE_URL helper
-//   - Phase 1 noindex conditional preserved (auto-disappears when LEGAL-12 flips site.indexable)
+// Sofía Castañeda LP footer: contact channels + responsible-use note + privacidad link.
 
 import { site } from '../../data/site';
-import { contact } from '../../data/contact';
+import { contact, waLink, mailLink } from '../../data/contact';
 
-// BASE_URL helper — same pattern as Nav.astro / BaseLayout.astro (Pitfall #13).
 const baseUrl = import.meta.env.BASE_URL;
 const baseTrimmed = baseUrl.replace(/\/$/, '');
 const internal = (p: string) => {
   const path = p.replace(/^\//, '');
   return path === '' ? `${baseTrimmed}/` : `${baseTrimmed}/${path}`;
 };
+
+const waHref = waLink('Hola Sofía, me gustaría agendar una sesión');
 ---
 <footer class="site-footer">
   <div class="container footer-inner">
 
-    <ul class="social-row" role="list" aria-label="Redes sociales de planetapsilo">
-      <li>
-        <a
-          href={contact.instagramUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram de planetapsilo"
-        >
-          Instagram
-        </a>
-      </li>
-      <li>
-        <a
-          href={contact.tiktokUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="TikTok de planetapsilo"
-        >
-          TikTok
-        </a>
-      </li>
+    <ul class="contact-row" role="list" aria-label="Canales de contacto">
+      <li><a href={waHref} target="_blank" rel="noopener noreferrer">WhatsApp 314 406 8637</a></li>
+      <li><a href={mailLink('Consulta — acompañamiento psicológico')}>{contact.email}</a></li>
     </ul>
 
-    <p class="disclaimer">
-      planetapsilo ofrece espacios de exploración personal y acompañamiento no clínico. No constituye terapia ni servicio de salud. Para necesidades de salud mental, consulta a un profesional habilitado.
+    <p class="note">
+      Este es un espacio de acompañamiento psicológico y no reemplaza una atención de urgencias.
+      Si estás en una crisis o emergencia, comunícate con la línea 123 o la Línea de Salud Mental 106.
     </p>
 
     <p class="brand-line">
@@ -53,13 +32,7 @@ const internal = (p: string) => {
       <span class="separator">·</span>
       <span class="muted">{site.year}</span>
       <span class="separator">·</span>
-      <a class="privacy-link" href={internal('/privacidad')}>Privacidad — próximamente</a>
-      {!site.indexable && (
-        <>
-          <span class="separator">·</span>
-          <span class="status muted">Sitio en construcción — sigue noindex</span>
-        </>
-      )}
+      <a class="privacy-link" href={internal('/privacidad')}>Tratamiento de datos</a>
     </p>
 
   </div>
@@ -67,18 +40,19 @@ const internal = (p: string) => {
 
 <style>
   .site-footer {
-    margin-top: var(--space-section);
-    padding-block: 32px;
+    margin-top: 0;
+    padding-block: 40px;
     border-top: 1px solid var(--color-chrome-border);
+    background: var(--color-beige);
   }
   .footer-inner {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
+    gap: 20px;
     text-align: center;
   }
-  .social-row {
+  .contact-row {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -87,23 +61,22 @@ const internal = (p: string) => {
     flex-wrap: wrap;
     justify-content: center;
   }
-  .social-row a {
+  .contact-row a {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: 0.875rem;  /* --font-body-sm 14px */
-    letter-spacing: 0.02em;
-    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    color: var(--color-ink);
     transition: color 200ms ease;
   }
-  .social-row a:hover,
-  .social-row a:focus-visible {
-    color: var(--color-orange-mystic);
+  .contact-row a:hover,
+  .contact-row a:focus-visible {
+    color: var(--color-terracota);
   }
-  .disclaimer {
+  .note {
     margin: 0;
-    max-width: 42rem;
+    max-width: 44rem;
     font-family: var(--font-body);
-    font-size: 0.8125rem;  /* --font-body-xs 13px */
+    font-size: 0.8125rem;
     line-height: 1.5;
     color: var(--color-text-subtle);
   }
@@ -120,11 +93,10 @@ const internal = (p: string) => {
   }
   .wordmark {
     font-family: var(--font-display);
-    font-weight: 500;          /* UI-SPEC: Footer wordmark also 18px/500 to match Nav revision */
-    font-size: 1.125rem;       /* --font-display-sm 18px */
-    letter-spacing: 0.08em;
-    text-transform: lowercase;
-    color: var(--color-text-primary);
+    font-weight: 500;
+    font-size: 1.05rem;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
   }
   .muted { color: var(--color-text-muted); }
   .separator { opacity: 0.5; }
@@ -137,12 +109,11 @@ const internal = (p: string) => {
   }
   .privacy-link:hover,
   .privacy-link:focus-visible {
-    color: var(--color-orange-mystic);
+    color: var(--color-terracota);
   }
-  .status { /* keeps Phase 1 noindex chip identical */ }
 
   @media (prefers-reduced-motion: reduce) {
-    .social-row a,
+    .contact-row a,
     .privacy-link {
       transition: none;
     }

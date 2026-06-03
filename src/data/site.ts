@@ -1,6 +1,6 @@
 // src/data/site.ts
 // Single source of truth for site-wide config consumed by BaseLayout + Footer.
-// Phase 2 will update copy; Phase 3 will flip `indexable` to true after abogado sign-off (LEGAL-12).
+// 2026-06-03 pivot: this is now Sofía Castañeda's psychology landing page (indexable).
 
 export interface SiteConfig {
   name: string;
@@ -15,15 +15,15 @@ export interface SiteConfig {
 }
 
 export const site: SiteConfig = {
-  name: 'planetapsilo',
+  name: 'Sofía Castañeda',
   baseUrl: 'https://elsolarcg.github.io/planetapsilo',
   ogDefault: {
-    title: 'planetapsilo',
+    title: 'Sofía Castañeda · Psicóloga',
     description:
-      'Espacio de exploración y acompañamiento. (Sitio en construcción — Phase 1 skeleton.)',
+      'Acompañamiento psicológico virtual. Un espacio seguro para comprenderte, afrontar tus desafíos y construir una vida con mayor bienestar.',
     image: 'og-default.svg',
   },
-  // Phase 1 ships noindex. Flipping this to true is a Phase 3 LEGAL-12 task gated by abogado.
-  indexable: false,
+  // Pivot decision (2026-06-03): page is public/indexable.
+  indexable: true,
   year: new Date().getFullYear(),
 };

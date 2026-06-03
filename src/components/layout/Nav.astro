@@ -1,24 +1,15 @@
 ---
 // src/components/layout/Nav.astro
-// Sticky transparent header → backdrop-filter: blur(12px) when window.scrollY > 50 (D-09).
-// Wordmark "planetapsilo" lowercase Fraunces 300 tracking-wide 0.08em (D-06, D-07).
-// Mobile (< 768px): wordmark + hamburger; nav collapses to fullscreen drawer (D-09).
-// Pitfall #13: every internal link goes through `internal()` which prefixes BASE_URL.
+// Single-page LP header: wordmark + in-page anchor links + "Agendar" CTA.
+// Transparent over the hero → warm-cream blur on scroll (window.scrollY > 50). Vanilla JS, 0 KB framework.
+// Mobile (< 768px): wordmark + hamburger → fullscreen drawer.
 
 import { nav } from '../../data/nav';
-
-// BASE_URL is "/planetapsilo" (no trailing slash) under trailingSlash: 'ignore' in astro.config.mjs.
-// internal() normalizes both sides so concatenation always yields "/planetapsilo/<path>".
-const baseUrl = import.meta.env.BASE_URL;
-const baseTrimmed = baseUrl.replace(/\/$/, '');
-const internal = (p: string) => {
-  const path = p.replace(/^\//, '');
-  return path === '' ? `${baseTrimmed}/` : `${baseTrimmed}/${path}`;
-};
+import { contact } from '../../data/contact';
 ---
 <header id="site-header" class="site-header">
   <div class="container nav-row">
-    <a href={internal('/')} class="wordmark" aria-label="planetapsilo — inicio">planetapsilo</a>
+    <a href="#top" class="wordmark" aria-label="Sofía Castañeda — inicio">Sofía Castañeda</a>
 
     <button
       id="nav-toggle"
@@ -35,8 +26,16 @@ const internal = (p: string) => {
     <nav id="primary-nav" class="primary-nav" aria-label="Navegación principal">
       <ul>
         {nav.map((item) => (
-          <li><a href={internal(item.href)}>{item.label}</a></li>
+          <li><a href={item.href}>{item.label}</a></li>
         ))}
+        <li>
+          <a
+            class="nav-cta"
+            href={contact.schedulingUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >Agendar</a>
+        </li>
       </ul>
     </nav>
   </div>
@@ -52,7 +51,7 @@ const internal = (p: string) => {
     border-bottom: 1px solid transparent;
   }
   .site-header.scrolled {
-    background-color: rgba(5, 10, 26, 0.6);
+    background-color: rgba(250, 246, 241, 0.82);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--color-chrome-border);
@@ -65,14 +64,14 @@ const internal = (p: string) => {
   }
   .wordmark {
     font-family: var(--font-display);
-    font-weight: 300;
-    font-size: 1.5rem;
-    letter-spacing: 0.08em;
-    text-transform: lowercase;
-    color: var(--color-text-primary);
+    font-weight: 500;
+    font-size: 1.35rem;
+    letter-spacing: 0.01em;
+    color: var(--color-ink);
   }
   .primary-nav ul {
     display: flex;
+    align-items: center;
     gap: 2rem;
     list-style: none;
     margin: 0;
@@ -82,11 +81,25 @@ const internal = (p: string) => {
     font-family: var(--font-body);
     font-size: 0.95rem;
     font-weight: 400;
-    color: var(--color-text-primary);
+    color: var(--color-ink);
+    transition: color 200ms ease;
   }
   .primary-nav a:hover,
   .primary-nav a:focus-visible {
-    color: var(--color-orange-mystic);
+    color: var(--color-terracota);
+  }
+  .nav-cta {
+    background: var(--color-terracota);
+    color: var(--color-cream) !important;
+    padding: 8px 20px;
+    border-radius: 999px;
+    font-weight: 500 !important;
+    transition: background-color 200ms ease;
+  }
+  .nav-cta:hover,
+  .nav-cta:focus-visible {
+    background: var(--color-terracota-deep);
+    color: var(--color-cream) !important;
   }
   .nav-toggle {
     display: none;
@@ -101,7 +114,7 @@ const internal = (p: string) => {
     display: block;
     width: 24px;
     height: 2px;
-    background: var(--color-text-primary);
+    background: var(--color-ink);
     transition: transform 200ms ease, opacity 200ms ease;
   }
 
@@ -110,21 +123,22 @@ const internal = (p: string) => {
     .primary-nav {
       position: fixed;
       inset: 0;
-      background: var(--color-bg-base);
+      background: var(--color-cream);
       display: none;
       padding: 6rem 2rem 2rem;
     }
     .primary-nav.open { display: block; }
     .primary-nav ul {
       flex-direction: column;
+      align-items: flex-start;
       gap: 1.5rem;
       font-size: 1.25rem;
     }
+    .nav-cta { font-size: 1.1rem; }
   }
 </style>
 
 <script>
-  // D-09: blur-on-scroll. Vanilla JS so we ship 0 KB of framework runtime.
   const header = document.getElementById('site-header');
   const toggle = document.getElementById('nav-toggle');
   const navEl = document.getElementById('primary-nav');
@@ -138,10 +152,17 @@ const internal = (p: string) => {
   onScroll();
 
   if (toggle && navEl) {
+    const close = () => {
+      navEl.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Abrir menú');
+    };
     toggle.addEventListener('click', () => {
       const isOpen = navEl.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(isOpen));
       toggle.setAttribute('aria-label', isOpen ? 'Cerrar menú' : 'Abrir menú');
     });
+    // Close the mobile drawer after tapping an in-page anchor.
+    navEl.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
   }
 </script>

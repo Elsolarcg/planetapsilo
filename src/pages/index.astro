@@ -1,139 +1,439 @@
 ---
-// src/pages/index.astro — Home (Phase 2)
-// Implementa CONT-01 (hero + dual CTA), CONT-06 (CTABlock), CONT-07 (testimonial), CONT-08 (FAQ), CONT-12 (meta).
-// Orden de secciones LOCKED en UI-SPEC §"Per-page section composition `/` (home)".
+// src/pages/index.astro — Sofía Castañeda · landing page (single page, ~2 scroll screens).
+// Content compiled by Sofía (source of truth). No invented titles/certifications.
 
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import BrandBio from '../components/sections/BrandBio.astro';
-import ServicesSplit from '../components/sections/ServicesSplit.astro';
-import Testimonial from '../components/sections/Testimonial.astro';
+import Button from '../components/ui/Button.astro';
 import FAQ from '../components/sections/FAQ.astro';
-import CTABlock from '../components/sections/CTABlock.astro';
-import { services } from '../data/services';
-import { testimonials } from '../data/testimonials';
+import ContactForm from '../components/forms/ContactForm.astro';
 import { faqs } from '../data/faqs';
-import { contact, waLink } from '../data/contact';
+import { contact, waLink, mailLink } from '../data/contact';
 
-const homeTestimonial = testimonials.find(t => t.context === 'home');
-
-// Helper BASE_URL para el target del tertiary form-link CTA.
 const baseUrl = import.meta.env.BASE_URL;
 const baseTrimmed = baseUrl.replace(/\/$/, '');
-const contactForm = `${baseTrimmed}/contacto#form`;
-const retirosHref = `${baseTrimmed}/retiros`;
+const asset = (p: string) => `${baseTrimmed}/${p.replace(/^\//, '')}`;
 
-// Párrafos LOCKED de BrandBio (UI-SPEC §"Locked strings"). Ambos contienen la cláusula-denial "No es terapia" — la exención del linter copy se maneja en Plan 06.
-const brandBioParagraphs = [
-  'planetapsilo es un espacio de exploración personal para liderazgos que están reordenando. No es terapia ni servicio de salud — es acompañamiento y retiros pensados para mentes que ya construyeron mucho y ahora quieren ver desde otra altura.',
-  'Cada propuesta recibe a pocas personas. Hay una conversación antes — para saber si lo que pides y lo que ofrecemos calzan. La pausa real no se improvisa.',
+const waHref = waLink('Hola Sofía, me gustaría agendar una sesión');
+
+const services = [
+  {
+    title: 'Ansiedad',
+    desc: 'Un espacio para entender qué hay detrás de la preocupación constante y recuperar algo de calma en el día a día.',
+    icon: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/><path d="M3 14c2-2 4-2 6 0s4 2 6 0 4-2 6 0"/></svg>',
+  },
+  {
+    title: 'Estrés',
+    desc: 'Acompañamiento para sostener las exigencias del trabajo y la vida sin perderte a ti en el camino.',
+    icon: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 6-14 14-14 0 8-6 14-14 14z"/><path d="M5 19c4-2 7-5 9-9"/></svg>',
+  },
+  {
+    title: 'Autoestima',
+    desc: 'Trabajar la relación contigo misma o contigo mismo desde un lugar más amable y firme a la vez.',
+    icon: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>',
+  },
+  {
+    title: 'Regulación emocional',
+    desc: 'Aprender a reconocer, nombrar y acompañar lo que sientes, sin que las emociones te desborden.',
+    icon: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5c0 5-7 9.5-7 9.5z"/></svg>',
+  },
+  {
+    title: 'Psicoanálisis',
+    desc: 'Un recorrido más profundo por tu historia para comprender de dónde vienen los patrones que se repiten.',
+    icon: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 13a1.5 1.5 0 1 0 1.6 1.5"/><path d="M14 11.5A4 4 0 1 1 8 8.2"/><path d="M9.5 7.2A7 7 0 1 1 5.5 16"/></svg>',
+  },
+  {
+    title: 'Terapia ACT',
+    desc: 'Aceptación y compromiso: dejar de pelear contra lo que duele y avanzar hacia lo que de verdad te importa.',
+    icon: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M15.5 8.5l-2.2 5.3-5.3 2.2 2.2-5.3z"/></svg>',
+  },
 ];
 ---
 <BaseLayout
-  description="Acompañamiento y retiros para liderazgos que están reordenando. Espacio de exploración personal para C-Level, founders y nómadas digitales."
+  title="Psicóloga · Acompañamiento virtual"
+  description="Sofía Castañeda — acompañamiento psicológico virtual. Agenda una llamada gratuita de 15 minutos."
 >
-  <Hero
-    variant="home"
-    kicker="planetapsilo"
-    title="Acompañamiento y retiros para liderazgos que están reordenando."
-    maxim="La claridad no se conquista. Se recuerda."
-  >
-    <div class="hero-cta-row">
-      <a
-        class="cta cta-primary"
-        href={contact.calendlyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Agenda una conversación
-      </a>
-      <a
-        class="cta cta-secondary"
-        href={retirosHref}
-      >
-        Explora los retiros
-      </a>
+  <span id="top"></span>
+
+  {/* ===================== HERO ===================== */}
+  <section class="hero">
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="kicker">Psicóloga · Acompañamiento virtual</p>
+        <h1>Un espacio seguro para comprenderte, afrontar tus desafíos y construir una vida con mayor bienestar.</h1>
+        <p class="subtitle">
+          Acompañamiento psicológico en sesiones virtuales, desde donde estés. Un lugar tranquilo para conversar sobre lo que estás viviendo, a tu ritmo.
+        </p>
+        <div class="hero-cta">
+          <Button
+            variant="primary"
+            href={contact.schedulingUrl}
+            label="Agenda una llamada gratuita de 15 min"
+            external={true}
+          />
+          <Button
+            variant="secondary"
+            href={waHref}
+            label="Escríbeme por WhatsApp"
+            external={true}
+          />
+        </div>
+        <p class="credential">
+          <img src={asset('assets/uniandes-logo.png')} alt="Universidad de los Andes" class="andes-logo" width="120" height="57" loading="lazy" />
+          <span>Estudiante de último semestre de Psicología, Universidad de los Andes</span>
+        </p>
+      </div>
+
+      <div class="hero-photo">
+        <img
+          src={asset('assets/sofia.jpg')}
+          alt="Sofía Castañeda, psicóloga"
+          width="640"
+          height="800"
+        />
+      </div>
     </div>
-  </Hero>
+  </section>
 
-  <BrandBio paragraphs={brandBioParagraphs} />
+  {/* ===================== SOBRE MÍ ===================== */}
+  <section id="sobre-mi" class="section about">
+    <div class="container narrow center">
+      <h2>Sobre mí</h2>
+      <p>
+        Soy <strong>Sofía Castañeda</strong>, estudiante de último semestre de Psicología de la Universidad de los Andes. Mi forma de acompañar parte de algo sencillo: cada persona merece un espacio en el que pueda hablar sin sentirse juzgada y mirar lo que le pasa con calma y honestidad.
+      </p>
+      <p>
+        Me interesa especialmente acompañar procesos relacionados con la ansiedad, el estrés, la autoestima y la regulación emocional —esos momentos en los que la mente no da tregua y cuesta encontrar dónde apoyarse. Trabajo con cercanía y rigor, cuidando que cada sesión sea un lugar seguro para entenderte mejor y dar pasos hacia lo que quieres para tu vida.
+      </p>
+    </div>
+  </section>
 
-  <ServicesSplit services={services} />
+  {/* ===================== SERVICIOS ===================== */}
+  <section id="servicios" class="section services">
+    <div class="container">
+      <h2 class="center">En qué te puedo acompañar</h2>
+      <p class="section-lead center">Algunos de los procesos que trabajamos juntos. Si no ves lo tuyo aquí, escríbeme y conversamos.</p>
+      <ul class="services-grid" role="list">
+        {services.map((s) => (
+          <li class="service-card">
+            <span class="service-icon" aria-hidden="true" set:html={s.icon} />
+            <h3>{s.title}</h3>
+            <p>{s.desc}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
 
-  {homeTestimonial && (
-    <Testimonial
-      quote={homeTestimonial.quote}
-      attribution={homeTestimonial.attribution}
-      disclaimer={homeTestimonial.disclaimer}
-    />
-  )}
+  {/* ===================== CONSULTA ===================== */}
+  <section id="consulta" class="section consulta">
+    <div class="container narrow center">
+      <h2>La consulta</h2>
+      <div class="consulta-facts">
+        <div class="fact">
+          <span class="fact-num">50 min</span>
+          <span class="fact-label">Sesión virtual</span>
+        </div>
+        <div class="fact-divider" aria-hidden="true"></div>
+        <div class="fact">
+          <span class="fact-num">$50.000</span>
+          <span class="fact-label">COP por sesión</span>
+        </div>
+      </div>
+      <p class="consulta-note">La primera llamada de 15 minutos es gratuita: nos conocemos y resolvemos tus dudas sin compromiso.</p>
+      <div class="hero-cta center">
+        <Button
+          variant="primary"
+          href={contact.schedulingUrl}
+          label="Agenda tu llamada gratuita"
+          external={true}
+        />
+        <Button
+          variant="secondary"
+          href={waHref}
+          label="Escríbeme por WhatsApp"
+          external={true}
+        />
+      </div>
+    </div>
+  </section>
 
-  <FAQ items={faqs} />
+  {/* ===================== FAQ ===================== */}
+  <FAQ items={faqs} heading="Preguntas frecuentes" />
 
-  <CTABlock
-    primary={{
-      label: 'Agenda una conversación',
-      href: contact.calendlyUrl,
-      external: true,
-    }}
-    secondary={{
-      label: 'Escribir por WhatsApp',
-      href: waLink('Hola planetapsilo, me interesa explorar'),
-      external: true,
-      ariaLabel: 'Escribir a planetapsilo por WhatsApp',
-    }}
-    tertiary={{
-      label: 'Prefiero escribir un formulario',
-      href: contactForm,
-    }}
-  />
+  {/* ===================== CONTACTO / CIERRE ===================== */}
+  <section class="section contacto-cierre">
+    <div class="container narrow center">
+      <h2>Dar el primer paso ya es mucho</h2>
+      <p>
+        Pedir apoyo no es un signo de debilidad, es una forma de cuidarte. Si sientes que es el momento, conversemos —sin presión y a tu ritmo.
+      </p>
+      <p class="contact-lines">
+        <a href={waHref} target="_blank" rel="noopener noreferrer">WhatsApp · 314 406 8637</a>
+        <span class="sep" aria-hidden="true">·</span>
+        <a href={mailLink('Consulta — acompañamiento psicológico')}>{contact.email}</a>
+      </p>
+    </div>
+  </section>
+
+  <ContactForm />
 </BaseLayout>
 
 <style>
-  /* Hero dual CTA — usa .cta-primary + .cta-secondary inline para evitar un 2do import de Button en la página misma.
-     Las reglas visuales coinciden con Button.astro primary/secondary exactamente (UI-SPEC §"Button variants" — 12px 28px, pill 999px, 17px Inter 500). */
-  .hero-cta-row {
-    margin-top: 32px;
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
+  .section { padding-block: var(--space-section); }
+  .container.narrow { max-width: 44rem; }
+  .center { text-align: center; }
+
+  h2 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.875rem, 4.5vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0 0 24px;
   }
-  .cta {
-    display: inline-block;
+  .section-lead {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    max-width: 40rem;
+    margin: 0 auto 48px;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 8vw, 6rem) clamp(3rem, 7vw, 5rem);
+  }
+  .hero-glow {
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60vw;
+    height: 60vw;
+    max-width: 720px;
+    max-height: 720px;
+    background: radial-gradient(circle, rgba(191, 106, 78, 0.22), rgba(191, 106, 78, 0) 70%);
+    z-index: -1;
+    pointer-events: none;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+  }
+  .kicker {
     font-family: var(--font-body);
     font-weight: 500;
+    font-size: 0.8125rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-terracota);
+    margin: 0 0 20px;
+  }
+  .hero-copy h1 {
+    font-family: var(--font-display);
+    font-weight: 300;
+    font-size: clamp(2.1rem, 5.2vw, 3.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    margin: 0 0 24px;
+    max-width: 18ch;
+  }
+  .subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(1.0625rem, 2vw, 1.1875rem);
+    line-height: 1.65;
+    color: var(--color-text-muted);
+    margin: 0 0 36px;
+    max-width: 42ch;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .hero-cta.center { justify-content: center; }
+  .credential {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin: 40px 0 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--color-chrome-border);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--color-text-muted);
+    max-width: 38ch;
+  }
+  .andes-logo {
+    height: 34px;
+    width: auto;
+    flex-shrink: 0;
+  }
+
+  .hero-photo {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    max-width: 460px;
+    width: 100%;
+    justify-self: center;
+    box-shadow: 0 24px 60px rgba(58, 50, 46, 0.16);
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (min-width: 880px) {
+    .hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+    .hero-photo { justify-self: end; }
+  }
+
+  /* ---------- Sobre mí ---------- */
+  .about { background: var(--color-beige); }
+  .about p {
+    font-family: var(--font-body);
     font-size: 1.0625rem;
-    letter-spacing: 0.02em;
-    line-height: 1.4;
-    text-align: center;
-    text-decoration: none;
-    padding: 12px 28px;
-    border-radius: 999px;
-    box-sizing: border-box;
+    line-height: 1.75;
+    color: var(--color-text-muted);
+    margin: 0 auto 20px;
+    max-width: 40rem;
   }
-  .cta:focus-visible {
-    outline: 2px solid var(--color-orange-mystic);
-    outline-offset: 2px;
+  .about strong { color: var(--color-ink); font-weight: 500; }
+
+  /* ---------- Servicios ---------- */
+  .services-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .cta-primary {
-    background: var(--color-orange-mystic);
-    color: var(--color-bg-base);
-    box-shadow: 0 8px 24px rgba(255, 122, 61, 0.35);
-    transition: transform 200ms ease;
+  @media (min-width: 600px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
   }
-  .cta-primary:hover { transform: scale(1.02); }
-  .cta-primary:active { transform: scale(0.99); }
-  .cta-secondary {
-    background: transparent;
-    color: var(--color-text-primary);
-    border: 1px solid var(--color-text-primary);
-    transition: background-color 200ms ease;
+  @media (min-width: 960px) {
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
   }
-  .cta-secondary:hover { background: rgba(244, 237, 227, 0.08); }
+  .service-card {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-chrome-border);
+    border-radius: 14px;
+    padding: 28px 26px;
+    transition: transform 200ms ease, box-shadow 200ms ease;
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px rgba(58, 50, 46, 0.1);
+  }
+  .service-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: rgba(191, 106, 78, 0.1);
+    color: var(--color-terracota);
+    margin-bottom: 18px;
+  }
+  .service-card h3 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 0 0 10px;
+  }
+  .service-card p {
+    font-family: var(--font-body);
+    font-size: 0.975rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    margin: 0;
+  }
+
+  /* ---------- Consulta ---------- */
+  .consulta { background: var(--color-beige); }
+  .consulta-facts {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(24px, 6vw, 56px);
+    margin: 8px 0 28px;
+  }
+  .fact { display: flex; flex-direction: column; gap: 6px; }
+  .fact-num {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    line-height: 1;
+    color: var(--color-terracota);
+  }
+  .fact-label {
+    font-family: var(--font-body);
+    font-size: 0.875rem;
+    color: var(--color-text-muted);
+  }
+  .fact-divider {
+    width: 1px;
+    align-self: stretch;
+    background: var(--color-chrome-border-strong);
+  }
+  .consulta-note {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    color: var(--color-text-muted);
+    max-width: 36rem;
+    margin: 0 auto 36px;
+  }
+
+  /* ---------- Cierre ---------- */
+  .contacto-cierre p {
+    font-family: var(--font-body);
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--color-text-muted);
+    max-width: 36rem;
+    margin: 0 auto 16px;
+  }
+  .contact-lines {
+    margin-top: 24px;
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .contact-lines a {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--color-ink);
+    transition: color 200ms ease;
+  }
+  .contact-lines a:hover,
+  .contact-lines a:focus-visible { color: var(--color-terracota); }
+  .contact-lines .sep { color: var(--color-text-subtle); }
 
   @media (prefers-reduced-motion: reduce) {
-    .cta-primary, .cta-secondary { transition: none; }
-    .cta-primary:hover, .cta-primary:active { transform: none; }
+    .service-card,
+    .contact-lines a { transition: none; }
+    .service-card:hover { transform: none; }
   }
 </style>

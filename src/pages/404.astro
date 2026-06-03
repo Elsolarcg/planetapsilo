@@ -1,21 +1,16 @@
 ---
-// src/pages/404.astro — Custom 404 (FOUND-09).
-// Tone (01-CONTEXT.md Specifics): cósmico-amable. "Te perdiste en el universo de planetapsilo."
-// Astro emits dist/404.html which GitHub Pages serves automatically for unmatched routes.
+// src/pages/404.astro — Custom 404. Astro emits dist/404.html which GitHub Pages serves for unmatched routes.
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// BASE_URL is "/planetapsilo" (no trailing slash). Append "/" so the link resolves to /planetapsilo/.
 const baseUrl = import.meta.env.BASE_URL;
 const homeHref = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 ---
-<BaseLayout title="Te perdiste en el universo" description="404 — la ruta que buscas no existe en planetapsilo.">
+<BaseLayout title="Página no encontrada" description="404 — la ruta que buscas no existe.">
   <section class="not-found">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="noise-overlay" aria-hidden="true"></div>
     <div class="container nf-content">
       <p class="kicker">404</p>
-      <h1>Te perdiste en el universo de planetapsilo.</h1>
-      <p class="lede">Esta ruta no existe — al menos no todavía.</p>
+      <h1>Esta página no existe.</h1>
+      <p class="lede">El enlace que seguiste no lleva a ningún sitio. Volvamos al inicio.</p>
       <a class="cta-back" href={homeHref}>Vuelve al inicio →</a>
     </div>
   </section>
@@ -23,39 +18,37 @@ const homeHref = baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`;
 
 <style>
   .not-found {
-    position: relative;
-    isolation: isolate;
-    min-height: 80vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
-    overflow: hidden;
   }
-  .hero-bg { position: absolute; inset: -10%; z-index: -2; opacity: 0.7; }
-  .nf-content { text-align: center; position: relative; z-index: 1; padding-block: var(--space-section); }
+  .nf-content { text-align: center; padding-block: var(--space-section); }
   .kicker {
-    font-family: var(--font-display);
-    font-weight: 300;
-    font-size: 1rem;
-    letter-spacing: 0.32em;
-    opacity: 0.6;
-    margin-bottom: 1.5rem;
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.875rem;
+    letter-spacing: 0.28em;
+    color: var(--color-terracota);
+    margin-bottom: 1.25rem;
   }
   h1 {
     font-family: var(--font-display);
     font-weight: 300;
     font-size: clamp(1.75rem, 4vw, 2.75rem);
-    max-width: 30rem;
-    margin: 0 auto 1.5rem;
+    color: var(--color-ink);
+    max-width: 28rem;
+    margin: 0 auto 1.25rem;
     line-height: 1.2;
   }
   .lede { color: var(--color-text-muted); max-width: 28rem; margin: 0 auto 2.5rem; }
   .cta-back {
     display: inline-block;
-    padding: 0.875rem 1.75rem;
-    border-radius: 0.5rem;
-    background: var(--color-orange-mystic);
-    color: var(--color-bg-base);
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: var(--color-terracota);
+    color: var(--color-cream);
     font-family: var(--font-body);
     font-weight: 500;
   }
+  .cta-back:hover { background: var(--color-terracota-deep); color: var(--color-cream); }
 </style>
